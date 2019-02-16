@@ -119,6 +119,6 @@ public class Enemy extends GameObject{
     	enemyTypeArray[4] = Type.zombieEnemy;
     	enemyTypeArray[5] = Type.shootingEnemy;
     	
-    	return enemyTypeArray[randomNum.nextInt(6) - 1];
+    	return enemyTypeArray[randomNum.nextInt(6)];
     }
 }
