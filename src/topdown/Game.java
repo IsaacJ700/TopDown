@@ -10,7 +10,7 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private Handler handle;
     private Player player;
-    private Enemy enemy1;
+    private Enemy enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7;
     private State state;
     private Menu menu;
     private Credits credits;
@@ -37,6 +37,14 @@ public class Game extends Canvas implements Runnable {
         controlMenu = new ControlsMenu(this);
         player = new Player(100, 300, Type.player, handle, this);
         enemy1 = new Enemy(100, 450, Type.smallEnemy, handle, this);
+        
+        enemy2 = new Enemy(200, 300, Type.mediumEnemy, handle, this);
+        enemy3 = new Enemy(300, 300, Type.largeEnemy, handle, this);
+        enemy4 = new Enemy(400, 300, Type.bossEnemy, handle, this);
+        enemy5 = new Enemy(500, 300, Type.shootingEnemy, handle, this);
+        enemy6 = new Enemy(600, 300, Type.zombieEnemy, handle, this);
+        enemy7 = new Enemy(100, 600, Type.randomEnemy, handle, this);
+        
         gameScreen = new GameScreen(this, player);
         this.addKeyListener(new KeyControls(handle, this));
         this.addMouseListener(new MouseInput(this));
@@ -47,6 +55,13 @@ public class Game extends Canvas implements Runnable {
     public void beginGame() {
         handle.addObject(player);
         handle.addObject(enemy1);
+        
+        handle.addObject(enemy2);
+        handle.addObject(enemy3);
+        handle.addObject(enemy4);
+        handle.addObject(enemy5);
+        handle.addObject(enemy6);
+        handle.addObject(enemy7);
     }
 
     public void start() {

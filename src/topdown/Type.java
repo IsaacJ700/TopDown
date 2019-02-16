@@ -9,5 +9,8 @@ public enum Type {
     smallEnemy(),
     mediumEnemy(),
     largeEnemy(),
-    bossEnemy()
+    bossEnemy(),
+    zombieEnemy(),
+    shootingEnemy(),
+    randomEnemy()
 }
