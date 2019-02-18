@@ -1,8 +1,9 @@
 package topdown;
 
 import java.awt.*;
-import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game extends Canvas implements Runnable {
 
@@ -11,6 +12,7 @@ public class Game extends Canvas implements Runnable {
     private Handler handle;
     private Player player;
     private Enemy enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7;
+    private List<Enemy> enemies;
     private State state;
     private Menu menu;
     private Credits credits;
@@ -24,8 +26,9 @@ public class Game extends Canvas implements Runnable {
     private int frameCount;
 
     public Game() {
-        isRunning = true;
         frameCount = 0;
+        isRunning = true;
+        enemies = new ArrayList<>();
         state = State.Menu;
         new Window(WIDTH, HEIGHT, "Shooter", this);
         menu = new Menu(this);
@@ -37,17 +40,24 @@ public class Game extends Canvas implements Runnable {
         controlMenu = new ControlsMenu(this);
         player = new Player(100, 300, Type.player, handle, this);
         enemy1 = new Enemy(100, 450, Type.smallEnemy, handle, this);
-        
-        enemy2 = new Enemy(200, 300, Type.mediumEnemy, handle, this);
-        enemy3 = new Enemy(300, 300, Type.largeEnemy, handle, this);
-        enemy4 = new Enemy(400, 300, Type.bossEnemy, handle, this);
-        enemy5 = new Enemy(500, 300, Type.shootingEnemy, handle, this);
-        enemy6 = new Enemy(600, 300, Type.zombieEnemy, handle, this);
-        enemy7 = new Enemy(100, 600, Type.randomEnemy, handle, this);
+        enemy2 = new Enemy(200, 300, Type.smallEnemy, handle, this);
+        enemy3 = new Enemy(300, 300, Type.smallEnemy, handle, this);
+        enemy4 = new Enemy(400, 300, Type.smallEnemy, handle, this);
+        enemy5 = new Enemy(500, 300, Type.smallEnemy, handle, this);
+        enemy6 = new Enemy(600, 300, Type.smallEnemy, handle, this);
+        enemy7 = new Enemy(100, 600, Type.smallEnemy, handle, this);
+
+        enemies.add(enemy1);
+        enemies.add(enemy2);
+        enemies.add(enemy3);
+        enemies.add(enemy4);
+        enemies.add(enemy5);
+        enemies.add(enemy6);
+        enemies.add(enemy7);
         
         gameScreen = new GameScreen(this, player);
         this.addKeyListener(new KeyControls(handle, this));
-        this.addMouseListener(new MouseInput(this));
+        this.addMouseListener(new MouseInput(this, handle));
         start();
         beginGame();
     }
@@ -55,7 +65,6 @@ public class Game extends Canvas implements Runnable {
     public void beginGame() {
         handle.addObject(player);
         handle.addObject(enemy1);
-        
         handle.addObject(enemy2);
         handle.addObject(enemy3);
         handle.addObject(enemy4);
@@ -93,7 +102,7 @@ public class Game extends Canvas implements Runnable {
         double delta = 0;
         long timer = System.currentTimeMillis();
         int frames = 0;
-        while (isRunning == true) {
+        while (isRunning) {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
@@ -125,17 +134,38 @@ public class Game extends Canvas implements Runnable {
     public void tick() {
         if (state == state.Game) {
             handle.tick();
+            collision();
         }
     }
 
     public void collision() {
         Rectangle r1 = player.getBounds();
-        Rectangle r2 = enemy1.getBounds();
-        if (r1.intersects(r2)) {
-            if (player.getHealth() != 0) {
-                if (timer.isTimeUp() == true) {
-                    player.setHealth(player.getHealth() - 10);
-                    timer.setTime(System.currentTimeMillis());
+        for (Enemy enemy : enemies) {
+            Rectangle r2 = enemy.getBounds();
+            for (int i = 0; i < handle.list.size(); i++) {
+                GameObject temp = handle.list.get(i);
+                if (temp.getType() == Type.bullet) {
+                    Rectangle r3 = temp.getBounds();
+                    if (r3.intersects(r2)) {
+                        enemy.setHealth(enemy.getHealth() - 20);
+                        if (enemy.getHealth() == 0) {
+                            System.out.println("HERE ");
+                            handle.removeObject(enemy);
+                            handle.removeObject(temp);
+                        }
+                    }
+                }
+            }
+            if (r1.intersects(r2)) {
+                if (player.getHealth() != 0) {
+                    if (timer.isTimeUp()) {
+                        player.setHealth(player.getHealth() - 10);
+                        timer.setTime(System.currentTimeMillis());
+                        if (player.getHealth() == 0) {
+                            handle.removeObject(player);
+                            state = State.GameOver;
+                        }
+                    }
                 }
             }
         }
@@ -161,7 +191,6 @@ public class Game extends Canvas implements Runnable {
         } else if (state == State.Game) {
             gameScreen.render(g);
             handle.render(g);
-            collision();
         } else if (state == State.OptionsMenu) {
             option.render(g);
         } else if (state == State.PauseMenu) {

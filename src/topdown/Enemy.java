@@ -2,7 +2,6 @@ package topdown;
 
 import java.awt.*;
 import java.util.Random;
-import java.util.Arrays;
 
 public class Enemy extends GameObject{
     private Handler handle;
@@ -18,12 +17,12 @@ public class Enemy extends GameObject{
 
 
     public Enemy(int x, int y, Type type, Handler handle, Game game){
-    	super(x, y, type);
-        this.handle = handle;
+        super(x, y, type, handle);
         velX = 10;
         width = 20;
         height = 20;
-        health = 100;
+        health = 20;
+        this.handle = handle;
         this.game = game;        
     	
         setEnemyType(type);
@@ -35,6 +34,13 @@ public class Enemy extends GameObject{
 
     }
 
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
 
     @Override
     public void tick() {
@@ -53,7 +59,7 @@ public class Enemy extends GameObject{
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle(x, y, width, height);
+        return new Rectangle(x, y, getEnemySize(), getEnemySize());
     }
     
     private void setEnemySize(Type type) {

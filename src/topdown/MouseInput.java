@@ -2,14 +2,15 @@ package topdown;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.PointerInfo;
 
 public class MouseInput implements MouseListener {
 
     private Game game;
+    private Handler handle;
 
-    public MouseInput(Game game){
+    public MouseInput(Game game, Handler handle) {
         this.game = game;
+        this.handle = handle;
     }
 
     @Override
@@ -22,6 +23,14 @@ public class MouseInput implements MouseListener {
 
         int x = e.getX();
         int y = e.getY();
+
+        for (int i = 0; i < handle.list.size(); i++) {
+            GameObject temp = handle.list.get(i);
+
+            if (temp.getType() == Type.player) {
+                handle.addObject(new Bullet(temp.getX() + 15, temp.getY() + 15, Type.bullet, handle, x, y));
+            }
+        }
 
         if (game.getState() == State.Menu) {
             if (x >= 415 && x <= 585) {

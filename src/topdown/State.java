@@ -6,5 +6,6 @@ public enum State {
     OptionsMenu(),
     PauseMenu(),
     ControlsMenu(),
-    Credits()
+    Credits(),
+    GameOver()
 }

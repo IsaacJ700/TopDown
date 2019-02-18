@@ -10,7 +10,7 @@ public class Wall extends GameObject {
     private Handler handle;
 
     public Wall(int x, int y, Type type, Handler handle){
-        super(x, y, type);
+        super(x, y, type, handle);
         this.handle = handle;
     }
 

@@ -7,11 +7,13 @@ public abstract class GameObject {
     protected int x, y;
     protected float velX = 0, velY = 0;
     protected Type type;
+    protected Handler handle;
 
-    public GameObject(int x, int y, Type type) {
+    public GameObject(int x, int y, Type type, Handler handle) {
         this.x = x;
         this.y = y;
         this.type = type;
+        this.handle = handle;
     }
 
     public abstract void tick();
