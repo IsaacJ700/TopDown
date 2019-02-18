@@ -9,7 +9,7 @@ public class ControlsMenu{
     private String s;
     private String d;
     private String escape;
-    private String spacebar;
+    private String spaceBar;
     private Game game;
 
     public ControlsMenu(Game game) {
@@ -18,7 +18,7 @@ public class ControlsMenu{
         s = new String("S: Move Down");
         d = new String("D: Move Right");
         escape = new String("ESC: Pause the game");
-        spacebar = "Spacebar: ";
+        spaceBar = "Space Bar: ";
         this.game = game;
     }
 

@@ -24,14 +24,6 @@ public class MouseInput implements MouseListener {
         int x = e.getX();
         int y = e.getY();
 
-        for (int i = 0; i < handle.list.size(); i++) {
-            GameObject temp = handle.list.get(i);
-
-            if (temp.getType() == Type.player) {
-                handle.addObject(new Bullet(temp.getX() + 15, temp.getY() + 15, Type.bullet, handle, x, y));
-            }
-        }
-
         if (game.getState() == State.Menu) {
             if (x >= 415 && x <= 585) {
                 if (y >= 385 && y <= 465) {
@@ -53,7 +45,13 @@ public class MouseInput implements MouseListener {
             }
         }
         else if (game.getState() == State.Game) {
+            for (int i = 0; i < handle.list.size(); i++) {
+                GameObject temp = handle.list.get(i);
 
+                if (temp.getType() == Type.player) {
+                    handle.addObject(new Bullet(temp.getX() + 15, temp.getY() + 15, Type.bullet, handle, x, y));
+                }
+            }
         }
         else if (game.getState() == State.OptionsMenu){
             if (x >= 72 && x <= 170){
@@ -69,7 +67,7 @@ public class MouseInput implements MouseListener {
             }
             if (x >= 355 && x <= 645){
                 if (y >= 340 && y <= 410){
-                    //SounfFX toggle
+                    //SoundFX toggle
                 }
             }
             if (x >= 380 && x <= 620){

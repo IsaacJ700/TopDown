@@ -9,10 +9,7 @@ public class SecondTimer {
     }
 
     public boolean isTimeUp(){
-        if (System.currentTimeMillis() > time + 500) {
-            return true;
-        }
-        else return false;
+        return System.currentTimeMillis() > time + 500;
     }
 
     public long getTime() {

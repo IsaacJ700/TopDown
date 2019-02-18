@@ -132,7 +132,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void tick() {
-        if (state == state.Game) {
+        if (state == State.Game) {
             handle.tick();
             collision();
         }
