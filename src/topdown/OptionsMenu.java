@@ -29,12 +29,12 @@ public class OptionsMenu{
             g.setFont(font);
 
             g.drawString(controls, 356, 300);
-            g.drawString(soundFX, 335, 400);
-            g.drawString(credits, 380, 500);
+            g.drawString(soundFX, 335, 420);
+            g.drawString(credits, 380, 540);
 
-            g.drawRect(355, 240, 290, 70);
-            g.drawRect(335, 340, 330, 70);
-            g.drawRect(380, 440, 240,70);
+//            g.drawRect(355, 240, 290, 70);
+//            g.drawRect(335, 360, 330, 70);
+//            g.drawRect(380, 480, 240,70);
 //            g.drawRect(72, 48, 98, 38);
 
             g.setFont(font2);

@@ -15,13 +15,16 @@ public class GameOverScreen {
     }
 
     public void render(Graphics2D g) {
-        Font font = new Font("Arial", Font.PLAIN, 90);
+        Font font = new Font("Arial", Font.PLAIN, 120);
+        Font font2 = new Font("Standard", Font.PLAIN, 80);
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, game.getWIDTH(), game.getHEIGHT());
         g.setColor(Color.RED);
         g.setFont(font);
-        g.drawRect(265, 280, 470, 75);
-        g.drawString(gameOver, 265, 350);
+        g.drawString(gameOver, 188, 350);
 
+        g.setColor(Color.WHITE);
+        g.setFont(font2);
+        g.drawString(mainMenu, 302, 575);
     }
 }

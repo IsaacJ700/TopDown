@@ -9,15 +9,14 @@ import java.util.List;
 public class Game extends Canvas implements Runnable {
 
     private boolean isRunning;
+    private boolean restart;
     private Thread thread;
     private Handler handle;
     private Player player;
     private Enemy enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7;
-    private List<Enemy> enemies;
     private State state;
     private Menu menu;
     private Credits credits;
-    private SecondTimer timer;
     private OptionsMenu option;
     private GameScreen gameScreen;
     private GameOverScreen gameOver;
@@ -31,13 +30,12 @@ public class Game extends Canvas implements Runnable {
     public Game() {
         frameCount = 0;
         isRunning = true;
-        enemies = new ArrayList<>();
+        restart = false;
         state = State.Menu;
         new Window(WIDTH, HEIGHT, "Shooter", this);
         menu = new Menu(this);
         credits = new Credits(this);
         handle = new Handler();
-        timer = new SecondTimer();
         option = new OptionsMenu(this);
         pauseMenu = new PauseMenu(this);
         gameOver = new GameOverScreen(this);
@@ -51,15 +49,6 @@ public class Game extends Canvas implements Runnable {
         enemy5 = new Enemy(500, 300, Type.smallEnemy, handle, this);
         enemy6 = new Enemy(600, 300, Type.smallEnemy, handle, this);
         enemy7 = new Enemy(100, 600, Type.smallEnemy, handle, this);
-
-        enemies.add(enemy1);
-        enemies.add(enemy2);
-        enemies.add(enemy3);
-        enemies.add(enemy4);
-        enemies.add(enemy5);
-        enemies.add(enemy6);
-        enemies.add(enemy7);
-        
         gameScreen = new GameScreen(this, player);
         this.addKeyListener(new KeyControls(handle, this));
         this.addMouseListener(new MouseInput(this, handle));
@@ -137,6 +126,15 @@ public class Game extends Canvas implements Runnable {
         if (check == 0) {
             setState(State.GameWon);
         }
+    }
+
+    public void reset() {
+        restart = true;
+        for (int i = 0; i < handle.list.size(); i++) {
+            handle.list.remove(handle.list.get(i));
+        }
+//        player.setHealth(100);
+        beginGame();
     }
 
     public void render() {

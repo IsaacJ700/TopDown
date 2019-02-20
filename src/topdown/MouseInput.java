@@ -21,7 +21,6 @@ public class MouseInput implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
         int x = e.getX();
         int y = e.getY();
 
@@ -40,15 +39,15 @@ public class MouseInput implements MouseListener {
             }
             if (x >= 430 && x <= 570) {
                 if (y >= 590 && y <= 665) {
-                    //IsRunning is set to false
+                    //Quit the game
                     System.exit(1);
                 }
             }
         }
         else if (game.getState() == State.Game) {
+            //Add bullets when mouse clicked
             for (int i = 0; i < handle.list.size(); i++) {
                 GameObject temp = handle.list.get(i);
-
                 if (temp.getType() == Type.player) {
                     try {
                         handle.addObject(new Bullet(temp.getX() + 15, temp.getY() + 15, Type.bullet, handle, x, y));
@@ -68,41 +67,54 @@ public class MouseInput implements MouseListener {
             if (x >= 355 && x <= 645){
                 if (y >= 240 && y <= 310){
                     //controls menu
+                    game.setState(State.ControlsMenu);
                 }
             }
-            if (x >= 355 && x <= 645){
-                if (y >= 340 && y <= 410){
+            if (x >= 355 && x <= 665) {
+                if (y >= 360 && y <= 430) {
                     //SoundFX toggle
                 }
             }
             if (x >= 380 && x <= 620){
-                if (y >= 440 && y <= 510){
+                if (y >= 480 && y <= 550) {
                     //credits screen
                 }
             }
         } else if (game.getState() == State.PauseMenu){
             if (x >= 370 && x <= 625){
                 if (y >= 240 && y <= 310){
-                    //Restart game
+                    game.reset();
+                    game.setState(State.Menu);
                 }
             }
             if (x >= 325 && x <= 675){
-                if (y >= 340 && y <= 410){
+                if (y >= 360 && y <= 430) {
                     //Toggle soundFX
                 }
             }
             if (x >= 420 && x<= 570){
-                if (y >= 440 && y <= 510){
+                if (y >= 480 && y <= 550) {
+                    //Quit the game
                     System.exit(1);
                 }
             }
             if (x >= 72 && x <= 170){
                 if (y >= 48 && y <= 86){
+                    //Return back to the game (Back button)
                     game.setState(State.Game);
                 }
             }
-        } else if (game.getState() == State.GameOver) {
-
+        } else if (game.getState() == State.ControlsMenu) {
+            if (x >= 72 && x <= 170) {
+                if (y >= 48 && y <= 86) {
+                    //Return back to the options menu (Back button)
+                    game.setState(State.OptionsMenu);
+                }
+            }
+        } else if (game.getState() == State.GameOver || game.getState() == State.GameWon) {
+            if (x >= 300 && x <= 700)
+                if (y >= 510 && y <= 580)
+                    game.setState(State.Menu);
         }
     }
 

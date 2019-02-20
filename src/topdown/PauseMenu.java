@@ -29,12 +29,12 @@ public class PauseMenu{
         g.setFont(font);
 
         g.drawString(restart, 375, 300);
-        g.drawString(soundFX, 335, 400);
-        g.drawString(quit, 425, 500);
+        g.drawString(soundFX, 335, 420);
+        g.drawString(quit, 425, 540);
 
         g.drawRect(370, 240, 255, 70);
-        g.drawRect(325, 340, 350, 70);
-        g.drawRect(420, 440, 150,70);
+        g.drawRect(325, 360, 350, 70);
+        g.drawRect(420, 480, 150, 70);
 
         g.setFont(font2);
         g.setColor(Color.ORANGE);
