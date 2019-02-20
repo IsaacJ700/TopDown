@@ -5,6 +5,7 @@ import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Game extends Canvas implements Runnable {
 
     private boolean isRunning;
@@ -19,6 +20,8 @@ public class Game extends Canvas implements Runnable {
     private SecondTimer timer;
     private OptionsMenu option;
     private GameScreen gameScreen;
+    private GameOverScreen gameOver;
+    private GameWonScreen gameWon;
     private PauseMenu pauseMenu;
     private ControlsMenu controlMenu;
     private final int WIDTH = 1000;
@@ -37,6 +40,8 @@ public class Game extends Canvas implements Runnable {
         timer = new SecondTimer();
         option = new OptionsMenu(this);
         pauseMenu = new PauseMenu(this);
+        gameOver = new GameOverScreen(this);
+        gameWon = new GameWonScreen(this);
         controlMenu = new ControlsMenu(this);
         player = new Player(100, 300, Type.player, handle, this);
         enemy1 = new Enemy(100, 450, Type.smallEnemy, handle, this);
@@ -78,21 +83,6 @@ public class Game extends Canvas implements Runnable {
         thread.start();
     }
 
-    public void firstLvl() {
-        for (int i = 0; i < WIDTH; i += 10) {
-            handle.addObject(new Wall(i, 0, Type.wall, handle));
-        }
-        for (int i = HEIGHT; i >= 0; i -= 10) {
-            handle.addObject(new Wall(0, i, Type.wall, handle));
-        }
-        for (int i = 0; i < HEIGHT; i += 10) {
-            handle.addObject(new Wall(WIDTH - 10, i, Type.wall, handle));
-        }
-        for (int i = 0; i < WIDTH; i += 10) {
-            handle.addObject(new Wall(i, HEIGHT - 10, Type.wall, handle));
-        }
-    }
-
     @Override
     public void run() {
         this.requestFocus();
@@ -112,7 +102,6 @@ public class Game extends Canvas implements Runnable {
             }
             render();
             frames++;
-
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 frameCount = frames;
@@ -134,40 +123,19 @@ public class Game extends Canvas implements Runnable {
     public void tick() {
         if (state == State.Game) {
             handle.tick();
-            collision();
         }
     }
 
-    public void collision() {
-        Rectangle r1 = player.getBounds();
-        for (Enemy enemy : enemies) {
-            Rectangle r2 = enemy.getBounds();
-            for (int i = 0; i < handle.list.size(); i++) {
-                GameObject temp = handle.list.get(i);
-                if (temp.getType() == Type.bullet) {
-                    Rectangle r3 = temp.getBounds();
-                    if (r3.intersects(r2)) {
-                        enemy.setHealth(enemy.getHealth() - 20);
-                        if (enemy.getHealth() == 0) {
-                            System.out.println("HERE ");
-                            handle.removeObject(enemy);
-                            handle.removeObject(temp);
-                        }
-                    }
-                }
+    public void checkIfWon() {
+        int check = 0;
+        for (int i = 0; i < handle.list.size(); i++) {
+            GameObject temp = handle.list.get(i);
+            if (temp.getType() == Type.smallEnemy) {
+                check++;
             }
-            if (r1.intersects(r2)) {
-                if (player.getHealth() != 0) {
-                    if (timer.isTimeUp()) {
-                        player.setHealth(player.getHealth() - 10);
-                        timer.setTime(System.currentTimeMillis());
-                        if (player.getHealth() == 0) {
-                            handle.removeObject(player);
-                            state = State.GameOver;
-                        }
-                    }
-                }
-            }
+        }
+        if (check == 0) {
+            setState(State.GameWon);
         }
     }
 
@@ -189,6 +157,7 @@ public class Game extends Canvas implements Runnable {
         if (state == State.Menu) {
             menu.render(g);
         } else if (state == State.Game) {
+            checkIfWon();
             gameScreen.render(g);
             handle.render(g);
         } else if (state == State.OptionsMenu) {
@@ -199,6 +168,10 @@ public class Game extends Canvas implements Runnable {
             controlMenu.render(g);
         } else if (state == State.Credits) {
             credits.render(g);
+        } else if (state == State.GameOver) {
+            gameOver.render(g);
+        } else if (state == State.GameWon) {
+            gameWon.render(g);
         }
         g.dispose();
         bs.show();

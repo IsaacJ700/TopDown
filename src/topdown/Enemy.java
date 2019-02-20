@@ -12,8 +12,7 @@ public class Enemy extends GameObject{
     protected Type type;
     protected int size;
     protected Color color;
-    
-	Random randomNum = new Random();
+    private Random randomNum;
 
 
     public Enemy(int x, int y, Type type, Handler handle, Game game){
@@ -23,15 +22,11 @@ public class Enemy extends GameObject{
         height = 20;
         health = 20;
         this.handle = handle;
-        this.game = game;        
-    	
+        this.game = game;
+        randomNum = new Random();
         setEnemyType(type);
         setEnemySize(getEnemyType());
         setEnemyColor(getEnemyType());
-    }
-
-    public void followLogic(){
-
     }
 
     public int getHealth() {
@@ -42,24 +37,8 @@ public class Enemy extends GameObject{
         this.health = health;
     }
 
-    @Override
-    public void tick() {
-        x += velX;
-        y += velY;
-        if (x > game.getWIDTH()){
-            x = 0;
-        }
-    }
-
-    @Override
-    public void render(Graphics g) {
-        g.setColor(getEnemyColor());
-        g.fillRect(x, y, getEnemySize(), getEnemySize());
-    }
-
-    @Override
-    public Rectangle getBounds() {
-        return new Rectangle(x, y, getEnemySize(), getEnemySize());
+    private int getEnemySize() {
+        return size;
     }
     
     private void setEnemySize(Type type) {
@@ -76,9 +55,9 @@ public class Enemy extends GameObject{
     	else if( type.equals( Type.zombieEnemy ))
     		this.size = randomNum.nextInt(70) + 20;
     }
-    
-    private int getEnemySize() {
-    	return size;
+
+    private Color getEnemyColor() {
+        return color;
     }
     
     private void setEnemyColor(Type type) {
@@ -96,20 +75,16 @@ public class Enemy extends GameObject{
     		this.color = Color.green;
 
     }
-    
-    private Color getEnemyColor() {
-    	return color;
+
+    private Type getEnemyType() {
+        return type;
     }
-    
+
     private void setEnemyType(Type type ) {
     	if(type == Type.randomEnemy)
     		this.type = getRandomEnemyType();
     	else
     		this.type = type;
-    }
-    
-    private Type getEnemyType() {
-    	return type;
     }
     
     private Type getRandomEnemyType() {
@@ -127,4 +102,38 @@ public class Enemy extends GameObject{
     	
     	return enemyTypeArray[randomNum.nextInt(6)];
     }
+
+    @Override
+    public void tick() {
+        x += velX;
+        y += velY;
+        if (x > game.getWIDTH()) {
+            x = 0;
+        }
+
+        for (int i = 0; i < handle.list.size(); i++) {
+            GameObject tempObject = handle.list.get(i);
+            if (tempObject.getType() == Type.bullet) {
+                if (getBounds().intersects(tempObject.getBounds())) {
+                    health -= 20;
+                    if (health == 0) {
+                        handle.removeObject(tempObject);
+                        handle.removeObject(this);
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public void render(Graphics g) {
+        g.setColor(getEnemyColor());
+        g.fillRect(x, y, getEnemySize(), getEnemySize());
+    }
+
+    @Override
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, getEnemySize(), getEnemySize());
+    }
+
 }

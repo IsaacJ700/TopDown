@@ -2,14 +2,14 @@ package topdown;
 
 import java.awt.*;
 
-public class GameOverScreen {
+public class GameWonScreen {
 
     private String gameOver;
     private String mainMenu;
     private Game game;
 
-    public GameOverScreen(Game game) {
-        gameOver = "Game Over";
+    public GameWonScreen(Game game) {
+        gameOver = "You Won!!";
         mainMenu = "Main Menu";
         this.game = game;
     }
@@ -24,4 +24,5 @@ public class GameOverScreen {
         g.drawString(gameOver, 265, 350);
 
     }
+
 }

@@ -1,15 +1,24 @@
 package topdown;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
+import static javax.imageio.ImageIO.*;
 
 public class Bullet extends GameObject {
 
     private Handler handle;
+    private BufferedImage bullet;
 
-    public Bullet(int x, int y, Type type, Handler handle, int xSpd, int ySpd) {
+    public Bullet(int x, int y, Type type, Handler handle, int xSpd, int ySpd) throws IOException {
         super(x, y, type, handle);
         this.handle = handle;
         calculateVelocity(x, y, xSpd, ySpd);
+//        bullet = read(new File("Bullet.jpg"));
     }
 
     public void calculateVelocity(int fromX, int fromY, int toX, int toY) {
@@ -29,6 +38,7 @@ public class Bullet extends GameObject {
 
     @Override
     public void render(Graphics g) {
+//        g.drawImage(bullet, x, y, (ImageObserver) this);
         g.setColor(Color.WHITE);
         g.fillOval(x, y, 5, 10);
     }

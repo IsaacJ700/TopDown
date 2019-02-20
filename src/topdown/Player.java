@@ -9,6 +9,7 @@ public class Player extends GameObject {
     private int money;
     private int overShield;
     private Game game;
+    private SecondTimer timer;
 
     public Player(int x, int y, Type type, Handler handle, Game game) {
         super(x, y, type, handle);
@@ -17,6 +18,7 @@ public class Player extends GameObject {
         overShield = 0;
         this.handle = handle;
         this.game = game;
+        timer = new SecondTimer();
     }
 
     @Override
@@ -51,6 +53,23 @@ public class Player extends GameObject {
 
         if (handle.isUp() && handle.isDown())
             velY = 0;
+
+        for (int i = 0; i < handle.list.size(); i++) {
+            GameObject tempObject = handle.list.get(i);
+            if (tempObject.getType() == Type.smallEnemy) {
+                if (getBounds().intersects(tempObject.getBounds())) {
+                    if (timer.isTimeUp()) {
+                        health -= 10;
+                        timer.setTime(System.currentTimeMillis());
+                        if (health == 0) {
+                            handle.removeObject(this);
+                            game.setState(State.GameOver);
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     @Override

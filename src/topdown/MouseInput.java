@@ -2,6 +2,7 @@ package topdown;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 
 public class MouseInput implements MouseListener {
 
@@ -49,7 +50,11 @@ public class MouseInput implements MouseListener {
                 GameObject temp = handle.list.get(i);
 
                 if (temp.getType() == Type.player) {
-                    handle.addObject(new Bullet(temp.getX() + 15, temp.getY() + 15, Type.bullet, handle, x, y));
+                    try {
+                        handle.addObject(new Bullet(temp.getX() + 15, temp.getY() + 15, Type.bullet, handle, x, y));
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             }
         }
@@ -75,8 +80,7 @@ public class MouseInput implements MouseListener {
                     //credits screen
                 }
             }
-        }
-        else if (game.getState() == State.PauseMenu){
+        } else if (game.getState() == State.PauseMenu){
             if (x >= 370 && x <= 625){
                 if (y >= 240 && y <= 310){
                     //Restart game
@@ -97,6 +101,8 @@ public class MouseInput implements MouseListener {
                     game.setState(State.Game);
                 }
             }
+        } else if (game.getState() == State.GameOver) {
+
         }
     }
 
