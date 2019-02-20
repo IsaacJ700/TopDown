@@ -2,14 +2,10 @@ package topdown;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class Game extends Canvas implements Runnable {
 
     private boolean isRunning;
-    private boolean restart;
     private Thread thread;
     private Handler handle;
     private Player player;
@@ -30,7 +26,6 @@ public class Game extends Canvas implements Runnable {
     public Game() {
         frameCount = 0;
         isRunning = true;
-        restart = false;
         state = State.Menu;
         new Window(WIDTH, HEIGHT, "Shooter", this);
         menu = new Menu(this);
@@ -41,6 +36,13 @@ public class Game extends Canvas implements Runnable {
         gameOver = new GameOverScreen(this);
         gameWon = new GameWonScreen(this);
         controlMenu = new ControlsMenu(this);
+        this.addKeyListener(new KeyControls(handle, this));
+        this.addMouseListener(new MouseInput(this, handle));
+        start();
+        setUpGame();
+    }
+
+    public void setUpGame() {
         player = new Player(100, 300, Type.player, handle, this);
         enemy1 = new Enemy(100, 450, Type.smallEnemy, handle, this);
         enemy2 = new Enemy(200, 300, Type.smallEnemy, handle, this);
@@ -49,14 +51,6 @@ public class Game extends Canvas implements Runnable {
         enemy5 = new Enemy(500, 300, Type.smallEnemy, handle, this);
         enemy6 = new Enemy(600, 300, Type.smallEnemy, handle, this);
         enemy7 = new Enemy(100, 600, Type.smallEnemy, handle, this);
-        gameScreen = new GameScreen(this, player);
-        this.addKeyListener(new KeyControls(handle, this));
-        this.addMouseListener(new MouseInput(this, handle));
-        start();
-        beginGame();
-    }
-
-    public void beginGame() {
         handle.addObject(player);
         handle.addObject(enemy1);
         handle.addObject(enemy2);
@@ -65,6 +59,11 @@ public class Game extends Canvas implements Runnable {
         handle.addObject(enemy5);
         handle.addObject(enemy6);
         handle.addObject(enemy7);
+        gameScreen = new GameScreen(this, player);
+    }
+
+    public void clearGame() {
+        handle.list.clear();
     }
 
     public void start() {
@@ -129,12 +128,8 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void reset() {
-        restart = true;
-        for (int i = 0; i < handle.list.size(); i++) {
-            handle.list.remove(handle.list.get(i));
-        }
-//        player.setHealth(100);
-        beginGame();
+        clearGame();
+        setUpGame();
     }
 
     public void render() {

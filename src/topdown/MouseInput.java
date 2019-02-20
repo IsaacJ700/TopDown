@@ -83,6 +83,7 @@ public class MouseInput implements MouseListener {
         } else if (game.getState() == State.PauseMenu){
             if (x >= 370 && x <= 625){
                 if (y >= 240 && y <= 310){
+                    //Restart button
                     game.reset();
                     game.setState(State.Menu);
                 }
@@ -114,6 +115,8 @@ public class MouseInput implements MouseListener {
         } else if (game.getState() == State.GameOver || game.getState() == State.GameWon) {
             if (x >= 300 && x <= 700)
                 if (y >= 510 && y <= 580)
+                    //Reset game and load main menu
+                    game.reset();
                     game.setState(State.Menu);
         }
     }
