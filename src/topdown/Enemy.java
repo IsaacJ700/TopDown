@@ -27,6 +27,7 @@ public class Enemy extends GameObject{
         setEnemyType(type);
         setEnemySize(getEnemyType());
         setEnemyColor(getEnemyType());
+        setEnemyHealth(getEnemyType());
     }
 
     public int getHealth() {
@@ -35,6 +36,21 @@ public class Enemy extends GameObject{
 
     public void setHealth(int health) {
         this.health = health;
+    }
+    
+    private void setEnemyHealth(Type type) {
+    	if( type.equals( Type.smallEnemy ))
+    		setHealth(1000);
+    	else if( type.equals( Type.mediumEnemy ))
+    		setHealth(80);
+    	else if( type.equals( Type.largeEnemy ))
+    		setHealth(200);
+    	else if( type.equals( Type.bossEnemy ))
+    		setHealth(1000);
+    	else if( type.equals( Type.shootingEnemy ))
+    		setHealth(80);
+    	else if( type.equals( Type.zombieEnemy ))
+    		setHealth(this.getEnemySize() + 100);
     }
 
     private int getEnemySize() {
