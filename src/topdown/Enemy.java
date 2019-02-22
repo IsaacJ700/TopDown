@@ -40,7 +40,7 @@ public class Enemy extends GameObject{
     
     private void setEnemyHealth(Type type) {
     	if( type.equals( Type.smallEnemy ))
-    		setHealth(1000);
+    		setHealth(20);
     	else if( type.equals( Type.mediumEnemy ))
     		setHealth(80);
     	else if( type.equals( Type.largeEnemy ))
