@@ -1,6 +1,8 @@
 package topdown;
 
-import java.awt.*;
+import java.awt.Canvas;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferStrategy;
 
 public class Game extends Canvas implements Runnable {
@@ -19,15 +21,15 @@ public class Game extends Canvas implements Runnable {
     private GameWonScreen gameWon;
     private PauseMenu pauseMenu;
     private ControlsMenu controlMenu;
-    private final int WIDTH = 1000;
-    private final int HEIGHT = 750;
+    private final int width = 1000;
+    private final int height = 750;
     private int frameCount;
 
     public Game() {
         frameCount = 0;
         isRunning = true;
         state = State.Menu;
-        new Window(WIDTH, HEIGHT, "Shooter", this);
+        new Window(width, height, "Shooter", this);
         menu = new Menu(this);
         credits = new Credits(this);
         handle = new Handler();
@@ -174,27 +176,27 @@ public class Game extends Canvas implements Runnable {
         return state;
     }
 
-    public void setState(State state) {
+    public void setState(final State state) {
         this.state = state;
     }
 
     public int getWIDTH() {
-        return WIDTH;
+        return width;
     }
 
     public int getHEIGHT() {
-        return HEIGHT;
+        return height;
     }
 
     public int getFrameCount() {
         return frameCount;
     }
 
-    public void setFrameCount(int frameCount) {
+    public void setFrameCount(final int frameCount) {
         this.frameCount = frameCount;
     }
 
-    public static void main(String args[]) {
+    public static void main(final String[] args) {
         Game game = new Game();
     }
 }

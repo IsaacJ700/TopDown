@@ -1,29 +1,32 @@
 package topdown;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
-
-import static javax.imageio.ImageIO.*;
 
 public class Bullet extends GameObject {
 
     private Handler handle;
     private BufferedImage bullet;
 
-    public Bullet(int x, int y, Type type, Handler handle, int xSpd, int ySpd) throws IOException {
+    public Bullet(final int x, final int y, final Type type, 
+    		final Handler handle, final int xSpd, 
+    		final int ySpd) throws IOException {
         super(x, y, type, handle);
         this.handle = handle;
         calculateVelocity(x, y, xSpd, ySpd);
 //        bullet = read(new File("Bullet.jpg"));
     }
 
-    public void calculateVelocity(int fromX, int fromY, int toX, int toY) {
-        double distance = Math.sqrt(Math.pow((toX - fromX), 2) + Math.pow((toY - fromY), 2));
-        double speed = 15; //set the speed in [2,n)  n should be < 20 for normal speed
+    public void calculateVelocity(final int fromX, final int fromY, 
+    		final int toX, final int toY) {
+    	
+    	double distance = Math.sqrt(Math.pow((toX - fromX), 2) 
+    						+ Math.pow((toY - fromY), 2));
+    	//set the speed in [2,n)  n should be < 20 for normal speed
+    	double speed = 15;
         //find Y
         velY = (float) ((toY - fromY) * speed / distance);
         //find X
@@ -37,7 +40,7 @@ public class Bullet extends GameObject {
     }
 
     @Override
-    public void render(Graphics g) {
+    public void render(final Graphics g) {
 //        g.drawImage(bullet, x, y, (ImageObserver) this);
         g.setColor(Color.WHITE);
         g.fillOval(x, y, 5, 10);

@@ -1,6 +1,7 @@
 package topdown;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
 
 public class GameScreen {
 
@@ -9,16 +10,16 @@ public class GameScreen {
     private int startX;
     private int startY;
 
-    public GameScreen (Game game, Player player) {
+    public GameScreen(final Game game, final Player player) {
         startX = 60;
         startY = 60;
         this.game = game;
         this.player = player;
     }
 
-    public void render(Graphics2D g){
+    public void render(final Graphics2D g) {
         g.setColor(Color.gray);
-        g.fillRect(0,0, game.getWIDTH(), game.getHEIGHT());
+        g.fillRect(0, 0, game.getWIDTH(), game.getHEIGHT());
         g.setColor(Color.BLACK);
         g.fillRect(startX + 18, startY + 18, 110, 20);
         g.fillArc(startX + 108, startY + 18, 40, 40, 0, 90);
@@ -27,6 +28,6 @@ public class GameScreen {
         g.fillRect(startX + 20, startY + 40, player.getHealth() * 2, 25);
         g.setColor(Color.WHITE);
         g.drawString("Health: " + player.getHealth(), startX + 33, startY + 33);
-        g.drawString("FPS: " + String.valueOf(game.getFrameCount()),900,700);
+        g.drawString("FPS: " + String.valueOf(game.getFrameCount()), 900, 700);
     }
 }

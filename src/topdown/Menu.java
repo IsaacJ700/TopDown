@@ -1,6 +1,8 @@
 package topdown;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
 
 public class Menu {
 
@@ -10,7 +12,7 @@ public class Menu {
     private String exit;
     private Game game;
 
-    public Menu(Game game) {
+    public Menu(final Game game) {
         title = "2D Shooter";
         start = "Start";
         options = "Options";
@@ -18,7 +20,7 @@ public class Menu {
         this.game = game;
     }
 
-    public void render(Graphics2D g){
+    public void render(final Graphics2D g) {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, game.getWIDTH(), game.getHEIGHT());
         g.setColor(Color.WHITE);

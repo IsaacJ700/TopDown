@@ -4,11 +4,11 @@ public class SecondTimer {
 
     private long time;
 
-    public SecondTimer(){
+    public SecondTimer() {
         time = System.currentTimeMillis();
     }
 
-    public boolean isTimeUp(){
+    public boolean isTimeUp() {
         return System.currentTimeMillis() > time + 200;
     }
 
@@ -16,7 +16,7 @@ public class SecondTimer {
         return time;
     }
 
-    public void setTime(long time) {
+    public void setTime(final long time) {
         this.time = time;
     }
 }
