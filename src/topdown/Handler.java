@@ -7,11 +7,23 @@ public class Handler {
 
     LinkedList<GameObject> list = new LinkedList<GameObject>();
 
+    /** Holds true if the object is up. **/
     private boolean up = false;
+    
+    /** Holds true if the object is down. **/
     private boolean down = false;
+    
+    /** Holds true if the object to the left. **/
     private boolean left = false;
+    
+    /** Holds true if the object to the right. **/
     private boolean right = false;
 
+    /**
+     * Returns true if the object is up.
+     * 
+     * @return The boolean value stored in up.
+     */
     public boolean isUp() {
         return up;
     }
@@ -20,6 +32,11 @@ public class Handler {
         this.up = up;
     }
 
+    /**
+     * Returns true if the object is down.
+     * 
+     * @return The boolean value stored in down.
+     */
     public boolean isDown() {
         return down;
     }
@@ -28,6 +45,11 @@ public class Handler {
         this.down = down;
     }
 
+    /**
+     * Returns true if the object is to the left.
+     * 
+     * @return The boolean value stored in left.
+     */
     public boolean isLeft() {
         return left;
     }
@@ -36,6 +58,11 @@ public class Handler {
         this.left = left;
     }
 
+    /**
+     * Returns true if the object is to the right.
+     * 
+     * @return The boolean value stored in right.
+     */
     public boolean isRight() {
         return right;
     }

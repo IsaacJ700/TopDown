@@ -56,7 +56,6 @@ public abstract class GameObject {
     /**
      * Returns the position of the X value for the current game object.
      * 
-     * @param None.
      * @return The int value of the position on the X-axis.
      */
     public int getX() {
@@ -75,7 +74,6 @@ public abstract class GameObject {
     /**
      * Returns the position of the Y value for the current game object.
      * 
-     * @param None.
      * @return The int value of the position on the Y-axis.
      */
     public int getY() {
@@ -94,7 +92,6 @@ public abstract class GameObject {
     /**
      * Returns the velocity in the X-direction for the current game object.
      * 
-     * @param None.
      * @return The float value of the velocity in the X-direction.
      */
     public float getVelX() {
@@ -113,7 +110,6 @@ public abstract class GameObject {
     /**
      * Returns the velocity in the Y-direction for the current game object.
      * 
-     * @param None.
      * @return The float value of the velocity in the Y-direction.
      */
     public float getVelY() {

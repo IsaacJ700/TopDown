@@ -21,18 +21,38 @@ public class Wall extends GameObject {
         this.handle = handle;
     }
 
+    /**
+     * Returns integer value for the width of the wall.
+     * 
+     * @return The width of the wall.
+     */
     public int getWidth() {
         return width;
     }
 
+    /**
+     * Sets the width of the wall based on the passed integer value.
+     * 
+     * @param w The width of the current wall.
+     */
     public void setWidth(final int w) {
         width = w;
     }
 
+    /**
+     * Returns integer value for the height of the wall.
+     * 
+     * @return The height of the wall.
+     */
     public int getHeight() {
         return height;
     }
 
+    /**
+     * Sets the height of the wall based on the passed integer value.
+     * 
+     * @param h The height of the current wall.
+     */
     public void setHeight(final int h) {
         height = h;
     }

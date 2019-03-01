@@ -80,8 +80,6 @@ public class Game extends Canvas implements Runnable {
     /**
      * Sets up the game by adding all of the enemy and player objects to 
      * the game.
-     * 
-     * @param None.
      */
     public void setUpGame() {
         player = new Player(100, 300, Type.player, handle, this);
@@ -105,8 +103,6 @@ public class Game extends Canvas implements Runnable {
 
     /**
      * Clears the game of all items in the handle list.
-     * 
-     * @param None.
      */
     public void clearGame() {
         handle.list.clear();
@@ -114,8 +110,6 @@ public class Game extends Canvas implements Runnable {
 
     /**
      * Begins the game with the thread.
-     * 
-     * @param None.
      */
     public void start() {
         thread = new Thread(this);
@@ -152,8 +146,6 @@ public class Game extends Canvas implements Runnable {
 
     /**
      * Stops the game and exits the program.
-     * 
-     * @param None.
      */
     public void stop() {
         try {
@@ -167,8 +159,6 @@ public class Game extends Canvas implements Runnable {
     /**
      * Based on the current state of the game, it runs the tick function through
      * the handle.
-     * 
-     * @param None.
      */
     public void tick() {
         if (state == State.Game) {
@@ -179,8 +169,6 @@ public class Game extends Canvas implements Runnable {
     /**
      * Declares the player a winner if all of the enemy objects have 
      * been removed.
-     * 
-     * @param None.
      */
     public void checkIfWon() {
         int check = 0;
@@ -197,8 +185,6 @@ public class Game extends Canvas implements Runnable {
 
     /**
      * Resets the game screen by clearing the game and then setting up the game.
-     * 
-     * @param None.
      */
     public void reset() {
         clearGame();
@@ -207,8 +193,6 @@ public class Game extends Canvas implements Runnable {
 
     /**
      * Renders the screen and updates the screen if the state has changed.
-     * 
-     * @param None.
      */
     public void render() {
 
@@ -251,7 +235,6 @@ public class Game extends Canvas implements Runnable {
     /**
      * Returns the State object for the state of the game currently.
      * 
-     * @param None.
      * @return The current state of the game.
      */
     public State getState() {
@@ -270,7 +253,6 @@ public class Game extends Canvas implements Runnable {
     /**
      * Returns an integer value for the width of the current game screen.
      * 
-     * @param None.
      * @return The value for the width of the game screen.
      */
     public int getWIDTH() {
@@ -280,7 +262,6 @@ public class Game extends Canvas implements Runnable {
     /**
      * Returns an integer value for the height of the current game screen.
      * 
-     * @param None.
      * @return The value for the height of the game screen.
      */
     public int getHEIGHT() {
@@ -290,7 +271,6 @@ public class Game extends Canvas implements Runnable {
     /**
      * Returns the integer value for the frames per second for the current game.
      * 
-     * @param None.
      * @return The value for the frames per second for the game.
      */
     public int getFrameCount() {
