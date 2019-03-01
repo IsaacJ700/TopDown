@@ -4,14 +4,36 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
+/**
+ * Creates the options menu for the game.
+ * 
+ * @author Issac Jimenez
+ * @author Nicholas English
+ * @author Suman Gurung
+ * @version 1.0
+ */
 public class OptionsMenu {
 
+		/** Holds the string for the controls button. **/
         private String controls;
+        
+        /** Holds the string for the credits button. **/
         private String credits;
+        
+        /** Holds the string for the sound effect button. **/
         private String soundFX;
+        
+        /** Holds the string for the back button. **/
         private String back;
+        
+        /** Holds the current game object. **/
         private  Game game;
 
+        /**
+         * Creates the options menu for the game.
+         * 
+         * @param game The current game object.
+         */
         public OptionsMenu(final Game game) {
             controls = "Controls";
             credits = "Credits";
@@ -20,6 +42,11 @@ public class OptionsMenu {
             this.game = game;
         }
 
+        /**
+         * Renders the options menu screen for the game.
+         * 
+         * @param g The current game screen object.
+         */
         public void render(final Graphics2D g) {
 
             Font font = new Font("Arial", Font.BOLD, 70);

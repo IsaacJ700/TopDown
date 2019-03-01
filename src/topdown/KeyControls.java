@@ -18,15 +18,15 @@ public class KeyControls extends KeyAdapter {
      */
     private Game game;
 
-    public KeyControls(Handler handle, Game game){
+    public KeyControls(final Handler handle, final Game game) {
         this.handle = handle;
         this.game = game;
     }
 
-    public void keyPressed(KeyEvent e){
+    public void keyPressed(final KeyEvent e) {
         int key = e.getKeyCode();
 
-        for (int i = 0; i < handle.list.size(); i++){
+        for (int i = 0; i < handle.list.size(); i++) {
             GameObject temp = handle.list.get(i);
 
             if (game.getState() != State.Game) {
@@ -38,36 +38,45 @@ public class KeyControls extends KeyAdapter {
 
             if (game.getState() == State.Game) {
                 if (temp.getType() == Type.player) {
-                    if (key == KeyEvent.VK_W)
+                    if (key == KeyEvent.VK_W) {
                         handle.setUp(true);
-                    if (key == KeyEvent.VK_A)
+                    }
+                    if (key == KeyEvent.VK_A) {
                         handle.setLeft(true);
-                    if (key == KeyEvent.VK_S)
+                    }
+                    if (key == KeyEvent.VK_S) {
                         handle.setDown(true);
-                    if (key == KeyEvent.VK_D)
+                    }
+                    if (key == KeyEvent.VK_D) {
                         handle.setRight(true);
-                    if (key == KeyEvent.VK_ESCAPE)
+                    }
+                    if (key == KeyEvent.VK_ESCAPE) {
                         game.setState(State.PauseMenu);
+                    }
                 }
             }
         }
     }
 
-    public void keyReleased(KeyEvent e){
+    public void keyReleased(final KeyEvent e) {
         int key = e.getKeyCode();
 
-        for (int i = 0; i < handle.list.size(); i++){
+        for (int i = 0; i < handle.list.size(); i++) {
             GameObject temp = handle.list.get(i);
 
-            if (temp.getType() == Type.player){
-                if (key == KeyEvent.VK_W)
+            if (temp.getType() == Type.player) {
+                if (key == KeyEvent.VK_W) {
                     handle.setUp(false);
-                if (key == KeyEvent.VK_A)
+                }
+                if (key == KeyEvent.VK_A) {
                     handle.setLeft(false);
-                if (key == KeyEvent.VK_S)
+                }
+                if (key == KeyEvent.VK_S) {
                     handle.setDown(false);
-                if (key == KeyEvent.VK_D)
+                }
+                if (key == KeyEvent.VK_D) {
                     handle.setRight(false);
+                }
             }
         }
     }

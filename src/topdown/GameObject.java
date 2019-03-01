@@ -1,6 +1,9 @@
 package topdown;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
+//import java.awt.*;
 
 public abstract class GameObject {
 
@@ -24,7 +27,7 @@ public abstract class GameObject {
 
     /**
      * Constructor takes in many parameters and uses them to determine
-     * the properties of the GameObject
+     * the properties of the GameObject.
      *
      * @param x      the coordinate at which the object will spawn
      * @param y      the y coordinate at which the object will spawn

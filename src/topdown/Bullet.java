@@ -1,10 +1,17 @@
 package topdown;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.io.IOException;
 
 /**
  * Class used to create bullets within the Game.
+ * 
+ * @author Issac Jimenez
+ * @author Nicholas English
+ * @author Suman Gurung
+ * @version 1.0
  */
 public class Bullet extends GameObject {
 
@@ -14,22 +21,22 @@ public class Bullet extends GameObject {
     private Handler handle;
 
     /**
-     * Represents the length of the bullet
+     * Represents the length of the bullet.
      */
     private int width;
 
     /**
-     * represents the height of the bullet
+     * represents the height of the bullet.
      */
     private int height;
 
     /**
-     * represents how far the bullet should travel
+     * represents how far the bullet should travel.
      */
     private double distance;
 
     /**
-     * represents how fast the bullet will travel
+     * represents how fast the bullet will travel.
      */
     private double speed;
 

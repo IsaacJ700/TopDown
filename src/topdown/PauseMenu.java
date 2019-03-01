@@ -4,14 +4,36 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
+/**
+ * Creates the pause menu object for the game.
+ * 
+ * @author Issac Jimenez
+ * @author Nicholas English
+ * @author Suman Gurung
+ * @version 1.0
+ */
 public class PauseMenu {
 
+	/** Holds the string for the restart button. **/
     private String restart;
+    
+    /** Holds the string for the quit button. **/
     private String quit;
+    
+    /** Holds the string for the sound effects button. **/
     private String soundFX;
+    
+    /** Holds the string for the back button. **/
     private String back;
+    
+    /** Holds the current game object. **/
     private  Game game;
 
+    /**
+     * Creates the pause menu screen for the game.
+     * 
+     * @param game The current game object.
+     */
     public PauseMenu(final Game game) {
         restart = "Restart";
         quit = "Quit";
@@ -20,6 +42,11 @@ public class PauseMenu {
         this.game = game;
     }
 
+    /**
+     * Renders the 2D graphic display for the pause menu.
+     * 
+     * @param g The current game screen object.
+     */
     public void render(final Graphics2D g) {
 
         Font font = new Font("Arial", Font.BOLD, 70);
