@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
  * Class is used to read keystrokes and let program know if the player
  * should move in a specific direction.
  *
- * @author Issac Jimenez
+ * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
  * @version 1.0

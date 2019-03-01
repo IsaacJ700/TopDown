@@ -7,7 +7,7 @@ import java.io.IOException;
 /**
  * Class used to read mouseInput from the user
  *
- * @author Issac Jimenez
+ * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
  * @version 1.0

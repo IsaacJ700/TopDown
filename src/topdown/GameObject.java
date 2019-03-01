@@ -9,7 +9,7 @@ import java.awt.Rectangle;
  * Abstract class used to monitor and alter the properties of
  * GameObjects.
  *
- * @author Issac Jimenez
+ * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
  * @version 1.0

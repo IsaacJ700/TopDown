@@ -7,7 +7,7 @@ import java.awt.Rectangle;
 /**
  * Class used to create the player GameObject and alter its properties.
  *
- * @author Issac Jimenez
+ * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
  * @version 1.0

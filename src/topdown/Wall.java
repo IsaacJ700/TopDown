@@ -6,8 +6,8 @@ import java.awt.Rectangle;
 
 /**
  * Creates a wall to be used as a way to block movement in-game.
- * 
- * @author Issac Jimenez
+ *
+ * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
  * @version 1.0

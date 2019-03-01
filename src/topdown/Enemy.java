@@ -9,7 +9,7 @@ import java.util.Random;
  * Class used to determine/set enemy properties before inserting them
  * into the game.
  *
- * @author Issac Jimenez
+ * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
  * @version 1.0

@@ -2,8 +2,8 @@ package topdown;
 
 /**
  * Creates a timer to count down time that is left in the game.
- * 
- * @author Issac Jimenez
+ *
+ * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
  * @version 1.0

@@ -1,12 +1,12 @@
 package topdown;
 
-import java.awt.Dimension;
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Used to create a window for the game screen to be played in.
- * 
- * @author Issac Jimenez
+ *
+ * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
  * @version 1.0

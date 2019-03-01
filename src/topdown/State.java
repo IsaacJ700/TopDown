@@ -4,7 +4,7 @@ package topdown;
  * Creates the different states available to be used to say what state
  * the game currently is in.
  *
- * @author Issac Jimenez
+ * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
  * @version 1.0
