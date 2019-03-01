@@ -123,7 +123,7 @@ public class Handler {
     }
 
     /**
-     * Renders the screen continuously
+     * Renders the screen continuously.
      *
      * @param g represents the instance of Graphics being used
      */

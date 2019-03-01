@@ -31,7 +31,7 @@ public class GameWonScreen {
 
     /**
      * Constructor initializes Strings ad sets this Game equal to the
-     * Game provided in the parameters
+     * Game provided in the parameters.
      *
      * @param game represents the instance of Game that is being passed
      *             down to this constructor.
