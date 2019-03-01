@@ -19,6 +19,13 @@ public class KeyControls extends KeyAdapter {
         for (int i = 0; i < handle.list.size(); i++){
             GameObject temp = handle.list.get(i);
 
+            if (game.getState() != State.Game) {
+                handle.setUp(false);
+                handle.setDown(false);
+                handle.setLeft(false);
+                handle.setRight(false);
+            }
+
             if (game.getState() == State.Game) {
                 if (temp.getType() == Type.player) {
                     if (key == KeyEvent.VK_W)
