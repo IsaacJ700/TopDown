@@ -5,9 +5,11 @@ import java.awt.*;
 public class Credits {
 
     private Game game;
+    private String back;
 
     public Credits(Game game){
         this.game = game;
+        back = new String("Back");
     }
 
     public void render(Graphics2D g){
@@ -16,8 +18,9 @@ public class Credits {
 
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, game.getWIDTH(), game.getHEIGHT());
-        g.setColor(Color.WHITE);
-        g.setFont(font);
+        g.setColor(Color.ORANGE);
+        g.setFont(font2);
+        g.drawString(back, 80, 80);
     }
 
 }

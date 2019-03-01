@@ -77,7 +77,7 @@ public class MouseInput implements MouseListener {
             }
             if (x >= 380 && x <= 620){
                 if (y >= 480 && y <= 550) {
-                    //credits screen
+                    game.setState(State.Credits);
                 }
             }
         } else if (game.getState() == State.PauseMenu){
@@ -114,10 +114,18 @@ public class MouseInput implements MouseListener {
             }
         } else if (game.getState() == State.GameOver || game.getState() == State.GameWon) {
             if (x >= 300 && x <= 700)
-                if (y >= 510 && y <= 580)
+                if (y >= 510 && y <= 580) {
                     //Reset game and load main menu
                     game.reset();
                     game.setState(State.Menu);
+                }
+        } else if (game.getState() == State.Credits) {
+            if (x >= 72 && x <= 170) {
+                if (y >= 48 && y <= 86) {
+                    //Return back to the options menu (Back button)
+                    game.setState(State.OptionsMenu);
+                }
+            }
         }
     }
 
