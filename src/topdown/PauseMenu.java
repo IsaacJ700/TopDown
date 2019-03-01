@@ -4,14 +4,43 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
+/**
+ * Class used to display the pause menu.
+ */
 public class PauseMenu {
 
+    /**
+     * String used to hold the restart text.
+     */
     private String restart;
+
+    /**
+     * String used to hold the quit text.
+     */
     private String quit;
+
+    /**
+     * String used to hold the soundFX text.
+     */
     private String soundFX;
+
+    /**
+     * String used to hold the back button text.
+     */
     private String back;
+
+    /**
+     * Instance of Game class.
+     */
     private  Game game;
 
+    /**
+     * Constructor initializes Strings and sets this game equal to the
+     * instance provided.
+     *
+     * @param game The instance of Game being passed to this
+     *             constructor.
+     */
     public PauseMenu(final Game game) {
         restart = "Restart";
         quit = "Quit";
@@ -20,6 +49,12 @@ public class PauseMenu {
         this.game = game;
     }
 
+    /**
+     * Creates the 2D graphics for the Pause Menu.
+     *
+     * @param g The visual display for the 2D graphics in the pause
+     * menu.
+     */
     public void render(final Graphics2D g) {
 
         Font font = new Font("Arial", Font.BOLD, 70);

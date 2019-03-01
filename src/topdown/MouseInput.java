@@ -4,11 +4,29 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
+/**
+ * Class used to read mouseInput from the user
+ */
 public class MouseInput implements MouseListener {
 
+    /**
+     * Instance of Game class.
+     */
     private Game game;
+
+    /**
+     * Instance of Handler class.
+     */
+
     private Handler handle;
 
+    /**
+     * Constructor initializes handle and game with the provided
+     * instances.
+     *
+     * @param handle represents the instance of Handler being used.
+     * @param game   represents the instance of Game being used.
+     */
     public MouseInput(Game game, Handler handle) {
         this.game = game;
         this.handle = handle;
@@ -19,6 +37,12 @@ public class MouseInput implements MouseListener {
 
     }
 
+    /**
+     * Method determines what shall happen when the user clicks the
+     * left mouse button.
+     *
+     * @param e represents the MouseEvent that just occurred.
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         int x = e.getX();
@@ -43,8 +67,7 @@ public class MouseInput implements MouseListener {
                     System.exit(1);
                 }
             }
-        }
-        else if (game.getState() == State.Game) {
+        } else if (game.getState() == State.Game) {
             //Add bullets when mouse clicked
             for (int i = 0; i < handle.list.size(); i++) {
                 GameObject temp = handle.list.get(i);
@@ -56,8 +79,7 @@ public class MouseInput implements MouseListener {
                     }
                 }
             }
-        }
-        else if (game.getState() == State.OptionsMenu){
+        } else if (game.getState() == State.OptionsMenu){
             if (x >= 72 && x <= 170){
                 if (y >= 48 && y <= 86){
                     //Back Button... back to main menu

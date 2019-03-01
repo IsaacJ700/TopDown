@@ -4,43 +4,73 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
+/**
+ * Class is used to display the options menu.
+ */
 public class OptionsMenu {
 
-        private String controls;
-        private String credits;
-        private String soundFX;
-        private String back;
-        private  Game game;
+    /**
+     * String holds the controls text.
+     */
+    private String controls;
 
-        public OptionsMenu(final Game game) {
-            controls = "Controls";
-            credits = "Credits";
-            soundFX = "Sound FX";
-            back = "Back";
-            this.game = game;
-        }
+    /**
+     * String holds the credits text.
+     */
+    private String credits;
 
-        public void render(final Graphics2D g) {
+    /**
+     * String holds the soundFX text.
+     */
+    private String soundFX;
 
-            Font font = new Font("Arial", Font.BOLD, 70);
-            Font font2 = new Font("Arial", Font.PLAIN, 38);
+    /**
+     * String holds the back button text.
+     */
+    private String back;
 
-            g.setColor(Color.BLACK);
-            g.fillRect(0, 0, game.getWIDTH(), game.getHEIGHT());
-            g.setColor(Color.WHITE);
-            g.setFont(font);
+    /**
+     * Instance of Game class.
+     */
+    private Game game;
 
-            g.drawString(controls, 356, 300);
-            g.drawString(soundFX, 335, 420);
-            g.drawString(credits, 380, 540);
-
-//            g.drawRect(355, 240, 290, 70);
-//            g.drawRect(335, 360, 330, 70);
-//            g.drawRect(380, 480, 240,70);
-//            g.drawRect(72, 48, 98, 38);
-
-            g.setFont(font2);
-            g.setColor(Color.ORANGE);
-            g.drawString(back, 80, 80);
-        }
+    /**
+     * Constructor initializes Strings and sets this game equal to the
+     * instance provided.
+     *
+     * @param game The instance of Game being passed to this
+     *             constructor.
+     */
+    public OptionsMenu(final Game game) {
+        controls = "Controls";
+        credits = "Credits";
+        soundFX = "Sound FX";
+        back = "Back";
+        this.game = game;
     }
+
+    /**
+     * Creates the 2D graphics for the Options Menu.
+     *
+     * @param g The visual display for the 2D graphics in the options
+     *          menu.
+     */
+    public void render(final Graphics2D g) {
+
+        Font font = new Font("Arial", Font.BOLD, 70);
+        Font font2 = new Font("Arial", Font.PLAIN, 38);
+
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, game.getWIDTH(), game.getHEIGHT());
+        g.setColor(Color.WHITE);
+        g.setFont(font);
+
+        g.drawString(controls, 356, 300);
+        g.drawString(soundFX, 335, 420);
+        g.drawString(credits, 380, 540);
+
+        g.setFont(font2);
+        g.setColor(Color.ORANGE);
+        g.drawString(back, 80, 80);
+    }
+}

@@ -10,26 +10,26 @@ import java.awt.Graphics2D;
 public class GameOverScreen {
 
     /**
-     * String holds the Game Over text
+     * String holds the Game Over text.
      */
     private String gameOver;
 
     /**
-     * String holds the Main Menu text
+     * String holds the Main Menu text.
      */
     private String mainMenu;
 
     /**
-     * Instance of game object
+     * Instance of Game class.
      */
     private Game game;
 
     /**
      * Constructor initializes the Strings and sets this Game equal to
-     * the instance ofGame provided in the parameters
+     * the instance ofGame provided in the parameters.
      *
      * @param game The instance of Game being passed to this
-     *             constructor
+     * constructor.
      */
     public GameOverScreen(final Game game) {
         gameOver = "Game Over";

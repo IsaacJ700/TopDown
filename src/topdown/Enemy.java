@@ -50,15 +50,15 @@ public class Enemy extends GameObject {
      * Constructor creates an enemy object by accepting in various
      * parameters needed to determine the properties of the enemy.
      *
-     * @param x      represents the x coordinate at which the enemy will
-     *               spawn.
-     * @param y      represents the y coordinate at which the enemy will
-     *               spawn.
-     * @param type   represents the type of object.
+     * @param x represents the x coordinate at which the enemy will
+     * spawn.
+     * @param y represents the y coordinate at which the enemy will
+     * spawn.
+     * @param type represents the type of object.
      * @param handle represents the instance of the Handler class being
-     *               passed down to this constructor.
-     * @param game   represents the instance of the Game class being
-     *               passed down to this constructor.
+     * passed down to this constructor.
+     * @param game represents the instance of the Game class being
+     * passed down to this constructor.
      */
     public Enemy(final int x, final int y, final Type type,
                  final Handler handle, final Game game) {
@@ -249,8 +249,8 @@ public class Enemy extends GameObject {
 
     /**
      * Draws the enemy based on it's size and color.
-     * @param g visual display for the 2D graphics in the controls
-     * menu.
+     *
+     * @param g visual display for the 2D graphics.
      */
     @Override
     public void render(final Graphics g) {

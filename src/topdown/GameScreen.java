@@ -32,7 +32,7 @@ public class GameScreen {
      * Constructor initializes variables and sets this Game equal to
      * the provided instance of Game, and same for Player.
      *
-     * @param game   represents the instance of Game that is being passed
+     * @param game represents the instance of Game that is being passed
      *               down to this constructor.
      * @param player represents the instance of Player that is being
      *               passes down to this constructor
