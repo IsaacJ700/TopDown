@@ -1,26 +1,38 @@
 package topdown;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.Random;
 
-public class Enemy extends GameObject{
+public class Enemy extends GameObject {
+	
+	/** Holds the handler object for the enemy object. **/
     private Handler handle;
+    
+    /** Holds the amount of health an enemy object has. **/
     private int health;
+    
+    /** Holds the current game object. **/
     private Game game;
-    private int width;
-    private int height;
-    protected Type type;
-    protected int size;
-    protected Color color;
+    
+    /** Holds the type of enemy the object is. **/
+    private Type type;
+    
+    /** Holds the size of the enemy object. **/
+    private int size;
+    
+    /** Holds the color of the enemy object. **/
+    private Color color;
+    
+    /** Used for the random enemy type generator. **/
     private Random randomNum;
 
 
-    public Enemy(int x, int y, Type type, Handler handle, Game game){
+    public Enemy(final int x, final int y, final Type type, 
+    		final Handler handle, final Game game) {
         super(x, y, type, handle);
         velX = 10;
-        width = 20;
-        height = 20;
-        health = 20;
         this.handle = handle;
         this.game = game;
         randomNum = new Random();
@@ -30,84 +42,147 @@ public class Enemy extends GameObject{
         setEnemyHealth(getEnemyType());
     }
 
+    /**
+     * Returns an int that represents the current health of the enemy object.
+     * 
+     * @param None.
+     * @return The health of the current enemy object.
+     */
     public int getHealth() {
         return health;
     }
 
-    public void setHealth(int health) {
+    /**
+     * Sets the enemy health for the enemy object to the amount passed.
+     * 
+     * @param health The health to be set to the current enemy object.
+     */
+    public void setHealth(final int health) {
         this.health = health;
     }
     
-    private void setEnemyHealth(Type type) {
-    	if( type.equals( Type.smallEnemy ))
+    /**
+     * Sets the enemy health based on the type of the enemy object.
+     * 
+     * @param type The enemy type of the current object.
+     */
+    private void setEnemyHealth(final Type type) {
+    	if (type.equals(Type.smallEnemy)) {
     		setHealth(20);
-    	else if( type.equals( Type.mediumEnemy ))
+    	} else if (type.equals(Type.mediumEnemy)) {
     		setHealth(80);
-    	else if( type.equals( Type.largeEnemy ))
+    	} else if (type.equals(Type.largeEnemy)) {
     		setHealth(200);
-    	else if( type.equals( Type.bossEnemy ))
+    	} else if (type.equals(Type.bossEnemy)) {
     		setHealth(1000);
-    	else if( type.equals( Type.shootingEnemy ))
+    	} else if (type.equals(Type.shootingEnemy)) {
     		setHealth(80);
-    	else if( type.equals( Type.zombieEnemy ))
+    	} else if (type.equals(Type.zombieEnemy)) {
     		setHealth(this.getEnemySize() + 100);
+    	}
     }
-
+    
+    /**
+     * Returns an int that represents the size of the enemy object.
+     * 
+     * @param None.
+     * @return The size of the current enemy object.
+     */
     private int getEnemySize() {
         return size;
     }
     
-    private void setEnemySize(Type type) {
-    	if( type.equals( Type.smallEnemy ))
+    /**
+     * Sets the enemy size based on the type of the enemy object.
+     * 
+     * @param type The enemy type of the current object.
+     */
+    private void setEnemySize(final Type type) {
+    	if (type.equals(Type.smallEnemy)) {
     		this.size = 20;
-    	else if( type.equals( Type.mediumEnemy ))
+    	} else if (type.equals(Type.mediumEnemy)) {
     		this.size = 40;
-    	else if( type.equals( Type.largeEnemy ))
+    	} else if (type.equals(Type.largeEnemy)) {
     		this.size = 60;
-    	else if( type.equals( Type.bossEnemy ))
+    	} else if (type.equals(Type.bossEnemy)) {
     		this.size = 90;
-    	else if( type.equals( Type.shootingEnemy ))
+    	} else if (type.equals(Type.shootingEnemy)) {
     		this.size = 40;
-    	else if( type.equals( Type.zombieEnemy ))
+    	} else if (type.equals(Type.zombieEnemy)) {
     		this.size = randomNum.nextInt(70) + 20;
+    	}
     }
 
+    /**
+     * Returns a Color that represents the color of the enemy object.
+     * 
+     * @param None.
+     * @return The color of the current enemy object.
+     */
     private Color getEnemyColor() {
         return color;
     }
     
-    private void setEnemyColor(Type type) {
-    	if( type.equals( Type.smallEnemy ))
+    /**
+     * Sets the enemy color based on the type of the enemy object.
+     * 
+     * @param type The enemy type of the current object.
+     */
+    private void setEnemyColor(final Type type) {
+    	if (type.equals(Type.smallEnemy)) {
     		this.color = Color.blue;
-    	else if( type.equals( Type.mediumEnemy ))
+    	} else if (type.equals(Type.mediumEnemy)) {
     		this.color = Color.magenta;
-    	else if( type.equals( Type.largeEnemy ))
+    	} else if (type.equals(Type.largeEnemy)) {
     		this.color = Color.pink;
-    	else if( type.equals( Type.bossEnemy ))
+    	} else if (type.equals(Type.bossEnemy)) {
     		this.color = Color.red;
-    	else if( type.equals( Type.shootingEnemy ))
+    	} else if (type.equals(Type.shootingEnemy)) {
     		this.color = Color.lightGray;
-    	else if( type.equals( Type.zombieEnemy ))
+    	} else if (type.equals(Type.zombieEnemy)) {
     		this.color = Color.green;
+    	}
 
     }
 
+    /**
+     * Returns a Type that represents the current object's enemy type.
+     * 
+     * @param None.
+     * @return The type of the current enemy object.
+     */
     private Type getEnemyType() {
         return type;
     }
 
-    private void setEnemyType(Type type ) {
-    	if(type == Type.randomEnemy)
+    /**
+     * Takes in the type of enemy and sets it to the object. If the type
+     * is of random enemy type, then it gets a random enemy type. 
+     * 
+     * @param type The enemy type of the current object.
+     */
+    private void setEnemyType(final Type type) {
+    	if (type == Type.randomEnemy) {
     		this.type = getRandomEnemyType();
-    	else
+    	} else {
     		this.type = type;
+    	}
     }
     
+    /**
+     * Returns a Type that represents a randomly selected enemy type. This 
+     * uses a random number generator to pick from a list all of the possible
+     * enemy types.
+     * 
+     * @param None.
+     * @return The randomly selected enemy for the random enemy type.
+     */
     private Type getRandomEnemyType() {
     	
     	Type[] enemyTypeArray = new Type[6];
-    	for(int i=0; i<7; i++)
+    	for (int i = 0; i < 7; i++) {
     		enemyTypeArray = new Type[i];
+    	}
     	
     	enemyTypeArray[0] = Type.smallEnemy;
     	enemyTypeArray[1] = Type.mediumEnemy;
@@ -142,7 +217,7 @@ public class Enemy extends GameObject{
     }
 
     @Override
-    public void render(Graphics g) {
+    public void render(final Graphics g) {
         g.setColor(getEnemyColor());
         g.fillRect(x, y, getEnemySize(), getEnemySize());
     }

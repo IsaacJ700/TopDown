@@ -1,33 +1,36 @@
 package topdown;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class Wall extends GameObject {
 
-    private int Width = 10;
-    private int Height = 10;
+    private int width = 10;
+    private int height = 10;
 
     private Handler handle;
 
-    public Wall(int x, int y, Type type, Handler handle){
+    public Wall(final int x, final int y, final Type type, 
+    		final Handler handle) {
         super(x, y, type, handle);
         this.handle = handle;
     }
 
     public int getWidth() {
-        return Width;
+        return width;
     }
 
-    public void setWidth(int width) {
-        Width = width;
+    public void setWidth(final int w) {
+        width = w;
     }
 
     public int getHeight() {
-        return Height;
+        return height;
     }
 
-    public void setHeight(int height) {
-        Height = height;
+    public void setHeight(final int h) {
+        height = h;
     }
 
     @Override
@@ -36,14 +39,14 @@ public class Wall extends GameObject {
     }
 
     @Override
-    public void render(Graphics g) {
+    public void render(final Graphics g) {
         g.setColor(Color.RED);
-        g.fillRect(x, y, Width, Height);
+        g.fillRect(x, y, width, height);
 //        g.
     }
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle(x, y, Width, Height);
+        return new Rectangle(x, y, width, height);
     }
 }

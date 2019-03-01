@@ -1,15 +1,18 @@
 package topdown;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public abstract class GameObject {
 
-    protected int x, y;
+    protected int x;
+	protected int y;
     protected float velX = 0, velY = 0;
     protected Type type;
     protected Handler handle;
 
-    public GameObject(int x, int y, Type type, Handler handle) {
+    public GameObject(final int x, final int y, final Type type, 
+    		final Handler handle) {
         this.x = x;
         this.y = y;
         this.type = type;
@@ -24,7 +27,7 @@ public abstract class GameObject {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(final Type type) {
         this.type = type;
     }
 
@@ -32,7 +35,7 @@ public abstract class GameObject {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(final int x) {
         this.x = x;
     }
 
@@ -40,7 +43,7 @@ public abstract class GameObject {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(final int y) {
         this.y = y;
     }
 
@@ -48,7 +51,7 @@ public abstract class GameObject {
         return velX;
     }
 
-    public void setVelX(float velX) {
+    public void setVelX(final float velX) {
         this.velX = velX;
     }
 
@@ -56,7 +59,7 @@ public abstract class GameObject {
         return velY;
     }
 
-    public void setVelY(float velY) {
+    public void setVelY(final float velY) {
         this.velY = velY;
     }
 }

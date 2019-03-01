@@ -1,13 +1,14 @@
 package topdown;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import javax.swing.JFrame;
 
 public class Window {
 
-    public static JFrame frame;
+    private static JFrame frame;
 
-    public Window (int width, int height, String title, Game game){
+    public Window(final int width, final int height, 
+    		final String title, final Game game) {
 
         frame = new JFrame(title);
         frame.setUndecorated(true);

@@ -1,8 +1,10 @@
 package topdown;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
 
-public class PauseMenu{
+public class PauseMenu {
 
     private String restart;
     private String quit;
@@ -10,7 +12,7 @@ public class PauseMenu{
     private String back;
     private  Game game;
 
-    public PauseMenu(Game game) {
+    public PauseMenu(final Game game) {
         restart = "Restart";
         quit = "Quit";
         soundFX = "Sound FX";
@@ -18,7 +20,7 @@ public class PauseMenu{
         this.game = game;
     }
 
-    public void render(Graphics2D g){
+    public void render(final Graphics2D g) {
 
         Font font = new Font("Arial", Font.BOLD, 70);
         Font font2 = new Font("Arial", Font.PLAIN, 38);

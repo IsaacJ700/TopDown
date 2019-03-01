@@ -1,8 +1,10 @@
 package topdown;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
 
-public class ControlsMenu{
+public class ControlsMenu {
 
     private String w;
     private String a;
@@ -15,7 +17,7 @@ public class ControlsMenu{
     private int start;
     private Game game;
 
-    public ControlsMenu(Game game) {
+    public ControlsMenu(final Game game) {
         back = new String("Back");
         w = new String("W:  Move Up");
         a = new String("A:  Move Left");
@@ -28,7 +30,7 @@ public class ControlsMenu{
         this.game = game;
     }
 
-    public void render(Graphics2D g){
+    public void render(final Graphics2D g) {
         Font font = new Font("Arial", Font.ITALIC, 70);
         Font font2 = new Font("Arial", Font.PLAIN, 38);
 

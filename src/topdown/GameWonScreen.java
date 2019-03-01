@@ -1,6 +1,8 @@
 package topdown;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
 
 public class GameWonScreen {
 
@@ -8,13 +10,13 @@ public class GameWonScreen {
     private String mainMenu;
     private Game game;
 
-    public GameWonScreen(Game game) {
+    public GameWonScreen(final Game game) {
         gameOver = "You Won!!";
         mainMenu = "Main Menu";
         this.game = game;
     }
 
-    public void render(Graphics2D g) {
+    public void render(final Graphics2D g) {
         Font font = new Font("Arial", Font.PLAIN, 150);
         Font font2 = new Font("Standard", Font.PLAIN, 80);
         g.setColor(Color.BLACK);

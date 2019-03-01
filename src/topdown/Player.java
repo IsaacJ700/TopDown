@@ -1,6 +1,8 @@
 package topdown;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class Player extends GameObject {
 
@@ -11,7 +13,8 @@ public class Player extends GameObject {
     private Game game;
     private SecondTimer timer;
 
-    public Player(int x, int y, Type type, Handler handle, Game game) {
+    public Player(final int x, final int y, final Type type, 
+    		final Handler handle, final Game game) {
         super(x, y, type, handle);
         health = 100;
         money = 100;
@@ -27,32 +30,37 @@ public class Player extends GameObject {
         y += velY;
 
         //Movement
-        if (handle.isUp() && y > 0)
+        if (handle.isUp() && y > 0) {
             velY = -3;
-        else if (!handle.isDown())
+        } else if (!handle.isDown()) {
             velY = 0;
+        }
 
-        if (handle.isDown() && y < game.getHEIGHT() - 40)
+        if (handle.isDown() && y < game.getHEIGHT() - 40) {
             velY = 3;
-        else if (!handle.isUp())
+        } else if (!handle.isUp()) {
             velY = 0;
+        }
 
         if (handle.isRight() && x < game.getWIDTH() - 40) {
             velX = 3;
+        } else if (!handle.isLeft()) {
+            velX = 0;
         }
-        else if (!handle.isLeft())
-            velX = 0;
 
-        if (handle.isLeft() && x > 0)
+        if (handle.isLeft() && x > 0) {
             velX = -3;
-        else if (!handle.isRight())
+        } else if (!handle.isRight()) {
             velX = 0;
+        }
 
-        if (handle.isLeft() && handle.isRight())
+        if (handle.isLeft() && handle.isRight()) {
             velX = 0;
+        }
 
-        if (handle.isUp() && handle.isDown())
+        if (handle.isUp() && handle.isDown()) {
             velY = 0;
+        }
 
         for (int i = 0; i < handle.list.size(); i++) {
             GameObject tempObject = handle.list.get(i);
@@ -72,7 +80,7 @@ public class Player extends GameObject {
     }
 
     @Override
-    public void render(Graphics g) {
+    public void render(final Graphics g) {
         g.setColor(Color.ORANGE);
         g.fillRect(x, y, 40, 40);
     }
@@ -86,7 +94,7 @@ public class Player extends GameObject {
         return health;
     }
 
-    public void setHealth(int health) {
+    public void setHealth(final int health) {
         this.health = health;
     }
 
@@ -94,7 +102,7 @@ public class Player extends GameObject {
         return money;
     }
 
-    public void setMoney(int money) {
+    public void setMoney(final int money) {
         this.money = money;
     }
 
@@ -102,7 +110,7 @@ public class Player extends GameObject {
         return overShield;
     }
 
-    public void setOverShield(int overShield) {
+    public void setOverShield(final int overShield) {
         this.overShield = overShield;
     }
 }
