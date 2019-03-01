@@ -4,6 +4,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+/**
+ * Creates a wall to be used as a way to block movement in-game.
+ * 
+ * @author Issac Jimenez
+ * @author Nicholas English
+ * @author Suman Gurung
+ * @version 1.0
+ */
 public class Wall extends GameObject {
 
 	/** Holds the value for the width of the wall. **/
@@ -15,6 +23,13 @@ public class Wall extends GameObject {
     /** Holds the handler object for the enemy object. **/
     private Handler handle;
 
+    /**
+     * 
+     * @param x The integer value for the x position of the wall.
+     * @param y The integer value for the y position of the wall.
+     * @param type The type of object the wall is.
+     * @param handle The handler for the object.
+     */
     public Wall(final int x, final int y, final Type type, 
     		final Handler handle) {
         super(x, y, type, handle);

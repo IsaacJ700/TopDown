@@ -1,5 +1,13 @@
 package topdown;
 
+/**
+ * Creates the different types of objects available to be made in the game.
+ * 
+ * @author Issac Jimenez
+ * @author Nicholas English
+ * @author Suman Gurung
+ * @version 1.0
+ */
 public enum Type {
 	
 	/** The player type for the current player. **/
