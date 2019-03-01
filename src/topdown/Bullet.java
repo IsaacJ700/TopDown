@@ -20,7 +20,6 @@ public class Bullet extends GameObject {
         super(x, y, type, handle);
         this.handle = handle;
         calculateVelocity(x, y, xSpd, ySpd);
-//        bullet = read(new File("Bullet.jpg"));
     }
 
     /**

@@ -43,8 +43,9 @@ public class Enemy extends GameObject {
     }
 
     /**
-     * Returns an int that represents the current health of the enemy object.
-     * 
+     * Returns an int that represents the current health of the enemy
+     * object.
+     *
      * @return The health of the current enemy object.
      */
     public int getHealth() {
@@ -113,7 +114,7 @@ public class Enemy extends GameObject {
 
     /**
      * Returns a Color that represents the color of the enemy object.
-     * 
+     *
      * @return The color of the current enemy object.
      */
     private Color getEnemyColor() {
@@ -144,7 +145,7 @@ public class Enemy extends GameObject {
 
     /**
      * Returns a Type that represents the current object's enemy type.
-     * 
+     *
      * @return The type of the current enemy object.
      */
     private Type getEnemyType() {
@@ -169,7 +170,7 @@ public class Enemy extends GameObject {
      * Returns a Type that represents a randomly selected enemy type. This 
      * uses a random number generator to pick from a list all of the possible
      * enemy types.
-     * 
+     *
      * @return The randomly selected enemy for the random enemy type.
      */
     private Type getRandomEnemyType() {
