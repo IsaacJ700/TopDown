@@ -5,7 +5,7 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 
 /**
- * Class used to read mouseInput from the user
+ * Class used to read mouseInput from the user.
  *
  * @author Isaac Jimenez
  * @author Nicholas English
@@ -32,13 +32,13 @@ public class MouseInput implements MouseListener {
      * @param handle represents the instance of Handler being used.
      * @param game   represents the instance of Game being used.
      */
-    public MouseInput(Game game, Handler handle) {
+    public MouseInput(final Game game, final Handler handle) {
         this.game = game;
         this.handle = handle;
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(final MouseEvent e) {
 
     }
 
@@ -49,7 +49,7 @@ public class MouseInput implements MouseListener {
      * @param e represents the MouseEvent that just occurred.
      */
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(final MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
 
@@ -78,57 +78,60 @@ public class MouseInput implements MouseListener {
                 GameObject temp = handle.list.get(i);
                 if (temp.getType() == Type.player) {
                     try {
-                        handle.addObject(new Bullet(temp.getX() + 15, temp.getY() + 15, Type.bullet, handle, x, y));
+                        handle.addObject(new Bullet(temp.getX() + 15, 
+                        		temp.getY() + 15, 
+                        		Type.bullet, handle, x, y));
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
                 }
             }
-        } else if (game.getState() == State.OptionsMenu){
-            if (x >= 72 && x <= 170){
-                if (y >= 48 && y <= 86){
+        } else if (game.getState() == State.OptionsMenu) {
+            if (x >= 72 && x <= 170) {
+                if (y >= 48 && y <= 86) {
                     //Back Button... back to main menu
                     game.setState(State.Menu);
                 }
             }
-            if (x >= 355 && x <= 645){
-                if (y >= 240 && y <= 310){
+            if (x >= 355 && x <= 645) {
+                if (y >= 240 && y <= 310) {
                     //controls menu
                     game.setState(State.ControlsMenu);
                 }
             }
             if (x >= 355 && x <= 665) {
                 if (y >= 360 && y <= 430) {
-                    //SoundFX toggle
+                    game.setState(game.getState()); //SoundFX toggle
                 }
             }
-            if (x >= 380 && x <= 620){
+            if (x >= 380 && x <= 620) {
                 if (y >= 480 && y <= 550) {
                     //credits screen
                     game.setState(State.Credits);
                 }
             }
-        } else if (game.getState() == State.PauseMenu){
-            if (x >= 370 && x <= 625){
-                if (y >= 240 && y <= 310){
+        } else if (game.getState() == State.PauseMenu) {
+            if (x >= 370 && x <= 625) {
+                if (y >= 240 && y <= 310) {
                     //Restart button
                     game.reset();
                     game.setState(State.Menu);
                 }
             }
-            if (x >= 325 && x <= 675){
+            if (x >= 325 && x <= 675) {
                 if (y >= 360 && y <= 430) {
                     //Toggle soundFX
+                	game.setState(game.getState());
                 }
             }
-            if (x >= 420 && x<= 570){
+            if (x >= 420 && x <= 570) {
                 if (y >= 480 && y <= 550) {
                     //Quit the game
                     System.exit(1);
                 }
             }
-            if (x >= 72 && x <= 170){
-                if (y >= 48 && y <= 86){
+            if (x >= 72 && x <= 170) {
+                if (y >= 48 && y <= 86) {
                     //Return back to the game (Back button)
                     game.setState(State.Game);
                 }
@@ -140,13 +143,15 @@ public class MouseInput implements MouseListener {
                     game.setState(State.OptionsMenu);
                 }
             }
-        } else if (game.getState() == State.GameOver || game.getState() == State.GameWon) {
-            if (x >= 300 && x <= 700)
+        } else if (game.getState() == State.GameOver 
+        			|| game.getState() == State.GameWon) {
+            if (x >= 300 && x <= 700) {
                 if (y >= 510 && y <= 580) {
                     //Reset game and load main menu
                     game.reset();
                     game.setState(State.Menu);
                 }
+            }
         } else if (game.getState() == State.Credits) {
             if (x >= 72 && x <= 170) {
                 if (y >= 48 && y <= 86) {
@@ -158,17 +163,17 @@ public class MouseInput implements MouseListener {
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(final MouseEvent e) {
 
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(final MouseEvent e) {
 
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void mouseExited(final MouseEvent e) {
 
     }
 }

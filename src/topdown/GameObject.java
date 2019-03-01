@@ -51,10 +51,23 @@ public abstract class GameObject {
         this.handle = handle;
     }
 
+    /**
+     * Continuously updates the property of the game.
+     */
     public abstract void tick();
 
+    /**
+     * Renders the current game object.
+     * 
+     * @param g The graphic of the current game object.
+     */
     public abstract void render(Graphics g);
 
+    /**
+     * Returns the bonds of the current rectangle.
+     * 
+     * @return The bounds of the rectangle.
+     */
     public abstract Rectangle getBounds();
 
     /**

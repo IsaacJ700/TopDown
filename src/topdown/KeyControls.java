@@ -26,12 +26,12 @@ public class KeyControls extends KeyAdapter {
 
     /**
      * Constructor initializes handle and game with the provided
-     * instances
+     * instances.
      *
      * @param handle represents the instance of Handler being used.
      * @param game   represents the instance of Game being used.
      */
-    public KeyControls(Handler handle, Game game){
+    public KeyControls(final Handler handle, final Game game) {
         this.handle = handle;
         this.game = game;
     }
@@ -42,10 +42,10 @@ public class KeyControls extends KeyAdapter {
      *
      * @param e represents the keystroke.
      */
-    public void keyPressed(KeyEvent e){
+    public void keyPressed(final KeyEvent e) {
         int key = e.getKeyCode();
 
-        for (int i = 0; i < handle.list.size(); i++){
+        for (int i = 0; i < handle.list.size(); i++) {
             GameObject temp = handle.list.get(i);
 
             if (game.getState() != State.Game) {
@@ -57,16 +57,21 @@ public class KeyControls extends KeyAdapter {
 
             if (game.getState() == State.Game) {
                 if (temp.getType() == Type.player) {
-                    if (key == KeyEvent.VK_W)
+                    if (key == KeyEvent.VK_W) {
                         handle.setUp(true);
-                    if (key == KeyEvent.VK_A)
+                    }
+                    if (key == KeyEvent.VK_A) {
                         handle.setLeft(true);
-                    if (key == KeyEvent.VK_S)
+                    }
+                    if (key == KeyEvent.VK_S) {
                         handle.setDown(true);
-                    if (key == KeyEvent.VK_D)
+                    }
+                    if (key == KeyEvent.VK_D) {
                         handle.setRight(true);
-                    if (key == KeyEvent.VK_ESCAPE)
+                    }
+                    if (key == KeyEvent.VK_ESCAPE) {
                         game.setState(State.PauseMenu);
+                    }
                 }
             }
         }
@@ -74,11 +79,11 @@ public class KeyControls extends KeyAdapter {
 
     /**
      * Method checks keystroke releases and then determines whether or
-     * not the player should be halted
+     * not the player should be halted.
      *
      * @param e represents the keystroke.
      */
-    public void keyReleased(KeyEvent e){
+    public void keyReleased(final KeyEvent e) {
         int key = e.getKeyCode();
 
         for (int i = 0; i < handle.list.size(); i++) {
@@ -86,14 +91,18 @@ public class KeyControls extends KeyAdapter {
 
             if (game.getState() == State.Game) {
                 if (temp.getType() == Type.player) {
-                    if (key == KeyEvent.VK_W)
+                    if (key == KeyEvent.VK_W) {
                         handle.setUp(false);
-                    if (key == KeyEvent.VK_A)
+                    }
+                    if (key == KeyEvent.VK_A) {
                         handle.setLeft(false);
-                    if (key == KeyEvent.VK_S)
+                    }
+                    if (key == KeyEvent.VK_S) {
                         handle.setDown(false);
-                    if (key == KeyEvent.VK_D)
+                    }
+                    if (key == KeyEvent.VK_D) {
                         handle.setRight(false);
+                    }
                 }
             }
         }

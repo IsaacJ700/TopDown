@@ -150,7 +150,7 @@ public class Player extends GameObject {
     }
 
     /**
-     * Returns an int that represents the current health of the player
+     * Returns an int that represents the current health of the player.
      *
      * @return The health of the current player.
      */
