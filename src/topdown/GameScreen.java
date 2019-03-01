@@ -3,20 +3,40 @@ package topdown;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+/**
+ * Class used to display the Game screen.
+ */
 public class GameScreen {
 
-	/** Holds the current game object. **/
+    /**
+     * Holds the current game object.
+     */
     private Game game;
-    
-    /** Holds the current player object. **/
+
+    /**
+     * Holds the current player object.
+     */
     private Player player;
-    
-    /** Holds the starting position for the object on the X-axis. **/
+
+    /**
+     * Holds the starting position for the object on the X-axis.
+     */
     private int startX;
-    
-    /** Holds the starting position for the object on the Y-axis. **/
+
+    /**
+     * Holds the starting position for the object on the Y-axis.
+     */
     private int startY;
 
+    /**
+     * Constructor initializes variables and sets this Game equal to
+     * the provided instance of Game, and same for Player.
+     *
+     * @param game   represents the instance of Game that is being passed
+     *               down to this constructor.
+     * @param player represents the instance of Player that is being
+     *               passes down to this constructor
+     */
     public GameScreen(final Game game, final Player player) {
         startX = 60;
         startY = 60;
@@ -26,7 +46,7 @@ public class GameScreen {
 
     /**
      * Renders the screen overlay HUD for the in-game screen.
-     * 
+     *
      * @param g The 2D graphic screen to be rendered.
      */
     public void render(final Graphics2D g) {

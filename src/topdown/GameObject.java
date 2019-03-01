@@ -1,7 +1,6 @@
 package topdown;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.*;
 
 public abstract class GameObject {
 
@@ -23,8 +22,17 @@ public abstract class GameObject {
     /** Holds the handler object for the current object. **/
     protected Handler handle;
 
-    public GameObject(final int x, final int y, final Type type, 
-    		final Handler handle) {
+    /**
+     * Constructor takes in many parameters and uses them to determine
+     * the properties of the GameObject
+     *
+     * @param x      the coordinate at which the object will spawn
+     * @param y      the y coordinate at which the object will spawn
+     * @param type   the type of object this GameObject is
+     * @param handle the instance of Handler that this object will use
+     */
+    public GameObject(final int x, final int y, final Type type,
+                      final Handler handle) {
         this.x = x;
         this.y = y;
         this.type = type;
@@ -64,8 +72,9 @@ public abstract class GameObject {
 
     /**
      * Sets the position of the X value for the current game object.
-     * 
-     * @param x Holds an int value for the position of the object on the X-axis.
+     *
+     * @param x Holds an int value for the position of the object on
+     * the X-axis.
      */
     public void setX(final int x) {
         this.x = x;
@@ -82,15 +91,17 @@ public abstract class GameObject {
 
     /**
      * Sets the position of the Y value for the current game object.
-     * 
-     * @param y Holds an int value for the position of the object on the Y-axis.
+     *
+     * @param y Holds an int value for the position of the object on
+     * the Y-axis.
      */
     public void setY(final int y) {
         this.y = y;
     }
 
     /**
-     * Returns the velocity in the X-direction for the current game object.
+     * Returns the velocity in the X-direction for the current game
+     * object.
      * 
      * @return The float value of the velocity in the X-direction.
      */
@@ -99,7 +110,8 @@ public abstract class GameObject {
     }
 
     /**
-     * Sets the velocity in the X-direction for the current game object.
+     * Sets the velocity in the X-direction for the current game
+     * object.
      * 
      * @param velX Holds a float value for the velocity of the object.
      */
@@ -108,7 +120,8 @@ public abstract class GameObject {
     }
 
     /**
-     * Returns the velocity in the Y-direction for the current game object.
+     * Returns the velocity in the Y-direction for the current game
+     * object.
      * 
      * @return The float value of the velocity in the Y-direction.
      */
@@ -117,7 +130,8 @@ public abstract class GameObject {
     }
 
     /**
-     * Sets the velocity in the Y-direction for the current game object.
+     * Sets the velocity in the Y-direction for the current game
+     * object.
      * 
      * @param velY Holds a float value for the velocity of the object.
      */
