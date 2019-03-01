@@ -6,15 +6,36 @@ import java.awt.Graphics2D;
 
 public class ControlsMenu {
 
+	/** Holds the string description for the 'w' button on the keyboard. **/
     private String w;
+    
+    /** Holds the string description for the 'a' button on the keyboard. **/
     private String a;
+    
+    /** Holds the string description for the 's' button on the keyboard. **/
     private String s;
+    
+    /** Holds the string description for the 'd' button on the keyboard. **/
     private String d;
+    
+    /** Holds the on-screen "back" button string. **/
     private String back;
+    
+    /** Holds the string description for the left mouse button. **/
     private String mouse;
+    
+    /** Holds the string description for the "esc" button on the keyboard. **/
     private String escape;
+    
+    /** Holds the string description for the space bar on the keyboard. **/
     private String spaceBar;
+    
+    /** Holds the integer value of the starting X-coordinate for the text
+     *  descriptions on the screen.
+     */
     private int start;
+    
+    /** Holds the current game object. **/
     private Game game;
 
     public ControlsMenu(final Game game) {
@@ -30,6 +51,11 @@ public class ControlsMenu {
         this.game = game;
     }
 
+    /**
+     * Creates the 2D graphics for the controls menu.
+     * 
+     * @param g The visual display for the 2D graphics in the controls menu.
+     */
     public void render(final Graphics2D g) {
         Font font = new Font("Arial", Font.ITALIC, 70);
         Font font2 = new Font("Arial", Font.PLAIN, 38);

@@ -6,9 +6,13 @@ import java.awt.Rectangle;
 
 public class Wall extends GameObject {
 
+	/** Holds the value for the width of the wall. **/
     private int width = 10;
+    
+    /** Holds the value for the height of the wall. **/
     private int height = 10;
 
+    /** Holds the handler object for the enemy object. **/
     private Handler handle;
 
     public Wall(final int x, final int y, final Type type, 

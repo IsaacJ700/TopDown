@@ -5,9 +5,16 @@ import java.awt.Graphics2D;
 
 public class GameScreen {
 
+	/** Holds the current game object. **/
     private Game game;
+    
+    /** Holds the current player object. **/
     private Player player;
+    
+    /** Holds the starting position for the object on the X-axis. **/
     private int startX;
+    
+    /** Holds the starting position for the object on the Y-axis. **/
     private int startY;
 
     public GameScreen(final Game game, final Player player) {
@@ -17,6 +24,11 @@ public class GameScreen {
         this.player = player;
     }
 
+    /**
+     * Renders the screen overlay HUD for the in-game screen.
+     * 
+     * @param g The 2D graphic screen to be rendered.
+     */
     public void render(final Graphics2D g) {
         g.setColor(Color.gray);
         g.fillRect(0, 0, game.getWIDTH(), game.getHEIGHT());

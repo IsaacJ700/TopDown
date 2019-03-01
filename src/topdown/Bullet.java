@@ -8,7 +8,10 @@ import java.io.IOException;
 
 public class Bullet extends GameObject {
 
+	/** Holds the handler object for the enemy object. **/
     private Handler handle;
+    
+    /** Holds bullet objects as a BufferedImage. **/
     private BufferedImage bullet;
 
     public Bullet(final int x, final int y, final Type type, 
@@ -20,6 +23,19 @@ public class Bullet extends GameObject {
 //        bullet = read(new File("Bullet.jpg"));
     }
 
+    /**
+     * Determines the velocity of the bullet depending on where it is shot from
+     * and towards what point.
+     * 
+     * @param fromX Holds an int that represents the X-coordinate of the
+     * 			bullet's origin.
+     * @param fromY Holds an int that represents the Y-coordinate of the
+     * 			bullet's origin.
+     * @param toX Holds an int that represents the X-coordinate of the
+     * 			bullet's destination.
+     * @param toY Holds an int that represents the Y-coordinate of the
+     * 			bullet's destination.
+     */
     public void calculateVelocity(final int fromX, final int fromY, 
     		final int toX, final int toY) {
     	

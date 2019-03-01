@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 
 public class Window {
 
+	/** Holds the frame for the game screen. **/
     private static JFrame frame;
 
     public Window(final int width, final int height, 

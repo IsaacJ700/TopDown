@@ -7,22 +7,55 @@ import java.awt.image.BufferStrategy;
 
 public class Game extends Canvas implements Runnable {
 
+	/** Holds if the game is currently running or not. **/
     private boolean isRunning;
+    
+    
     private Thread thread;
+    
+    /** Holds the handler object for the enemy object. **/
     private Handler handle;
+    
+    /** Holds the current player as a Player object. **/
     private Player player;
+    
+    /** Holds enemies with each being there own object. **/
     private Enemy enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7;
+    
+    /** Holds the current state of the game. **/
     private State state;
+    
+    /** Used for rendering a menu for the game. **/
     private Menu menu;
+    
+    /** Used for rendering the "credits" screen for the game. **/
     private Credits credits;
+    
+    /** Used for rendering the "options menu" screen for the game. **/
     private OptionsMenu option;
+    
+    /** Used for rendering the in-game screen. **/
     private GameScreen gameScreen;
+    
+    /** Used for rendering the "game over" screen for the game. **/
     private GameOverScreen gameOver;
+    
+    /** Used for rendering the "game won" screen for the game. **/
     private GameWonScreen gameWon;
+    
+    /** Used for rendering the "pause menu" screen for the game. **/
     private PauseMenu pauseMenu;
+    
+    /** Used for rendering the "controls" screen for the game. **/
     private ControlsMenu controlMenu;
+    
+    /** Holds the width of the game screen. **/
     private final int width = 1000;
+    
+    /** Holds the height of the game screen. **/
     private final int height = 750;
+    
+    /** Holds the current frames per second for the game. **/
     private int frameCount;
 
     public Game() {
@@ -44,6 +77,12 @@ public class Game extends Canvas implements Runnable {
         setUpGame();
     }
 
+    /**
+     * Sets up the game by adding all of the enemy and player objects to 
+     * the game.
+     * 
+     * @param None.
+     */
     public void setUpGame() {
         player = new Player(100, 300, Type.player, handle, this);
         enemy1 = new Enemy(100, 450, Type.smallEnemy, handle, this);
@@ -64,10 +103,20 @@ public class Game extends Canvas implements Runnable {
         gameScreen = new GameScreen(this, player);
     }
 
+    /**
+     * Clears the game of all items in the handle list.
+     * 
+     * @param None.
+     */
     public void clearGame() {
         handle.list.clear();
     }
 
+    /**
+     * Begins the game with the thread.
+     * 
+     * @param None.
+     */
     public void start() {
         thread = new Thread(this);
         thread.start();
@@ -101,6 +150,11 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
+    /**
+     * Stops the game and exits the program.
+     * 
+     * @param None.
+     */
     public void stop() {
         try {
             thread.join();
@@ -110,12 +164,24 @@ public class Game extends Canvas implements Runnable {
         System.exit(1);
     }
 
+    /**
+     * Based on the current state of the game, it runs the tick function through
+     * the handle.
+     * 
+     * @param None.
+     */
     public void tick() {
         if (state == State.Game) {
             handle.tick();
         }
     }
 
+    /**
+     * Declares the player a winner if all of the enemy objects have 
+     * been removed.
+     * 
+     * @param None.
+     */
     public void checkIfWon() {
         int check = 0;
         for (int i = 0; i < handle.list.size(); i++) {
@@ -129,11 +195,21 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    /**
+     * Resets the game screen by clearing the game and then setting up the game.
+     * 
+     * @param None.
+     */
     public void reset() {
         clearGame();
         setUpGame();
     }
 
+    /**
+     * Renders the screen and updates the screen if the state has changed.
+     * 
+     * @param None.
+     */
     public void render() {
 
         BufferStrategy bs = this.getBufferStrategy();
@@ -172,26 +248,60 @@ public class Game extends Canvas implements Runnable {
         bs.show();
     }
 
+    /**
+     * Returns the State object for the state of the game currently.
+     * 
+     * @param None.
+     * @return The current state of the game.
+     */
     public State getState() {
         return state;
     }
 
+    /**
+     * Sets the state of the game based on the State object passed.
+     * 
+     * @param state Holds a State object to be set to the current game.
+     */
     public void setState(final State state) {
         this.state = state;
     }
 
+    /**
+     * Returns an integer value for the width of the current game screen.
+     * 
+     * @param None.
+     * @return The value for the width of the game screen.
+     */
     public int getWIDTH() {
         return width;
     }
 
+    /**
+     * Returns an integer value for the height of the current game screen.
+     * 
+     * @param None.
+     * @return The value for the height of the game screen.
+     */
     public int getHEIGHT() {
         return height;
     }
 
+    /**
+     * Returns the integer value for the frames per second for the current game.
+     * 
+     * @param None.
+     * @return The value for the frames per second for the game.
+     */
     public int getFrameCount() {
         return frameCount;
     }
 
+    /**
+     * Sets the frames per second based on the integer value passed.
+     * 
+     * @param frameCount Holds an int value of the frames per second.
+     */
     public void setFrameCount(final int frameCount) {
         this.frameCount = frameCount;
     }
