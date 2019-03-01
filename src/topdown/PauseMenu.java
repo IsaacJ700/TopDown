@@ -74,9 +74,9 @@ public class PauseMenu {
         g.drawString(soundFX, 335, 420);
         g.drawString(quit, 425, 540);
 
-        g.drawRect(370, 240, 255, 70);
-        g.drawRect(325, 360, 350, 70);
-        g.drawRect(420, 480, 150, 70);
+//        g.drawRect(370, 240, 255, 70);
+//        g.drawRect(325, 360, 350, 70);
+//        g.drawRect(420, 480, 150, 70);
 
         g.setFont(font2);
         g.setColor(Color.ORANGE);
