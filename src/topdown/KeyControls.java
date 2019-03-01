@@ -3,9 +3,19 @@ package topdown;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ *
+ */
 public class KeyControls extends KeyAdapter {
 
+    /**
+     *
+     */
     private Handler handle;
+
+    /**
+     *
+     */
     private Game game;
 
     public KeyControls(Handler handle, Game game){

@@ -5,59 +5,104 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferStrategy;
 
+/**
+ * Main class which runs the program and holds the most important
+ * methods used to keep track of essential game elements/information.
+ */
 public class Game extends Canvas implements Runnable {
 
-	/** Holds if the game is currently running or not. **/
+    /**
+     * Holds if the game is currently running or not.
+     */
     private boolean isRunning;
-    
-    
+
+    /**
+     * Instance of thread used to control the execution of the program.
+     */
     private Thread thread;
-    
-    /** Holds the handler object for the enemy object. **/
+
+    /**
+     * Holds the handler object for the enemy object.
+     */
     private Handler handle;
-    
-    /** Holds the current player as a Player object. **/
+
+    /**
+     * Holds the current player as a Player object.
+     */
     private Player player;
-    
-    /** Holds enemies with each being there own object. **/
-    private Enemy enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7;
-    
-    /** Holds the current state of the game. **/
+
+    /**
+     * Holds enemies with each being their own object.
+     */
+    private Enemy enemy1, enemy2, enemy3, enemy4, enemy5, enemy6,
+            enemy7;
+
+    /**
+     * Holds the current state of the game.
+     */
     private State state;
-    
-    /** Used for rendering a menu for the game. **/
+
+    /**
+     * Used for rendering a menu for the game.
+     */
     private Menu menu;
-    
-    /** Used for rendering the "credits" screen for the game. **/
+
+    /**
+     * Used for rendering the "credits" screen for the game.
+     */
     private Credits credits;
-    
-    /** Used for rendering the "options menu" screen for the game. **/
+
+    /**
+     * Used for rendering the "options menu" screen for the game.
+     */
     private OptionsMenu option;
-    
-    /** Used for rendering the in-game screen. **/
+
+    /**
+     * Used for rendering the in-game screen.
+     */
     private GameScreen gameScreen;
-    
-    /** Used for rendering the "game over" screen for the game. **/
+
+    /**
+     * Used for rendering the "game over" screen for the game.
+     */
     private GameOverScreen gameOver;
-    
-    /** Used for rendering the "game won" screen for the game. **/
+
+    /**
+     * Used for rendering the "game won" screen for the game.
+     */
     private GameWonScreen gameWon;
-    
-    /** Used for rendering the "pause menu" screen for the game. **/
+
+    /**
+     * Used for rendering the "pause menu" screen for the game.
+     */
     private PauseMenu pauseMenu;
-    
-    /** Used for rendering the "controls" screen for the game. **/
+
+    /**
+     * Used for rendering the "controls" screen for the game.
+     */
     private ControlsMenu controlMenu;
-    
-    /** Holds the width of the game screen. **/
+
+    /**
+     * Holds the width of the game screen.
+     */
     private final int width = 1000;
-    
-    /** Holds the height of the game screen. **/
+
+    /**
+     * Holds the height of the game screen.
+     */
     private final int height = 750;
-    
-    /** Holds the current frames per second for the game. **/
+
+    /**
+     * Holds the current frames per second for the game.
+     */
     private int frameCount;
 
+    /**
+     * Constructor initializes many of the instance variables created
+     * above and creates the window on which the game wil run, adds
+     * keyControls, adds a mouseListener, and calls on two methods used
+     * to begin the game.
+     */
     public Game() {
         frameCount = 0;
         isRunning = true;
@@ -116,6 +161,10 @@ public class Game extends Canvas implements Runnable {
         thread.start();
     }
 
+    /**
+     * Method used as the "engine" of the game, which keeps it running
+     * and continuously updates all aspects of the game.
+     */
     @Override
     public void run() {
         this.requestFocus();
@@ -148,17 +197,12 @@ public class Game extends Canvas implements Runnable {
      * Stops the game and exits the program.
      */
     public void stop() {
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         System.exit(1);
     }
 
     /**
-     * Based on the current state of the game, it runs the tick function through
-     * the handle.
+     * Based on the current state of the game, it runs the tick
+     * function through the handle.
      */
     public void tick() {
         if (state == State.Game) {
@@ -184,7 +228,8 @@ public class Game extends Canvas implements Runnable {
     }
 
     /**
-     * Resets the game screen by clearing the game and then setting up the game.
+     * Resets the game screen by clearing the game and then setting up
+     * the game.
      */
     public void reset() {
         clearGame();
@@ -192,7 +237,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     /**
-     * Renders the screen and updates the screen if the state has changed.
+     * Renders the screen and updates the screen constantly.
      */
     public void render() {
 
@@ -234,7 +279,7 @@ public class Game extends Canvas implements Runnable {
 
     /**
      * Returns the State object for the state of the game currently.
-     * 
+     *
      * @return The current state of the game.
      */
     public State getState() {
@@ -243,7 +288,7 @@ public class Game extends Canvas implements Runnable {
 
     /**
      * Sets the state of the game based on the State object passed.
-     * 
+     *
      * @param state Holds a State object to be set to the current game.
      */
     public void setState(final State state) {
@@ -251,8 +296,9 @@ public class Game extends Canvas implements Runnable {
     }
 
     /**
-     * Returns an integer value for the width of the current game screen.
-     * 
+     * Returns an integer value for the width of the current game
+     * screen.
+     *
      * @return The value for the width of the game screen.
      */
     public int getWIDTH() {
@@ -260,8 +306,9 @@ public class Game extends Canvas implements Runnable {
     }
 
     /**
-     * Returns an integer value for the height of the current game screen.
-     * 
+     * Returns an integer value for the height of the current game
+     * screen.
+     *
      * @return The value for the height of the game screen.
      */
     public int getHEIGHT() {
@@ -269,8 +316,9 @@ public class Game extends Canvas implements Runnable {
     }
 
     /**
-     * Returns the integer value for the frames per second for the current game.
-     * 
+     * Returns the integer value for the frames per second for the
+     * current game.
+     *
      * @return The value for the frames per second for the game.
      */
     public int getFrameCount() {
@@ -279,13 +327,21 @@ public class Game extends Canvas implements Runnable {
 
     /**
      * Sets the frames per second based on the integer value passed.
-     * 
+     *
      * @param frameCount Holds an int value of the frames per second.
      */
     public void setFrameCount(final int frameCount) {
         this.frameCount = frameCount;
     }
 
+    /**
+     * Main method is called when the program begins and creates the
+     * instance of Game that will be used within all classes that
+     * demand and instance of Game.
+     *
+     * @param args an array of command-line arguments for the
+     *             application.
+     */
     public static void main(final String[] args) {
         Game game = new Game();
     }
