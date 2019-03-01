@@ -6,6 +6,11 @@ import java.awt.Graphics2D;
 
 /**
  * Class used to display the Game Won screen.
+ *
+ * @author Issac Jimenez
+ * @author Nicholas English
+ * @author Suman Gurung
+ * @version 1.0
  */
 public class GameWonScreen {
 

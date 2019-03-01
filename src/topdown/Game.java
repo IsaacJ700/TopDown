@@ -8,6 +8,11 @@ import java.awt.image.BufferStrategy;
 /**
  * Main class which runs the program and holds the most important
  * methods used to keep track of essential game elements/information.
+ *
+ * @author Issac Jimenez
+ * @author Nicholas English
+ * @author Suman Gurung
+ * @version 1.0
  */
 public class Game extends Canvas implements Runnable {
 

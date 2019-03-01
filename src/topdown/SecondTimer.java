@@ -10,7 +10,9 @@ package topdown;
  */
 public class SecondTimer {
 
-	/** Holds the current time left in the game. **/
+    /**
+     * Holds the current time left in the game.
+     */
     private long time;
 
     /**

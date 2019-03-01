@@ -6,6 +6,11 @@ import java.awt.Graphics2D;
 
 /**
  * Class is used to render the main menu.
+ *
+ * @author Issac Jimenez
+ * @author Nicholas English
+ * @author Suman Gurung
+ * @version 1.0
  */
 public class Menu {
 

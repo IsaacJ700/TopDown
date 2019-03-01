@@ -14,17 +14,24 @@ import java.awt.Rectangle;
  */
 public class Wall extends GameObject {
 
-	/** Holds the value for the width of the wall. **/
-    private int width = 10;
-    
-    /** Holds the value for the height of the wall. **/
-    private int height = 10;
+    /**
+     * Holds the value for the width of the wall.
+     */
+    private int width;
 
-    /** Holds the handler object for the enemy object. **/
+    /**
+     * Holds the value for the height of the wall.
+     */
+    private int height;
+
+    /**
+     * Holds the handler object for the enemy object.
+     */
     private Handler handle;
 
     /**
-     * 
+     * Constructor initializes parameters and calls on the super class.
+     *
      * @param x The integer value for the x position of the wall.
      * @param y The integer value for the y position of the wall.
      * @param type The type of object the wall is.
@@ -34,6 +41,8 @@ public class Wall extends GameObject {
     		final Handler handle) {
         super(x, y, type, handle);
         this.handle = handle;
+        width = 10;
+        height = 10;
     }
 
     /**
@@ -72,18 +81,29 @@ public class Wall extends GameObject {
         height = h;
     }
 
+    /**
+     * Updates the properties of the wall continuously.
+     */
     @Override
     public void tick() {
 
     }
 
+    /**
+     * Renders the wall continuously.
+     *
+     * @param g the instance of Graphics that is being used.
+     */
     @Override
     public void render(final Graphics g) {
         g.setColor(Color.RED);
         g.fillRect(x, y, width, height);
-//        g.
     }
 
+    /**
+     * Returns the boundaries o the wall as a rectangle.
+     * @return the boundaries of the wall.
+     */
     @Override
     public Rectangle getBounds() {
         return new Rectangle(x, y, width, height);

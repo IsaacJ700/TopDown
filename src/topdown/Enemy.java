@@ -8,6 +8,11 @@ import java.util.Random;
 /**
  * Class used to determine/set enemy properties before inserting them
  * into the game.
+ *
+ * @author Issac Jimenez
+ * @author Nicholas English
+ * @author Suman Gurung
+ * @version 1.0
  */
 public class Enemy extends GameObject {
 

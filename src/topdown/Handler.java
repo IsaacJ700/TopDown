@@ -6,6 +6,11 @@ import java.util.LinkedList;
 /**
  * Class used to keep track of all GameObjects and hold their
  * unique properties.
+ *
+ * @author Issac Jimenez
+ * @author Nicholas English
+ * @author Suman Gurung
+ * @version 1.0
  */
 public class Handler {
 
