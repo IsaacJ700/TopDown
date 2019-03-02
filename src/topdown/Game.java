@@ -155,7 +155,7 @@ public class Game extends Canvas implements Runnable {
      * Clears the game of all items in the handle list.
      */
     public void clearGame() {
-        handle.list.clear();
+        handle.getList().clear();
     }
 
     /**
@@ -221,8 +221,8 @@ public class Game extends Canvas implements Runnable {
      */
     public void checkIfWon() {
         int check = 0;
-        for (int i = 0; i < handle.list.size(); i++) {
-            GameObject temp = handle.list.get(i);
+        for (int i = 0; i < handle.getList().size(); i++) {
+            GameObject temp = handle.getList().get(i);
             if (temp.getType() == Type.smallEnemy) {
                 check++;
             }

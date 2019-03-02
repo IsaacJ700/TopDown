@@ -1,7 +1,8 @@
 package topdown;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import javax.swing.JFrame;
+
 
 /**
  * Used to create a window for the game screen to be played in.

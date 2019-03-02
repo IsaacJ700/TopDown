@@ -18,7 +18,7 @@ public class Handler {
      * list represents a LinkedList of GameObjects that stores all
      * GameObjects created within the game.
      */
-    LinkedList<GameObject> list = new LinkedList<GameObject>();
+    private LinkedList<GameObject> list = new LinkedList<GameObject>();
 
     /**
      * Holds true if the object is up.
@@ -39,7 +39,25 @@ public class Handler {
      * Holds true if the object to the right.
      */
     private boolean right = false;
-
+    
+    /**
+     * Returns the current list of game objects.
+     * 
+     * @return The list of game game objects.
+     */
+    public LinkedList<GameObject> getList() {
+    	return list;
+    }
+    
+    /**
+     * Sets the current list of game objects equal to the list passed.
+     * 
+     * @param l The list of game objects.
+     */
+    public void setList(final LinkedList<GameObject> l) {
+    	this.list = l;
+    }
+    
     /**
      * Returns true if the object is up.
      *

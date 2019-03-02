@@ -45,8 +45,8 @@ public class KeyControls extends KeyAdapter {
     public void keyPressed(final KeyEvent e) {
         int key = e.getKeyCode();
 
-        for (int i = 0; i < handle.list.size(); i++) {
-            GameObject temp = handle.list.get(i);
+        for (int i = 0; i < handle.getList().size(); i++) {
+            GameObject temp = handle.getList().get(i);
 
             if (game.getState() != State.Game) {
                 handle.setUp(false);
@@ -86,8 +86,8 @@ public class KeyControls extends KeyAdapter {
     public void keyReleased(final KeyEvent e) {
         int key = e.getKeyCode();
 
-        for (int i = 0; i < handle.list.size(); i++) {
-            GameObject temp = handle.list.get(i);
+        for (int i = 0; i < handle.getList().size(); i++) {
+            GameObject temp = handle.getList().get(i);
 
             if (game.getState() == State.Game) {
                 if (temp.getType() == Type.player) {

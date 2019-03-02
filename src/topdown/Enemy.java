@@ -68,7 +68,7 @@ public class Enemy extends GameObject {
     public Enemy(final int x, final int y, final Type type,
                  final Handler handle, final Game game) {
         super(x, y, type, handle);
-        velX = 10;
+        setVelX(10);
         this.handle = handle;
         this.game = game;
         randomNum = new Random();
@@ -190,7 +190,7 @@ public class Enemy extends GameObject {
 
     /**
      * Takes in the type of enemy and sets it to the object. If type
-     * is of a randomenemy type, then it gets a random enemy type.
+     * is of a random enemy type, then it gets a random enemy type.
      *
      * @param type The enemy type of the current object.
      */
@@ -232,14 +232,15 @@ public class Enemy extends GameObject {
      */
     @Override
     public void tick() {
-        x += velX;
-        y += velY;
-        if (x > game.getWIDTH()) {
-            x = 0;
+    	setX((int) (getX() + getVelX()));
+        setY((int) (getY() + getVelY()));
+    	
+        if (getX() > game.getWIDTH()) {
+        	setX(0);
         }
 
-        for (int i = 0; i < handle.list.size(); i++) {
-            GameObject tempObject = handle.list.get(i);
+        for (int i = 0; i < handle.getList().size(); i++) {
+            GameObject tempObject = handle.getList().get(i);
             if (tempObject.getType() == Type.bullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     health -= 20;
@@ -260,7 +261,7 @@ public class Enemy extends GameObject {
     @Override
     public void render(final Graphics g) {
         g.setColor(getEnemyColor());
-        g.fillRect(x, y, getEnemySize(), getEnemySize());
+        g.fillRect(getX(), getY(), getEnemySize(), getEnemySize());
     }
 
     /**
@@ -271,6 +272,6 @@ public class Enemy extends GameObject {
      */
     @Override
     public Rectangle getBounds() {
-        return new Rectangle(x, y, getEnemySize(), getEnemySize());
+        return new Rectangle(getX(), getY(), getEnemySize(), getEnemySize());
     }
 }

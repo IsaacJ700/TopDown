@@ -97,7 +97,7 @@ public class Wall extends GameObject {
     @Override
     public void render(final Graphics g) {
         g.setColor(Color.RED);
-        g.fillRect(x, y, width, height);
+        g.fillRect(getX(), getY(), width, height);
     }
 
     /**
@@ -106,6 +106,6 @@ public class Wall extends GameObject {
      */
     @Override
     public Rectangle getBounds() {
-        return new Rectangle(x, y, width, height);
+        return new Rectangle(getX(), getY(), width, height);
     }
 }

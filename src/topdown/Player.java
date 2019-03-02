@@ -75,44 +75,44 @@ public class Player extends GameObject {
      */
     @Override
     public void tick() {
-        x += velX;
-        y += velY;
+    	setX((int) (getX() + getVelX()));
+        setY((int) (getY() + getVelY()));
 
         //Movement
-        if (handle.isUp() && y > 0) {
-            velY = -3;
+        if (handle.isUp() && getY() > 0) {
+        	setVelY(-3);
         } else if (!handle.isDown()) {
-            velY = 0;
+            setVelY(0);
         }
 
-        if (handle.isDown() && y < game.getHEIGHT() - 40) {
-            velY = 3;
+        if (handle.isDown() && getY() < game.getHEIGHT() - 40) {
+        	setVelY(3);
         } else if (!handle.isUp()) {
-            velY = 0;
+        	setVelY(0);
         }
 
-        if (handle.isRight() && x < game.getWIDTH() - 40) {
-            velX = 3;
+        if (handle.isRight() && getX() < game.getWIDTH() - 40) {
+            setVelX(3);
         } else if (!handle.isLeft()) {
-            velX = 0;
+            setVelX(0);
         }
 
-        if (handle.isLeft() && x > 0) {
-            velX = -3;
+        if (handle.isLeft() && getX() > 0) {
+        	setVelX(-3);
         } else if (!handle.isRight()) {
-            velX = 0;
+        	setVelX(0);
         }
 
         if (handle.isLeft() && handle.isRight()) {
-            velX = 0;
+        	setVelX(0);
         }
 
         if (handle.isUp() && handle.isDown()) {
-            velY = 0;
+        	setVelY(0);
         }
 
-        for (int i = 0; i < handle.list.size(); i++) {
-            GameObject tempObject = handle.list.get(i);
+        for (int i = 0; i < handle.getList().size(); i++) {
+            GameObject tempObject = handle.getList().get(i);
             if (tempObject.getType() == Type.smallEnemy) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     if (timer.isTimeUp()) {
@@ -136,7 +136,7 @@ public class Player extends GameObject {
     @Override
     public void render(final Graphics g) {
         g.setColor(Color.ORANGE);
-        g.fillRect(x, y, 40, 40);
+        g.fillRect(getX(), getY(), 40, 40);
     }
 
     /**
@@ -146,7 +146,7 @@ public class Player extends GameObject {
      */
     @Override
     public Rectangle getBounds() {
-        return new Rectangle(x, y, 40, 40);
+        return new Rectangle(getX(), getY(), 40, 40);
     }
 
     /**

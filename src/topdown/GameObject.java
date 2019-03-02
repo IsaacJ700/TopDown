@@ -17,22 +17,22 @@ import java.awt.Rectangle;
 public abstract class GameObject {
 
     /** Holds the position of the object on the X-axis. **/
-    protected int x;
+    private int x;
 
     /** Holds the position of the object on the Y-axis. **/
-    protected int y;
+    private int y;
 
     /** Holds the velocity of the object in the X-direction. **/
-    protected float velX = 0;
+    private float velX = 0;
 
     /** Holds the velocity of the object in the Y-direction. **/
-    protected float velY = 0;
+    private float velY = 0;
 
     /** Holds the Type of object the current object is. */
-    protected Type type;
+    private Type type;
 
     /** Holds the handler object for the current object. **/
-    protected Handler handle;
+    private Handler handle;
 
     /**
      * Constructor takes in many parameters and uses them to determine
@@ -45,8 +45,10 @@ public abstract class GameObject {
      */
     public GameObject(final int x, final int y, final Type type,
                       final Handler handle) {
-        this.x = x;
-        this.y = y;
+//        this.x = x;
+        setX(x);
+        setY(y);
+//        this.y = y;
         this.type = type;
         this.handle = handle;
     }

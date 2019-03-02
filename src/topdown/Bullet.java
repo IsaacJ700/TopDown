@@ -63,7 +63,7 @@ public class Bullet extends GameObject {
         width = 5;
         height = 10;
         speed = 15;
-        calculateVelocity(x, y, xSpd, ySpd);
+        calculateVelocity(getX(), getY(), xSpd, ySpd);
     }
 
     /**
@@ -86,9 +86,9 @@ public class Bullet extends GameObject {
                 + Math.pow((toY - fromY), 2));
 
         //find Y
-        velY = (float) ((toY - fromY) * speed / distance);
+        setVelY((float) ((toY - fromY) * speed / distance));
         //find X
-        velX = (float) ((toX - fromX) * speed / distance);
+        setVelX((float) ((toX - fromX) * speed / distance));
     }
 
     /**
@@ -96,8 +96,8 @@ public class Bullet extends GameObject {
      */
     @Override
     public void tick() {
-        x += velX;
-        y += velY;
+        setX((int) (getX() + getVelX()));
+        setY((int) (getY() + getVelY()));
     }
 
     /**
@@ -107,7 +107,7 @@ public class Bullet extends GameObject {
     @Override
     public void render(final Graphics g) {
         g.setColor(Color.WHITE);
-        g.fillOval(x, y, width, height);
+        g.fillOval(getX(), getY(), width, height);
     }
 
     /**
@@ -116,6 +116,6 @@ public class Bullet extends GameObject {
      */
     @Override
     public Rectangle getBounds() {
-        return new Rectangle(x, y, width, height);
+        return new Rectangle(getX(), getY(), width, height);
     }
 }

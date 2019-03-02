@@ -74,8 +74,8 @@ public class MouseInput implements MouseListener {
             }
         } else if (game.getState() == State.Game) {
             //Add bullets when mouse clicked
-            for (int i = 0; i < handle.list.size(); i++) {
-                GameObject temp = handle.list.get(i);
+            for (int i = 0; i < handle.getList().size(); i++) {
+                GameObject temp = handle.getList().get(i);
                 if (temp.getType() == Type.player) {
                     try {
                         handle.addObject(new Bullet(temp.getX() + 15, 
