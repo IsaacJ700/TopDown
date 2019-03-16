@@ -40,11 +40,21 @@ public class Enemy extends GameObject {
      * Holds the size of the enemy object.
      */
     private int size;
-
+    
+    /**
+     * Holds the time the enemy has been in one direction.
+     */
+    private int wait;
+    
     /**
      * Holds the color of the enemy object.
      */
     private Color color;
+    
+    /**
+     * Holds the speed of the enemy object.
+     */
+    private int speed;
 
     /**
      * Used for the random enemy type generator.
@@ -76,6 +86,114 @@ public class Enemy extends GameObject {
         setEnemySize(getEnemyType());
         setEnemyColor(getEnemyType());
         setEnemyHealth(getEnemyType());
+        setEnemySpeed(getEnemyType());
+        setEnemyDirection();
+        setEnemyWait(0);
+    }
+    
+    /**
+     * Sets the amount of time the current enemy object has been holding a 
+     * direction.
+     * 
+     * @param wait The amount of time the enemy has been waiting.
+     */
+    public void setEnemyWait(final int wait) {
+    	this.wait = wait;
+    }
+    
+    /**
+     * Returns the integer value for the amount of time the current enemy 
+     * object has been holding a direction.
+     * 
+     * @return The int value for the length of time the enemy has been waiting.
+     */
+    public int getEnemyWait() {
+    	return wait;
+    }
+    
+    /**
+     * Sets the direction for the enemy to move in.
+     */
+    public void setEnemyDirection() {
+    	
+    	int randomChoice = randomNum.nextInt(9);
+    	
+    	// Decides if directions are positive, negative, or zero.
+    	// X+ Y+
+    	if (randomChoice == 0) {
+    		this.setVelX(getEnemySpeed());
+    		this.setVelY(getEnemySpeed()); 
+    		
+    	// X+ Y-
+    	} else if (randomChoice == 1) {
+    		this.setVelX(getEnemySpeed());
+    		this.setVelY(-1 * getEnemySpeed());
+    	
+    	// X+ 00
+    	} else if (randomChoice == 2) {
+    		this.setVelX(getEnemySpeed());
+    		this.setVelY(0);
+    	
+    	// X- Y+
+    	} else if (randomChoice == 3) {
+    		this.setVelX(-1 * getEnemySpeed());
+    		this.setVelY(getEnemySpeed());
+    	
+    	// X- Y-
+    	} else if (randomChoice == 4) {
+    		this.setVelX(-1 * getEnemySpeed());
+    		this.setVelY(-1 * getEnemySpeed());
+    	
+    	// X- 00
+    	} else if (randomChoice == 5) {
+    		this.setVelX(-1 * getEnemySpeed());
+    		this.setVelY(0);
+    	
+    	// 00 Y+
+    	} else if (randomChoice == 6) {
+    		this.setVelX(0);
+    		this.setVelY(getEnemySpeed());
+    	
+    	// 00 Y-
+    	} else if (randomChoice == 7) {
+    		this.setVelX(0);
+    		this.setVelY(-1 * getEnemySpeed());
+    	
+    	// 00 00
+    	} else {
+    		this.setVelX(0);
+    		this.setVelY(0);
+    	}
+    }
+    
+    /**
+     * Returns an int that represents the speed of the enemy object.
+     * 
+     * @return The speed of the current enemy object.
+     */
+    public int getEnemySpeed() {
+    	return speed;
+    }
+    
+    /**
+     * Sets the enemy speed for the enemy object based on the enemy type.
+     * 
+     * @param type The enemy type of the current enemy object.
+     */
+    public void setEnemySpeed(final Type type) {
+    	  if (type.equals(Type.smallEnemy)) {
+    		  this.speed = 5;
+          } else if (type.equals(Type.mediumEnemy)) {
+        	  this.speed = 3;
+          } else if (type.equals(Type.largeEnemy)) {
+        	  this.speed = 2;
+          } else if (type.equals(Type.bossEnemy)) {
+        	  this.speed = 2;
+          } else if (type.equals(Type.shootingEnemy)) {
+        	  this.speed = 3;
+          } else if (type.equals(Type.zombieEnemy)) {
+        	  this.speed = getEnemySize() % 5 + 1;
+          }
     }
 
     /**
@@ -234,11 +352,40 @@ public class Enemy extends GameObject {
     public void tick() {
     	setX((int) (getX() + getVelX()));
         setY((int) (getY() + getVelY()));
-    	
+        
+        // Adds wait time to the enemy for current direction.
+        setEnemyWait(getEnemyWait() + 1);
+        if (getEnemyWait() > 30) {
+        	setEnemyDirection();
+        	setEnemyWait(0);
+        }
+        
+        // Changes direction if enemy hits edge of screen in the X direction.
         if (getX() > game.getWIDTH()) {
+        	setEnemyDirection();
+        	setEnemyWait(0);
+        	setX(game.getWIDTH() - getEnemySize());
+        }
+        
+        if (getX() < 0) {
+        	setEnemyDirection();
+        	setEnemyWait(0);
         	setX(0);
         }
+        
+        // Changes direction if enemy hits edge of screen in the Y direction.
+        if (getY() > game.getHEIGHT()) {
+        	setEnemyDirection();
+        	setEnemyWait(0);
+        	setY(game.getHEIGHT() - getEnemySize());
+        }
 
+        if (getY() < 0) {
+        	setEnemyDirection();
+        	setEnemyWait(0);
+        	setY(0);
+        }
+        
         for (int i = 0; i < handle.getList().size(); i++) {
             GameObject tempObject = handle.getList().get(i);
             if (tempObject.getType() == Type.bullet) {
