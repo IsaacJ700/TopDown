@@ -104,7 +104,7 @@ public class Game extends Canvas implements Runnable {
 
     /**
      * Constructor initializes many of the instance variables created
-     * above and creates the window on which the game wil run, adds
+     * above and creates the window on which the game will run, adds
      * keyControls, adds a mouseListener, and calls on two methods used
      * to begin the game.
      */
@@ -134,12 +134,12 @@ public class Game extends Canvas implements Runnable {
     public void setUpGame() {
         player = new Player(100, 300, Type.player, handle, this);
         enemy1 = new Enemy(100, 450, Type.smallEnemy, handle, this);
-        enemy2 = new Enemy(200, 300, Type.smallEnemy, handle, this);
-        enemy3 = new Enemy(300, 300, Type.smallEnemy, handle, this);
-        enemy4 = new Enemy(400, 300, Type.smallEnemy, handle, this);
-        enemy5 = new Enemy(500, 300, Type.smallEnemy, handle, this);
-        enemy6 = new Enemy(600, 300, Type.smallEnemy, handle, this);
-        enemy7 = new Enemy(100, 600, Type.smallEnemy, handle, this);
+        enemy2 = new Enemy(200, 300, Type.randomEnemy, handle, this);
+        enemy3 = new Enemy(300, 300, Type.randomEnemy, handle, this);
+        enemy4 = new Enemy(400, 300, Type.randomEnemy, handle, this);
+        enemy5 = new Enemy(500, 300, Type.randomEnemy, handle, this);
+        enemy6 = new Enemy(600, 300, Type.randomEnemy, handle, this);
+        enemy7 = new Enemy(100, 600, Type.randomEnemy, handle, this);
         handle.addObject(player);
         handle.addObject(enemy1);
         handle.addObject(enemy2);
@@ -223,7 +223,13 @@ public class Game extends Canvas implements Runnable {
         int check = 0;
         for (int i = 0; i < handle.getList().size(); i++) {
             GameObject temp = handle.getList().get(i);
-            if (temp.getType() == Type.smallEnemy) {
+            if (temp.getType() == Type.smallEnemy 
+            		|| temp.getType() == Type.mediumEnemy 
+            		|| temp.getType() == Type.largeEnemy 
+            		|| temp.getType() == Type.bossEnemy
+            		|| temp.getType() == Type.zombieEnemy 
+            		|| temp.getType() == Type.shootingEnemy
+            		|| temp.getType() == Type.randomEnemy) {
                 check++;
             }
         }
