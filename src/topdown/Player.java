@@ -113,7 +113,13 @@ public class Player extends GameObject {
 
         for (int i = 0; i < handle.getList().size(); i++) {
             GameObject tempObject = handle.getList().get(i);
-            if (tempObject.getType() == Type.smallEnemy) {
+            if (tempObject.getType() == Type.smallEnemy 
+            		|| tempObject.getType() == Type.mediumEnemy 
+            		|| tempObject.getType() == Type.largeEnemy 
+            		|| tempObject.getType() == Type.bossEnemy
+            		|| tempObject.getType() == Type.zombieEnemy 
+            		|| tempObject.getType() == Type.shootingEnemy
+            		|| tempObject.getType() == Type.randomEnemy) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     if (timer.isTimeUp()) {
                         health -= 10;
