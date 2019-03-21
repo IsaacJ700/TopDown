@@ -121,43 +121,49 @@ public class Enemy extends GameObject {
     	// Decides if directions are positive, negative, or zero.
     	// X+ Y+
     	if (randomChoice == 0) {
-    		this.setVelX(getEnemySpeed());
-    		this.setVelY(getEnemySpeed()); 
+    		this.setVelX((int) Math.sqrt(Math.pow(getEnemySpeed(), 2) / 2));
+    		this.setVelY((int) Math.sqrt(Math.pow(getEnemySpeed(), 2) / 2));
     		
     	// X+ Y-
     	} else if (randomChoice == 1) {
-    		this.setVelX(getEnemySpeed());
-    		this.setVelY(-1 * getEnemySpeed());
+    		this.setVelX((int) Math.sqrt(Math.pow(getEnemySpeed(), 2) / 2));
+    		this.setVelY(-1 * (int) Math.sqrt(
+    				Math.pow(getEnemySpeed(), 2) / 2));
     	
     	// X+ 00
     	} else if (randomChoice == 2) {
-    		this.setVelX(getEnemySpeed());
+    		this.setVelX((int) Math.sqrt(Math.pow(getEnemySpeed(), 2) / 2));
     		this.setVelY(0);
     	
     	// X- Y+
     	} else if (randomChoice == 3) {
-    		this.setVelX(-1 * getEnemySpeed());
-    		this.setVelY(getEnemySpeed());
+    		this.setVelX(-1 * (int) Math.sqrt(
+    				Math.pow(getEnemySpeed(), 2) / 2));
+    		this.setVelY((int) Math.sqrt(Math.pow(getEnemySpeed(), 2) / 2));
     	
     	// X- Y-
     	} else if (randomChoice == 4) {
-    		this.setVelX(-1 * getEnemySpeed());
-    		this.setVelY(-1 * getEnemySpeed());
+    		this.setVelX(-1 * (int) Math.sqrt(
+    				Math.pow(getEnemySpeed(), 2) / 2));
+    		this.setVelY(-1 * (int) Math.sqrt(
+    				Math.pow(getEnemySpeed(), 2) / 2));
     	
     	// X- 00
     	} else if (randomChoice == 5) {
-    		this.setVelX(-1 * getEnemySpeed());
+    		this.setVelX(-1 * (int) Math.sqrt(
+    				Math.pow(getEnemySpeed(), 2) / 2));
     		this.setVelY(0);
     	
     	// 00 Y+
     	} else if (randomChoice == 6) {
     		this.setVelX(0);
-    		this.setVelY(getEnemySpeed());
+    		this.setVelY((int) Math.sqrt(Math.pow(getEnemySpeed(), 2) / 2));
     	
     	// 00 Y-
     	} else if (randomChoice == 7) {
     		this.setVelX(0);
-    		this.setVelY(-1 * getEnemySpeed());
+    		this.setVelY(-1 * (int) Math.sqrt(
+    				Math.pow(getEnemySpeed(), 2) / 2));
     	
     	// 00 00
     	} else {
@@ -192,7 +198,7 @@ public class Enemy extends GameObject {
           } else if (type.equals(Type.shootingEnemy)) {
         	  this.speed = 3;
           } else if (type.equals(Type.zombieEnemy)) {
-        	  this.speed = getEnemySize() % 5 + 1;
+        	  this.speed = (int) (getEnemySize() / 25) + 1;
           }
     }
 
@@ -232,7 +238,15 @@ public class Enemy extends GameObject {
         } else if (type.equals(Type.shootingEnemy)) {
             setHealth(80);
         } else if (type.equals(Type.zombieEnemy)) {
-            setHealth(this.getEnemySize() + 100);
+            if (getEnemySize() > 50) {
+            	setHealth(900);
+            } else if (getEnemySize() > 25) {
+            	setHealth(500);
+            } else if (getEnemySize() > 0) {
+            	setHealth(200);
+            } else {
+            	setHealth(100);
+            }
         }
     }
 
@@ -354,35 +368,35 @@ public class Enemy extends GameObject {
         setY((int) (getY() + getVelY()));
         
         // Adds wait time to the enemy for current direction.
-        setEnemyWait(getEnemyWait() + 1);
-        if (getEnemyWait() > 30) {
+        setEnemyWait(getEnemyWait() - 1);
+        if (getEnemyWait() <= 0) {
         	setEnemyDirection();
-        	setEnemyWait(0);
+        	setEnemyWait((randomNum.nextInt(9) + 1) * 10);
         }
         
         // Changes direction if enemy hits edge of screen in the X direction.
-        if (getX() > game.getWIDTH()) {
+        if (getX() + getEnemySize() > game.getWIDTH()) {
         	setEnemyDirection();
-        	setEnemyWait(0);
+        	setEnemyWait((randomNum.nextInt(9) + 1) * 10);
         	setX(game.getWIDTH() - getEnemySize());
         }
         
         if (getX() < 0) {
         	setEnemyDirection();
-        	setEnemyWait(0);
+        	setEnemyWait((randomNum.nextInt(9) + 1) * 10);
         	setX(0);
         }
         
         // Changes direction if enemy hits edge of screen in the Y direction.
-        if (getY() > game.getHEIGHT()) {
+        if (getY() + getEnemySize() > game.getHEIGHT()) {
         	setEnemyDirection();
-        	setEnemyWait(0);
+        	setEnemyWait((randomNum.nextInt(9) + 1) * 10);
         	setY(game.getHEIGHT() - getEnemySize());
         }
 
         if (getY() < 0) {
         	setEnemyDirection();
-        	setEnemyWait(0);
+        	setEnemyWait((randomNum.nextInt(9) + 1) * 10);
         	setY(0);
         }
         
