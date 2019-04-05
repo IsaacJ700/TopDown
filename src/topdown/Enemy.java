@@ -118,9 +118,81 @@ public class Enemy extends GameObject {
     	
     	int randomChoice = randomNum.nextInt(9);
     	
+    	// Checks if player is in range or is a boss enemy.
+    	if ((Math.sqrt(Math.pow((Player.getPlayerX() - this.getX()), 2) 
+    			+ Math.pow((Player.getPlayerY() - this.getY()), 2)) 
+    			< 200 || this.getEnemyType() == Type.bossEnemy)) {
+    		
+        	// X+ Y+
+        	if (this.getX() < Player.getPlayerX() 
+        			&& this.getY() < Player.getPlayerY()) {
+        		this.setVelX((int) Math.sqrt(Math.pow(getEnemySpeed(), 
+        				2) / 2));
+        		this.setVelY((int) Math.sqrt(Math.pow(getEnemySpeed(), 
+        				2) / 2));
+        		
+        	// X+ Y-
+        	} else if (this.getX() < Player.getPlayerX() 
+        			&& this.getY() > Player.getPlayerY()) {
+        		this.setVelX((int) Math.sqrt(Math.pow(
+        				getEnemySpeed(), 2) / 2));
+        		this.setVelY(-1 * (int) Math.sqrt(
+        				Math.pow(getEnemySpeed(), 2) / 2));
+        	
+        	// X+ 00
+        	} else if (this.getX() < Player.getPlayerX() 
+        			&& this.getY() == Player.getPlayerY()) {
+        		this.setVelX((int) Math.sqrt(Math.pow(
+        				getEnemySpeed(), 2) / 2));
+        		this.setVelY(0);
+        	
+        	// X- Y+
+        	} else if (this.getX() > Player.getPlayerX() 
+        			&& this.getY() < Player.getPlayerY()) {
+        		this.setVelX(-1 * (int) Math.sqrt(
+        				Math.pow(getEnemySpeed(), 2) / 2));
+        		this.setVelY((int) Math.sqrt(Math.pow(
+        				getEnemySpeed(), 2) / 2));
+        	
+        	// X- Y-
+        	} else if (this.getX() > Player.getPlayerX() 
+        			&& this.getY() > Player.getPlayerY()) {
+        		this.setVelX(-1 * (int) Math.sqrt(
+        				Math.pow(getEnemySpeed(), 2) / 2));
+        		this.setVelY(-1 * (int) Math.sqrt(
+        				Math.pow(getEnemySpeed(), 2) / 2));
+        	
+        	// X- 00
+        	} else if (this.getX() > Player.getPlayerX() 
+        			&& this.getY() == Player.getPlayerY()) {
+        		this.setVelX(-1 * (int) Math.sqrt(
+        				Math.pow(getEnemySpeed(), 2) / 2));
+        		this.setVelY(0);
+        	
+        	// 00 Y+
+        	} else if (this.getX() == Player.getPlayerX() 
+        			&& this.getY() < Player.getPlayerY()) {
+        		this.setVelX(0);
+        		this.setVelY((int) Math.sqrt(Math.pow(
+        				getEnemySpeed(), 2) / 2));
+        	
+        	// 00 Y-
+        	} else if (this.getX() == Player.getPlayerX() 
+        			&& this.getY() > Player.getPlayerY()) {
+        		this.setVelX(0);
+        		this.setVelY(-1 * (int) Math.sqrt(
+        				Math.pow(getEnemySpeed(), 2) / 2));
+        	
+        	// 00 00
+        	} else {
+        		this.setVelX(0);
+        		this.setVelY(0);
+        	}
+    		
+    	
     	// Decides if directions are positive, negative, or zero.
     	// X+ Y+
-    	if (randomChoice == 0) {
+    	} else if (randomChoice == 0) {
     		this.setVelX((int) Math.sqrt(Math.pow(getEnemySpeed(), 2) / 2));
     		this.setVelY((int) Math.sqrt(Math.pow(getEnemySpeed(), 2) / 2));
     		
@@ -190,9 +262,9 @@ public class Enemy extends GameObject {
     	  if (type.equals(Type.smallEnemy)) {
     		  this.speed = 5;
           } else if (type.equals(Type.mediumEnemy)) {
-        	  this.speed = 3;
+        	  this.speed = 4;
           } else if (type.equals(Type.largeEnemy)) {
-        	  this.speed = 2;
+        	  this.speed = 3;
           } else if (type.equals(Type.bossEnemy)) {
         	  this.speed = 2;
           } else if (type.equals(Type.shootingEnemy)) {
@@ -366,6 +438,12 @@ public class Enemy extends GameObject {
     public void tick() {
     	setX((int) (getX() + getVelX()));
         setY((int) (getY() + getVelY()));
+        
+        if ((Math.sqrt(Math.pow((Player.getPlayerX() - this.getX()), 2) 
+    			+ Math.pow((Player.getPlayerY() - this.getY()), 2)) 
+        		< 200)) {
+        	setEnemyDirection();
+        }
         
         // Adds wait time to the enemy for current direction.
         setEnemyWait(getEnemyWait() - 1);

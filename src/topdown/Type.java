@@ -10,7 +10,17 @@ package topdown;
  * @version 1.0
  */
 public enum Type {
-
+	
+	/**
+	 * A health pack for the player to regain health.
+	 */
+	healthPack(),
+	
+	/**
+	 * A ammo pack for the player to get more ammo.
+	 */
+	ammoPack(),
+	
     /**
      * The player type for the current player.
      */

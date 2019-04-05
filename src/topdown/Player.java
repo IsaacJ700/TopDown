@@ -43,6 +43,16 @@ public class Player extends GameObject {
      * Instance of SecondTimer class.
      */
     private SecondTimer timer;
+    
+    /**
+     * Player's x coordinate.
+     */
+    private static int x;
+    
+    /**
+     * Player's y coordinate.
+     */
+    private static int y;
 
     /**
      * Constructor creates a player object by accepting in various
@@ -77,6 +87,9 @@ public class Player extends GameObject {
     public void tick() {
     	setX((int) (getX() + getVelX()));
         setY((int) (getY() + getVelY()));
+        
+        setPlayerX();
+        setPlayerY();
 
         //Movement
         if (handle.isUp() && getY() > 0) {
@@ -206,5 +219,37 @@ public class Player extends GameObject {
      */
     public void setOverShield(final int overShield) {
         this.overShield = overShield;
+    }
+    
+    /**
+     * Returns the x coordinate of the current player.
+     *
+     * @return the x coordinate the player has.
+     */
+    public static int getPlayerX() {
+        return x;
+    }
+
+    /**
+     * Sets the x coordinate of the current player.
+     */
+    public void setPlayerX() {
+        this.x = getX();
+    }
+    
+    /**
+     * Returns the y coordinate of the current player.
+     *
+     * @return the y coordinate the player has.
+     */
+    public static int getPlayerY() {
+        return y;
+    }
+
+    /**
+     * Sets the x coordinate of the current player.
+     */
+    public void setPlayerY() {
+        this.y = getY();
     }
 }
