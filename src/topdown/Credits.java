@@ -38,6 +38,16 @@ public class Credits {
      * Creates a String used to hold the name of a developer.
      */
     private String name3;
+    
+    /**
+     * Creates a String used to hold the song name used in the game.
+     */
+    private String sound1;
+    
+    /**
+     * Creates a String used to hold the credits for sound effects.
+     */
+    private String sound2;
 
     /**
      * Constructor initializes the Strings and sets the passed down
@@ -52,6 +62,8 @@ public class Credits {
         name1 = "Isaac Jimenez";
         name2 = "Suman Gurung";
         name3 = "Nicholas English";
+        sound1 = "Music: https://www.bensound.com";
+        sound2 = "SoundFX: http://www.soundbible.com";
     }
 
     /**
@@ -63,6 +75,7 @@ public class Credits {
     public void render(final Graphics2D g) {
         Font font = new Font("Arial", Font.BOLD, 70);
         Font font2 = new Font("Arial", Font.PLAIN, 38);
+        Font font3 = new Font("Arial", Font.PLAIN, 20);
 
         //Paint the entire screen black
         g.setColor(Color.BLACK);
@@ -74,6 +87,12 @@ public class Credits {
         g.drawString(name1, 250, 250);
         g.drawString(name2, 230, 400);
         g.drawString(name3, 200, 550);
+        
+        //Draw the song credit Strings
+        g.setFont(font3);
+        g.setColor(Color.WHITE);
+        g.drawString(sound1, 250, 650);
+        g.drawString(sound2, 250, 675);
 
         //Draw the back button
         g.setFont(font2);

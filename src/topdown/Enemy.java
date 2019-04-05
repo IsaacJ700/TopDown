@@ -118,67 +118,67 @@ public class Enemy extends GameObject {
     	
     	int randomChoice = randomNum.nextInt(9);
     	
-    	// Checks if player is in range or is a boss enemy.
-    	if ((Math.sqrt(Math.pow((Player.getPlayerX() - this.getX()), 2) 
-    			+ Math.pow((Player.getPlayerY() - this.getY()), 2)) 
+    	// Checks if UserPlayer is in range or is a boss enemy.
+    	if ((Math.sqrt(Math.pow((UserPlayer.getPlayerX() - this.getX()), 2) 
+    			+ Math.pow((UserPlayer.getPlayerY() - this.getY()), 2)) 
     			< 200 || this.getEnemyType() == Type.bossEnemy)) {
     		
         	// X+ Y+
-        	if (this.getX() < Player.getPlayerX() 
-        			&& this.getY() < Player.getPlayerY()) {
+        	if (this.getX() < UserPlayer.getPlayerX() 
+        			&& this.getY() < UserPlayer.getPlayerY()) {
         		this.setVelX((int) Math.sqrt(Math.pow(getEnemySpeed(), 
         				2) / 2));
         		this.setVelY((int) Math.sqrt(Math.pow(getEnemySpeed(), 
         				2) / 2));
         		
         	// X+ Y-
-        	} else if (this.getX() < Player.getPlayerX() 
-        			&& this.getY() > Player.getPlayerY()) {
+        	} else if (this.getX() < UserPlayer.getPlayerX() 
+        			&& this.getY() > UserPlayer.getPlayerY()) {
         		this.setVelX((int) Math.sqrt(Math.pow(
         				getEnemySpeed(), 2) / 2));
         		this.setVelY(-1 * (int) Math.sqrt(
         				Math.pow(getEnemySpeed(), 2) / 2));
         	
         	// X+ 00
-        	} else if (this.getX() < Player.getPlayerX() 
-        			&& this.getY() == Player.getPlayerY()) {
+        	} else if (this.getX() < UserPlayer.getPlayerX() 
+        			&& this.getY() == UserPlayer.getPlayerY()) {
         		this.setVelX((int) Math.sqrt(Math.pow(
         				getEnemySpeed(), 2) / 2));
         		this.setVelY(0);
         	
         	// X- Y+
-        	} else if (this.getX() > Player.getPlayerX() 
-        			&& this.getY() < Player.getPlayerY()) {
+        	} else if (this.getX() > UserPlayer.getPlayerX() 
+        			&& this.getY() < UserPlayer.getPlayerY()) {
         		this.setVelX(-1 * (int) Math.sqrt(
         				Math.pow(getEnemySpeed(), 2) / 2));
         		this.setVelY((int) Math.sqrt(Math.pow(
         				getEnemySpeed(), 2) / 2));
         	
         	// X- Y-
-        	} else if (this.getX() > Player.getPlayerX() 
-        			&& this.getY() > Player.getPlayerY()) {
+        	} else if (this.getX() > UserPlayer.getPlayerX() 
+        			&& this.getY() > UserPlayer.getPlayerY()) {
         		this.setVelX(-1 * (int) Math.sqrt(
         				Math.pow(getEnemySpeed(), 2) / 2));
         		this.setVelY(-1 * (int) Math.sqrt(
         				Math.pow(getEnemySpeed(), 2) / 2));
         	
         	// X- 00
-        	} else if (this.getX() > Player.getPlayerX() 
-        			&& this.getY() == Player.getPlayerY()) {
+        	} else if (this.getX() > UserPlayer.getPlayerX() 
+        			&& this.getY() == UserPlayer.getPlayerY()) {
         		this.setVelX(-1 * (int) Math.sqrt(
         				Math.pow(getEnemySpeed(), 2) / 2));
         		this.setVelY(0);
         	
         	// 00 Y+
-        	} else if (this.getX() == Player.getPlayerX() 
-        			&& this.getY() < Player.getPlayerY()) {
+        	} else if (this.getX() == UserPlayer.getPlayerX() 
+        			&& this.getY() < UserPlayer.getPlayerY()) {
         		this.setVelX(0);
         		this.setVelY((int) Math.sqrt(Math.pow(
         				getEnemySpeed(), 2) / 2));
         	
         	// 00 Y-
-        	} else if (this.getX() == Player.getPlayerX() 
-        			&& this.getY() > Player.getPlayerY()) {
+        	} else if (this.getX() == UserPlayer.getPlayerX() 
+        			&& this.getY() > UserPlayer.getPlayerY()) {
         		this.setVelX(0);
         		this.setVelY(-1 * (int) Math.sqrt(
         				Math.pow(getEnemySpeed(), 2) / 2));
@@ -432,15 +432,15 @@ public class Enemy extends GameObject {
 
     /**
      * Continuously updates the enemy position, and checks to see if
-     * the enemy has collided with a player's bullet.
+     * the enemy has collided with a UserPlayer's bullet.
      */
     @Override
     public void tick() {
     	setX((int) (getX() + getVelX()));
         setY((int) (getY() + getVelY()));
         
-        if ((Math.sqrt(Math.pow((Player.getPlayerX() - this.getX()), 2) 
-    			+ Math.pow((Player.getPlayerY() - this.getY()), 2)) 
+        if ((Math.sqrt(Math.pow((UserPlayer.getPlayerX() - this.getX()), 2) 
+    			+ Math.pow((UserPlayer.getPlayerY() - this.getY()), 2)) 
         		< 200)) {
         	setEnemyDirection();
         }

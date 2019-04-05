@@ -3,7 +3,11 @@ package topdown;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 
 /**
  * Class used to create bullets within the Game.
@@ -64,6 +68,8 @@ public class Bullet extends GameObject {
         height = 10;
         speed = 15;
         calculateVelocity(getX(), getY(), xSpd, ySpd);
+        playShot();
+
     }
 
     /**
@@ -89,6 +95,40 @@ public class Bullet extends GameObject {
         setVelY((float) ((toY - fromY) * speed / distance));
         //find X
         setVelX((float) ((toX - fromX) * speed / distance));
+    }
+    
+    /**
+     * Plays a shooting sound for the current bullet.
+     */
+    public void playShot() {
+
+        //Plays a shooting sound effect.
+ 		try {
+			FileInputStream fileInputStream = new FileInputStream(
+				"GUN_FIRE-GoodSoundForYou-820112263.mp3");
+			Player musicPlayer = new Player(fileInputStream);
+			
+			new Thread(new Runnable() {
+				  public void run() {
+					  try {
+						musicPlayer.play();
+					} catch (JavaLayerException e) {
+						e.printStackTrace();
+					}
+				  }
+				}).start();
+			
+//			musicPlayer.play();
+ 			
+ 		} catch (FileNotFoundException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 			
+ 		} catch (JavaLayerException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		}
+
     }
 
     /**

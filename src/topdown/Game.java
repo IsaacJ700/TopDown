@@ -4,6 +4,10 @@ import java.awt.Canvas;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferStrategy;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 
 /**
  * Main class which runs the program and holds the most important
@@ -20,6 +24,11 @@ public class Game extends Canvas implements Runnable {
      * Holds if the game is currently running or not.
      */
     private boolean isRunning;
+    
+    /**
+     * Holds if the song is currently running or not.
+     */
+    private static boolean songLoop;
 
     /**
      * Instance of thread used to control the execution of the program.
@@ -34,7 +43,7 @@ public class Game extends Canvas implements Runnable {
     /**
      * Holds the current player as a Player object.
      */
-    private Player player;
+    private UserPlayer player;
 
     /**
      * Holds enemies with each being their own object.
@@ -132,7 +141,7 @@ public class Game extends Canvas implements Runnable {
      * the game.
      */
     public void setUpGame() {
-        player = new Player(100, 300, Type.player, handle, this);
+        player = new UserPlayer(100, 300, Type.player, handle, this);
         enemy1 = new Enemy(100, 450, Type.smallEnemy, handle, this);
         enemy2 = new Enemy(200, 300, Type.randomEnemy, handle, this);
         enemy3 = new Enemy(300, 300, Type.randomEnemy, handle, this);
@@ -355,5 +364,26 @@ public class Game extends Canvas implements Runnable {
      */
     public static void main(final String[] args) {
         Game game = new Game();
+        songLoop = true;
+        
+        // Used for running music.
+		try {
+			do {
+				FileInputStream fileInputStream 
+					= new FileInputStream(
+							"bensound-theduel.mp3");
+				Player musicPlayer 
+					= new Player(fileInputStream);
+				musicPlayer.play();
+			} while (songLoop);
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		} catch (JavaLayerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

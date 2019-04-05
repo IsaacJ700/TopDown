@@ -12,7 +12,7 @@ import java.awt.Rectangle;
  * @author Suman Gurung
  * @version 1.0
  */
-public class Player extends GameObject {
+public class UserPlayer extends GameObject {
 
     /**
      * Instance of Handler class.
@@ -68,7 +68,7 @@ public class Player extends GameObject {
      * @param game   represents the instance of the Game class being
      *               passed down to this constructor.
      */
-    public Player(final int x, final int y, final Type type,
+    public UserPlayer(final int x, final int y, final Type type,
                   final Handler handle, final Game game) {
         super(x, y, type, handle);
         health = 100;

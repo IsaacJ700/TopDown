@@ -21,7 +21,7 @@ public class GameScreen {
     /**
      * Holds the current player object.
      */
-    private Player player;
+    private UserPlayer player;
 
     /**
      * Holds the starting position for the object on the X-axis.
@@ -42,7 +42,7 @@ public class GameScreen {
      * @param player represents the instance of Player that is being
      *               passes down to this constructor
      */
-    public GameScreen(final Game game, final Player player) {
+    public GameScreen(final Game game, final UserPlayer player) {
         startX = 60;
         startY = 60;
         this.game = game;
