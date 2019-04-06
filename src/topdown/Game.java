@@ -50,6 +50,11 @@ public class Game extends Canvas implements Runnable {
      */
     private Enemy enemy1, enemy2, enemy3, enemy4, enemy5, enemy6,
             enemy7;
+    
+    /**
+     * Holds player supplies that the player can grab.
+     */
+    private PlayerSupplies healthSupply1;
 
     /**
      * Holds the current state of the game.
@@ -149,6 +154,8 @@ public class Game extends Canvas implements Runnable {
         enemy5 = new Enemy(500, 300, Type.randomEnemy, handle, this);
         enemy6 = new Enemy(600, 300, Type.randomEnemy, handle, this);
         enemy7 = new Enemy(100, 600, Type.randomEnemy, handle, this);
+        healthSupply1 = new PlayerSupplies(600, 600, Type.healthPack,
+        		handle, this);
         handle.addObject(player);
         handle.addObject(enemy1);
         handle.addObject(enemy2);
@@ -157,6 +164,7 @@ public class Game extends Canvas implements Runnable {
         handle.addObject(enemy5);
         handle.addObject(enemy6);
         handle.addObject(enemy7);
+        handle.addObject(healthSupply1);
         gameScreen = new GameScreen(this, player);
     }
 
@@ -378,11 +386,9 @@ public class Game extends Canvas implements Runnable {
 			} while (songLoop);
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			
 		} catch (JavaLayerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }

@@ -439,6 +439,7 @@ public class Enemy extends GameObject {
     	setX((int) (getX() + getVelX()));
         setY((int) (getY() + getVelY()));
         
+        // Checks if the player is within range to begin chase.
         if ((Math.sqrt(Math.pow((UserPlayer.getPlayerX() - this.getX()), 2) 
     			+ Math.pow((UserPlayer.getPlayerY() - this.getY()), 2)) 
         		< 200)) {
@@ -478,15 +479,16 @@ public class Enemy extends GameObject {
         	setY(0);
         }
         
+        // Remove bullet if it hits the enemy.
         for (int i = 0; i < handle.getList().size(); i++) {
             GameObject tempObject = handle.getList().get(i);
             if (tempObject.getType() == Type.bullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     health -= 20;
                     if (health == 0) {
-                        handle.removeObject(tempObject);
                         handle.removeObject(this);
                     }
+                    handle.removeObject(tempObject);
                 }
             }
         }

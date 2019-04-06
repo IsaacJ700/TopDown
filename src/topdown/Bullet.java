@@ -117,20 +117,15 @@ public class Bullet extends GameObject {
 					}
 				  }
 				}).start();
-			
-//			musicPlayer.play();
  			
  		} catch (FileNotFoundException e) {
- 			// TODO Auto-generated catch block
  			e.printStackTrace();
  			
  		} catch (JavaLayerException e) {
- 			// TODO Auto-generated catch block
  			e.printStackTrace();
  		}
-
     }
-
+    
     /**
      * Updates the current position of the bullet.
      */

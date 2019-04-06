@@ -126,6 +126,8 @@ public class UserPlayer extends GameObject {
 
         for (int i = 0; i < handle.getList().size(); i++) {
             GameObject tempObject = handle.getList().get(i);
+            
+            // Remove health when enemy hits player.
             if (tempObject.getType() == Type.smallEnemy 
             		|| tempObject.getType() == Type.mediumEnemy 
             		|| tempObject.getType() == Type.largeEnemy 
@@ -142,6 +144,17 @@ public class UserPlayer extends GameObject {
                             game.setState(State.GameOver);
                         }
                     }
+                }
+            }
+            
+            // Add health when player hits health pack.
+            if (tempObject.getType() == Type.healthPack) {
+            	if (getBounds().intersects(tempObject.getBounds())) {
+                    health += 20;
+                    if (health >= 100) {
+                        health = 100;
+                    }
+                    handle.removeObject(tempObject);
                 }
             }
         }
