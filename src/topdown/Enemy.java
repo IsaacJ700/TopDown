@@ -270,7 +270,15 @@ public class Enemy extends GameObject {
           } else if (type.equals(Type.shootingEnemy)) {
         	  this.speed = 3;
           } else if (type.equals(Type.zombieEnemy)) {
-        	  this.speed = (int) (getEnemySize() / 25) + 1;
+        	  if (getEnemySize() > 80) {
+              	this.speed = 2;
+              } else if (getEnemySize() > 60) {
+            	  this.speed = 3;
+              } else if (getEnemySize() > 40) {
+            	  this.speed = 4;
+              } else {
+            	  this.speed = 5;
+              }
           }
     }
 
@@ -348,7 +356,7 @@ public class Enemy extends GameObject {
         } else if (type.equals(Type.shootingEnemy)) {
             this.size = 40;
         } else if (type.equals(Type.zombieEnemy)) {
-            this.size = randomNum.nextInt(70) + 20;
+            this.size = (int) randomNum.nextInt(70) + 20;
         }
     }
 

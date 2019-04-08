@@ -54,7 +54,7 @@ public class Game extends Canvas implements Runnable {
     /**
      * Holds player supplies that the player can grab.
      */
-    private PlayerSupplies healthSupply1;
+    private PlayerSupplies healthSupply1, ammoSupply1;
 
     /**
      * Holds the current state of the game.
@@ -156,6 +156,8 @@ public class Game extends Canvas implements Runnable {
         enemy7 = new Enemy(100, 600, Type.randomEnemy, handle, this);
         healthSupply1 = new PlayerSupplies(600, 600, Type.healthPack,
         		handle, this);
+        ammoSupply1 = new PlayerSupplies(200, 600, Type.ammoPack,
+        		handle, this);
         handle.addObject(player);
         handle.addObject(enemy1);
         handle.addObject(enemy2);
@@ -165,6 +167,7 @@ public class Game extends Canvas implements Runnable {
         handle.addObject(enemy6);
         handle.addObject(enemy7);
         handle.addObject(healthSupply1);
+        handle.addObject(ammoSupply1);
         gameScreen = new GameScreen(this, player);
     }
 

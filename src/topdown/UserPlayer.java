@@ -53,6 +53,11 @@ public class UserPlayer extends GameObject {
      * Player's y coordinate.
      */
     private static int y;
+    
+    /**
+     * Amount of bullets the user has left.
+     */
+    private static int bulletCount;
 
     /**
      * Constructor creates a player object by accepting in various
@@ -77,9 +82,29 @@ public class UserPlayer extends GameObject {
         this.handle = handle;
         this.game = game;
         timer = new SecondTimer();
+        
+        setBulletCount(80);
     }
 
     /**
+     * Sets the number of bullets the user has remaining.
+     * 
+     * @param count represents the bullets left.
+     */
+    public static void setBulletCount(final int count) {
+    	bulletCount = count;
+	}
+    
+    /**
+     * Returns the number of bullets the user has left.
+     * 
+     * @return The number of bullets left.
+     */
+    public static int getBulletCount() {
+		return bulletCount;
+	}
+
+	/**
      * Continuously updates the player's position, and checks to see if
      * the player has collided with an enemy.
      */
@@ -154,6 +179,14 @@ public class UserPlayer extends GameObject {
                     if (health >= 100) {
                         health = 100;
                     }
+                    handle.removeObject(tempObject);
+                }
+            }
+            
+            // Add bullets when player hits ammo pack.
+            if (tempObject.getType() == Type.ammoPack) {
+            	if (getBounds().intersects(tempObject.getBounds())) {
+                    setBulletCount(getBulletCount() + 40);
                     handle.removeObject(tempObject);
                 }
             }

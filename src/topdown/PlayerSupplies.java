@@ -190,11 +190,11 @@ public class PlayerSupplies extends GameObject {
 				&& this.getSupplyType() == Type.ammoPack) {
 			
 			// Flashes color
-			if (getSupplyColor() == Color.ORANGE) {
-				setSupplyColor(Color.BLACK);
+			if (getSupplyColor() == Color.CYAN) {
+				setSupplyColor(Color.WHITE);
 				setSupplyWait(50);
 			} else {
-				setSupplyColor(Color.ORANGE);
+				setSupplyColor(Color.CYAN);
 				setSupplyWait(50);
 			}
 		}

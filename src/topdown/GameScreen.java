@@ -58,13 +58,14 @@ public class GameScreen {
         g.setColor(Color.gray);
         g.fillRect(0, 0, game.getWIDTH(), game.getHEIGHT());
         g.setColor(Color.BLACK);
-        g.fillRect(startX + 18, startY + 18, 110, 20);
-        g.fillArc(startX + 108, startY + 18, 40, 40, 0, 90);
+        g.fillRect(startX + 18, startY + 18, 160, 20);
+        g.fillArc(startX + 158, startY + 18, 40, 40, 0, 90);
         g.fillRect(startX + 18, startY + 38, 204, 29);
         g.setColor(Color.CYAN);
         g.fillRect(startX + 20, startY + 40, player.getHealth() * 2, 25);
         g.setColor(Color.WHITE);
         g.drawString("Health: " + player.getHealth(), startX + 33, startY + 33);
         g.drawString("FPS: " + String.valueOf(game.getFrameCount()), 900, 700);
+        g.drawString("Ammo: " + player.getBulletCount(), startX + 110, startY + 33);
     }
 }

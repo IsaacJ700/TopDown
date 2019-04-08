@@ -43,6 +43,11 @@ public class Bullet extends GameObject {
      * represents how fast the bullet will travel.
      */
     private double speed;
+    
+    /**
+     * The number of bullets the user has left.
+     */
+    private int bulletCount;
 
     /**
      * Constructor accepts in multiple parameters and uses them to call
@@ -63,16 +68,26 @@ public class Bullet extends GameObject {
                   final Handler handle, final int xSpd,
                   final int ySpd) throws IOException {
         super(x, y, type, handle);
-        this.handle = handle;
-        width = 5;
-        height = 10;
-        speed = 15;
-        calculateVelocity(getX(), getY(), xSpd, ySpd);
-        playShot();
-
+        
+        // What to do if no bullets are left.
+        if (UserPlayer.getBulletCount() == 0) {
+        	playClick();
+        	        
+        // What to do if bullets can be shot.
+    	} else if (UserPlayer.getBulletCount() > 0) {
+        	playShot();
+        	UserPlayer.setBulletCount(UserPlayer.getBulletCount() - 1);
+            this.handle = handle;
+            width = 5;
+            height = 10;
+            speed = 15;
+            calculateVelocity(getX(), getY(), xSpd, ySpd);
+        }
+        
+        System.out.println(UserPlayer.getBulletCount());
     }
 
-    /**
+	/**
      * Determines the velocity of the bullet depending on where it is
      * shot from and towards what point.
      *
@@ -106,6 +121,35 @@ public class Bullet extends GameObject {
  		try {
 			FileInputStream fileInputStream = new FileInputStream(
 				"GUN_FIRE-GoodSoundForYou-820112263.mp3");
+			Player musicPlayer = new Player(fileInputStream);
+			
+			new Thread(new Runnable() {
+				  public void run() {
+					  try {
+						musicPlayer.play();
+					} catch (JavaLayerException e) {
+						e.printStackTrace();
+					}
+				  }
+				}).start();
+ 			
+ 		} catch (FileNotFoundException e) {
+ 			e.printStackTrace();
+ 			
+ 		} catch (JavaLayerException e) {
+ 			e.printStackTrace();
+ 		}
+    }
+    
+    /**
+     * Plays a clicking sound for no bullets being shot.
+     */
+    public void playClick() {
+
+        //Plays a clicking sound effect.
+ 		try {
+			FileInputStream fileInputStream = new FileInputStream(
+				"Finger Breaking-SoundBible.com-567843392.mp3");
 			Player musicPlayer = new Player(fileInputStream);
 			
 			new Thread(new Runnable() {
