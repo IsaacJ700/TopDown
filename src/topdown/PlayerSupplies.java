@@ -86,7 +86,7 @@ public class PlayerSupplies extends GameObject {
 		
 		if (type == Type.ammoPack) {
 			setSupplySize(20);
-			setSupplyColor(Color.ORANGE);
+			setSupplyColor(Color.CYAN);
 		}
 		
 	}

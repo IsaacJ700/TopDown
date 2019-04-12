@@ -78,8 +78,8 @@ public class MouseInput implements MouseListener {
                 GameObject temp = handle.getList().get(i);
                 if (temp.getType() == Type.player) {
                     try {
-                        handle.addObject(new Bullet(temp.getX() + 15, 
-                        		temp.getY() + 15, 
+                        handle.addObject(new Bullet(Type.player, 
+                        		temp.getX() + 15, temp.getY() + 15, 
                         		Type.bullet, handle, x, y));
                     } catch (IOException e1) {
                         e1.printStackTrace();

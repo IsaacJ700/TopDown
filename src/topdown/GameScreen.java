@@ -1,6 +1,7 @@
 package topdown;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 
 /**
@@ -66,6 +67,10 @@ public class GameScreen {
         g.setColor(Color.WHITE);
         g.drawString("Health: " + player.getHealth(), startX + 33, startY + 33);
         g.drawString("FPS: " + String.valueOf(game.getFrameCount()), 900, 700);
-        g.drawString("Ammo: " + player.getBulletCount(), startX + 110, startY + 33);
+        g.drawString("Ammo: " + player.getBulletCount(), startX + 110, 
+        		startY + 33);
+        g.setColor(Color.YELLOW);
+        g.setFont(new Font(g.getFont().getFontName(), Font.PLAIN, 20));
+        g.drawString("Score: " + player.getScore(), 800, startY + 33);
     }
 }

@@ -3,6 +3,7 @@ package topdown;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.IOException;
 import java.util.Random;
 
 /**
@@ -47,6 +48,11 @@ public class Enemy extends GameObject {
     private int wait;
     
     /**
+     * Holds the time the shooting enemy has been holding between shots.
+     */
+    private int shootingWait;
+    
+    /**
      * Holds the color of the enemy object.
      */
     private Color color;
@@ -60,6 +66,11 @@ public class Enemy extends GameObject {
      * Used for the random enemy type generator.
      */
     private Random randomNum;
+    
+    /**
+     * Holds the score received for killing enemy object.
+     */
+    private int score;
 
     /**
      * Constructor creates an enemy object by accepting in various
@@ -89,6 +100,37 @@ public class Enemy extends GameObject {
         setEnemySpeed(getEnemyType());
         setEnemyDirection();
         setEnemyWait(0);
+        setEnemyScore(getEnemyType());
+    }
+    
+    /**
+     * Sets the score received for the enemy object based on the enemy type.
+     * 
+     * @param type The enemy type of the current enemy object.
+     */
+    public void setEnemyScore(final Type type) {
+        if (type.equals(Type.smallEnemy)) {
+            this.score = this.getEnemySize();
+        } else if (type.equals(Type.mediumEnemy)) {
+        	this.score = this.getEnemySize();
+        } else if (type.equals(Type.largeEnemy)) {
+        	this.score = this.getEnemySize();
+        } else if (type.equals(Type.bossEnemy)) {
+        	this.score = this.getEnemySize();
+        } else if (type.equals(Type.shootingEnemy)) {
+        	this.score = this.getEnemySize();
+        } else if (type.equals(Type.zombieEnemy)) {
+        	this.score = this.getEnemySize() - (this.getEnemySize() % 10);
+        }
+    }
+    
+    /**
+     * Returns the integer value for the score received from the enemy object.
+     * 
+     * @return The int value for the score received from the enemy.
+     */
+    public int getEnemyScore() {
+    	return score;
     }
     
     /**
@@ -112,19 +154,52 @@ public class Enemy extends GameObject {
     }
     
     /**
+     * Sets the amount of time the current shooting enemy object has been 
+     * holding between shots.
+     * 
+     * @param sWait The amount of time the enemy has been waiting to shoot.
+     */
+    public void setEnemyShootingWait(final int sWait) {
+    	this.shootingWait = sWait;
+    }
+    
+    /**
+     * Returns the integer value for the amount of time the current shooting 
+     * enemy object has been holding between shots.
+     * 
+     * @return The int value for the length of time the enemy has been waiting 
+     * to shoot.
+     */
+    public int getEnemyShootingWait() {
+    	return shootingWait;
+    }
+    
+    /**
      * Sets the direction for the enemy to move in.
      */
     public void setEnemyDirection() {
     	
     	int randomChoice = randomNum.nextInt(9);
     	
-    	// Checks if UserPlayer is in range or is a boss enemy.
+    	/* Checks if UserPlayer is in range or is a boss enemy or if shooting 
+    	 * enemy within range.
+    	 */
+    	
     	if ((Math.sqrt(Math.pow((UserPlayer.getPlayerX() - this.getX()), 2) 
     			+ Math.pow((UserPlayer.getPlayerY() - this.getY()), 2)) 
-    			< 200 || this.getEnemyType() == Type.bossEnemy)) {
+    			< 200 || this.getEnemyType() == Type.bossEnemy 
+    			|| (this.getEnemyType() == Type.shootingEnemy 
+    			&& (Math.sqrt(Math.pow((UserPlayer.getPlayerX() 
+    					- this.getX()), 2) 
+    					+ Math.pow((UserPlayer.getPlayerY() 
+    					- this.getY()), 2)) < 200)))) {
+    		
+    		if (this.getEnemyType() == Type.shootingEnemy) {
+    			this.setVelX(0);
+    			this.setVelY(0);
     		
         	// X+ Y+
-        	if (this.getX() < UserPlayer.getPlayerX() 
+    		} else if (this.getX() < UserPlayer.getPlayerX() 
         			&& this.getY() < UserPlayer.getPlayerY()) {
         		this.setVelX((int) Math.sqrt(Math.pow(getEnemySpeed(), 
         				2) / 2));
@@ -275,9 +350,9 @@ public class Enemy extends GameObject {
               } else if (getEnemySize() > 60) {
             	  this.speed = 3;
               } else if (getEnemySize() > 40) {
-            	  this.speed = 4;
+            	  this.speed = 3;
               } else {
-            	  this.speed = 5;
+            	  this.speed = 4;
               }
           }
     }
@@ -437,6 +512,24 @@ public class Enemy extends GameObject {
 
         return enemyTypeArray[randomNum.nextInt(6)];
     }
+    
+    /**
+     * 
+     */
+    private void beginEnemyShooting() {
+        try {
+        	new Bullet(Type.shootingEnemy, this.getX() + 15, 
+        		this.getY() + 15, 
+        		Type.bullet, handle, UserPlayer.getPlayerX(), 
+        		UserPlayer.getPlayerY());
+            handle.addObject(new Bullet(Type.shootingEnemy, this.getX() + 15, 
+            		this.getY() + 15, 
+            		Type.bullet, handle, UserPlayer.getPlayerX(),
+            		UserPlayer.getPlayerY()));
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
 
     /**
      * Continuously updates the enemy position, and checks to see if
@@ -451,7 +544,19 @@ public class Enemy extends GameObject {
         if ((Math.sqrt(Math.pow((UserPlayer.getPlayerX() - this.getX()), 2) 
     			+ Math.pow((UserPlayer.getPlayerY() - this.getY()), 2)) 
         		< 200)) {
-        	setEnemyDirection();
+        	
+        	// Don't chase if a shooting enemy, instead shoot at player.
+        	if (this.getEnemyType() == Type.shootingEnemy 
+        			&& getEnemyShootingWait() <= 0) {
+        		beginEnemyShooting();
+        		setEnemyShootingWait(70);
+        		
+        	} else if (this.getEnemyType() == Type.shootingEnemy 
+        			&& getEnemyShootingWait() > 0) {
+        		setEnemyShootingWait(getEnemyShootingWait() - 1);
+        	} else {
+        		setEnemyDirection();
+        	}
         }
         
         // Adds wait time to the enemy for current direction.
@@ -490,10 +595,13 @@ public class Enemy extends GameObject {
         // Remove bullet if it hits the enemy.
         for (int i = 0; i < handle.getList().size(); i++) {
             GameObject tempObject = handle.getList().get(i);
-            if (tempObject.getType() == Type.bullet) {
+            if (tempObject.getType() == Type.bullet 
+            		&& ((Bullet) tempObject).getShooter() == Type.player) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     health -= 20;
                     if (health == 0) {
+                    	UserPlayer.setScore(UserPlayer.getScore() 
+                    			+ this.getEnemyScore());
                         handle.removeObject(this);
                     }
                     handle.removeObject(tempObject);

@@ -3,6 +3,11 @@ package topdown;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 
 /**
  * Class used to create the player GameObject and alter its properties.
@@ -58,6 +63,11 @@ public class UserPlayer extends GameObject {
      * Amount of bullets the user has left.
      */
     private static int bulletCount;
+    
+    /**
+     * Amount of points the user has earned.
+     */
+    private static int score;
 
     /**
      * Constructor creates a player object by accepting in various
@@ -76,7 +86,7 @@ public class UserPlayer extends GameObject {
     public UserPlayer(final int x, final int y, final Type type,
                   final Handler handle, final Game game) {
         super(x, y, type, handle);
-        health = 100;
+        health = 10000;
         money = 100;
         overShield = 0;
         this.handle = handle;
@@ -84,7 +94,26 @@ public class UserPlayer extends GameObject {
         timer = new SecondTimer();
         
         setBulletCount(80);
+        setScore(0);
     }
+    
+    /**
+     * Sets the score of points the user has earned.
+     * 
+     * @param points represents the score the player has.
+     */
+    public static void setScore(final int points) {
+    	score = points;
+	}
+    
+    /**
+     * Returns the score of points the user has earned.
+     * 
+     * @return The score the player has earned.
+     */
+    public static int getScore() {
+		return score;
+	}
 
     /**
      * Sets the number of bullets the user has remaining.
@@ -159,7 +188,10 @@ public class UserPlayer extends GameObject {
             		|| tempObject.getType() == Type.bossEnemy
             		|| tempObject.getType() == Type.zombieEnemy 
             		|| tempObject.getType() == Type.shootingEnemy
-            		|| tempObject.getType() == Type.randomEnemy) {
+            		|| tempObject.getType() == Type.randomEnemy
+            		|| tempObject.getType() == Type.bullet
+            			&& ((Bullet) tempObject).getShooter() 
+            				== Type.shootingEnemy) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     if (timer.isTimeUp()) {
                         health -= 10;
@@ -180,6 +212,9 @@ public class UserPlayer extends GameObject {
                         health = 100;
                     }
                     handle.removeObject(tempObject);
+                    
+                    // Play sound for getting ammo.
+                    playGetHealth();
                 }
             }
             
@@ -188,9 +223,71 @@ public class UserPlayer extends GameObject {
             	if (getBounds().intersects(tempObject.getBounds())) {
                     setBulletCount(getBulletCount() + 40);
                     handle.removeObject(tempObject);
+                    
+                    // Play sound for getting ammo.
+                    playGetAmmo();
                 }
             }
         }
+    }
+    
+    /**
+     * Plays a healing sound for obtaining a health pack.
+     */
+    public void playGetHealth() {
+
+        //Plays a healing sound effect.
+ 		try {
+			FileInputStream fileInputStream = new FileInputStream(
+					"A-Tone-His_Self-1266414414.mp3");
+			Player musicPlayer = new Player(fileInputStream);
+			
+			new Thread(new Runnable() {
+				  public void run() {
+					  try {
+						musicPlayer.play();
+					} catch (JavaLayerException e) {
+						e.printStackTrace();
+					}
+				  }
+				}).start();
+ 			
+ 		} catch (FileNotFoundException e) {
+ 			e.printStackTrace();
+ 			
+ 		} catch (JavaLayerException e) {
+ 			e.printStackTrace();
+ 		}
+    }
+    
+    /**
+     * Plays a reloading sound for obtaining more ammo.
+     */
+    public void playGetAmmo() {
+
+        //Plays a reloading sound effect.
+ 		try {
+			FileInputStream fileInputStream = new FileInputStream(
+					"shotgun-reload-old_school-RA_The_"
+					+ "Sun_God-580332022.mp3");
+			Player musicPlayer = new Player(fileInputStream);
+			
+			new Thread(new Runnable() {
+				  public void run() {
+					  try {
+						musicPlayer.play();
+					} catch (JavaLayerException e) {
+						e.printStackTrace();
+					}
+				  }
+				}).start();
+ 			
+ 		} catch (FileNotFoundException e) {
+ 			e.printStackTrace();
+ 			
+ 		} catch (JavaLayerException e) {
+ 			e.printStackTrace();
+ 		}
     }
 
     /**

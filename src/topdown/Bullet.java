@@ -48,11 +48,19 @@ public class Bullet extends GameObject {
      * The number of bullets the user has left.
      */
     private int bulletCount;
+    
+    /**
+     * The shooter of the current bullet.
+     * 
+     * The number of bullets the user has left.
+     */
+    private Type shooter;
 
     /**
      * Constructor accepts in multiple parameters and uses them to call
      * super and the calculateVelocity method.
-     *
+     * 
+     * @param shooter represents who shot the bullet.
      * @param x represents the x coordinate at which it will spawn.
      * @param y represents the y coordinate at which it will spawn.
      * @param type represents the type of object.
@@ -64,27 +72,57 @@ public class Bullet extends GameObject {
      *               vertically.
      * @throws IOException Thrown if the input operation fails.
      */
-    public Bullet(final int x, final int y, final Type type,
+    public Bullet(final Type shooter, final int x, final int y, final Type type,
                   final Handler handle, final int xSpd,
                   final int ySpd) throws IOException {
         super(x, y, type, handle);
+       
+        // If the bullet is shot from the player.
+        if (shooter == Type.player) {
+	        // What to do if no bullets are left.
+	        if (UserPlayer.getBulletCount() == 0) {
+	        	playClick();
+	        	        
+	        // What to do if bullets can be shot.
+	    	} else if (UserPlayer.getBulletCount() > 0) {
+	        	playShot();
+	        	UserPlayer.setBulletCount(
+	        			UserPlayer.getBulletCount() - 1);
+	            this.handle = handle;
+	            width = 5;
+	            height = 10;
+	            speed = 15;
+	        }
         
-        // What to do if no bullets are left.
-        if (UserPlayer.getBulletCount() == 0) {
-        	playClick();
-        	        
-        // What to do if bullets can be shot.
-    	} else if (UserPlayer.getBulletCount() > 0) {
-        	playShot();
-        	UserPlayer.setBulletCount(UserPlayer.getBulletCount() - 1);
+	    // If the bullet was shot from the shooting enemy.
+        } else if (shooter == Type.shootingEnemy) {
+        	playEnemyShot();
             this.handle = handle;
             width = 5;
             height = 10;
             speed = 15;
-            calculateVelocity(getX(), getY(), xSpd, ySpd);
         }
         
-        System.out.println(UserPlayer.getBulletCount());
+        calculateVelocity(getX(), getY(), xSpd, ySpd);
+        setShooter(shooter);
+    }
+    
+    /**
+     * Sets the shooter of the current bullet object.
+     * 
+     * @param shooter The object type that shot the bullet.
+     */
+    public void setShooter(final Type shooter) {
+    	this.shooter = shooter;
+    }
+    
+    /**
+     * Returns the Type value for the shooter of the current bullet object.
+     * 
+     * @return The Type value for the shooter of the bullet.
+     */
+    public Type getShooter() {
+    	return shooter;
     }
 
 	/**
@@ -110,6 +148,35 @@ public class Bullet extends GameObject {
         setVelY((float) ((toY - fromY) * speed / distance));
         //find X
         setVelX((float) ((toX - fromX) * speed / distance));
+    }
+    
+    /**
+     * Plays a shooting sound for the current bullet shot from the enemy.
+     */
+    public void playEnemyShot() {
+
+        //Plays a shooting sound effect.
+ 		try {
+			FileInputStream fileInputStream = new FileInputStream(
+				"Rifle-SoundBible.com-283898562.mp3");
+			Player musicPlayer = new Player(fileInputStream);
+			
+			new Thread(new Runnable() {
+				  public void run() {
+					  try {
+						musicPlayer.play();
+					} catch (JavaLayerException e) {
+						e.printStackTrace();
+					}
+				  }
+				}).start();
+ 			
+ 		} catch (FileNotFoundException e) {
+ 			e.printStackTrace();
+ 			
+ 		} catch (JavaLayerException e) {
+ 			e.printStackTrace();
+ 		}
     }
     
     /**
