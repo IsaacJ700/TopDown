@@ -86,7 +86,7 @@ public class UserPlayer extends GameObject {
     public UserPlayer(final int x, final int y, final Type type,
                   final Handler handle, final Game game) {
         super(x, y, type, handle);
-        health = 10000;
+        health = 100;
         money = 100;
         overShield = 0;
         this.handle = handle;

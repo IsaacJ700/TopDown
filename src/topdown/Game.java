@@ -147,7 +147,7 @@ public class Game extends Canvas implements Runnable {
      */
     public void setUpGame() {
         player = new UserPlayer(100, 300, Type.player, handle, this);
-        enemy1 = new Enemy(100, 450, Type.smallEnemy, handle, this);
+        enemy1 = new Enemy(100, 450, Type.randomEnemy, handle, this);
         enemy2 = new Enemy(200, 300, Type.randomEnemy, handle, this);
         enemy3 = new Enemy(300, 300, Type.randomEnemy, handle, this);
         enemy4 = new Enemy(400, 300, Type.randomEnemy, handle, this);
