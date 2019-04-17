@@ -200,6 +200,7 @@ public class Game extends Canvas implements Runnable {
         handle.addObject(new Enemy(600, 600, Type.shootingEnemy, handle, this));
         handle.addObject(new Enemy(500, 400, Type.smallEnemy, handle, this));
         handle.addObject(new Enemy(500, 500, Type.smallEnemy, handle, this));
+        handle.addObject(new PlayerSupplies(300, 400, Type.ammoPack, handle, this));
     }
 
     /******************************************************************
@@ -268,8 +269,6 @@ public class Game extends Canvas implements Runnable {
                 } else if (roundCount == 2) {
                     roundThree();
                     roundCount++;
-                } else if (roundCount == 3) {
-
                 }
             }
         }
@@ -319,11 +318,8 @@ public class Game extends Canvas implements Runnable {
      *****************************************************************/
     public void checkIfWon() {
         getNumberOfEnemies();
-        if (numberOfEnemies == 0 && roundCount == 4) {
+        if (numberOfEnemies == 0 && roundCount == 3) {
             setState(State.GameWon);
-        }
-        if (player.getBulletCount() == 0) {
-            setState(State.GameOver);
         }
     }
 

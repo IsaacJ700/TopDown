@@ -406,14 +406,14 @@ public class Enemy extends GameObject {
         } else if (type.equals(Type.largeEnemy)) {
             setHealth(200);
         } else if (type.equals(Type.bossEnemy)) {
-            setHealth(1000);
+            setHealth(500);
         } else if (type.equals(Type.shootingEnemy)) {
             setHealth(80);
         } else if (type.equals(Type.zombieEnemy)) {
             if (getEnemySize() > 50) {
-            	setHealth(900);
+                setHealth(500);
             } else if (getEnemySize() > 25) {
-            	setHealth(500);
+                setHealth(350);
             } else if (getEnemySize() > 0) {
             	setHealth(200);
             } else {
