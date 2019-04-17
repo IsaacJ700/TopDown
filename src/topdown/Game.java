@@ -3,7 +3,9 @@ package topdown;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
-import java.awt.*;
+import java.awt.Canvas;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferStrategy;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -115,12 +117,12 @@ public class Game extends Canvas implements Runnable {
     private int frameCount;
 
     /**
-     * Holds the value of the current round
+     * Holds the value of the current round.
      */
     private int roundCount;
 
     /**
-     * Holds the number of enemies in the game
+     * Holds the number of enemies in the game.
      */
     private int numberOfEnemies;
 
@@ -157,12 +159,8 @@ public class Game extends Canvas implements Runnable {
      * @param num represents the number of enemy objects
      * @return true if the round is over, otherwise return false
      *****************************************************************/
-    public boolean checkForNewRound(int num) {
-        if (num == 0) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean checkForNewRound(final int num) {
+        return (num == 0);
     }
 
     /******************************************************************
@@ -191,7 +189,7 @@ public class Game extends Canvas implements Runnable {
 
     /******************************************************************
      * After the first round is over, this method adds a bunch of new
-     * objects into the game for round two
+     * objects into the game for round two.
      *****************************************************************/
     public void roundTwo() {
         handle.addObject(new Enemy(600, 300, Type.mediumEnemy, handle, this));
@@ -200,16 +198,19 @@ public class Game extends Canvas implements Runnable {
         handle.addObject(new Enemy(600, 600, Type.shootingEnemy, handle, this));
         handle.addObject(new Enemy(500, 400, Type.smallEnemy, handle, this));
         handle.addObject(new Enemy(500, 500, Type.smallEnemy, handle, this));
-        handle.addObject(new PlayerSupplies(300, 400, Type.ammoPack, handle, this));
+        handle.addObject(new PlayerSupplies(300, 400, Type.ammoPack, handle, 
+        		this));
     }
 
     /******************************************************************
      * After the first round is over, this method adds a bunch of new
-     * objects into the game for round three
+     * objects into the game for round three.
      *****************************************************************/
     public void roundThree() {
-        handle.addObject(new PlayerSupplies(200, 400, Type.healthPack, handle, this));
-        handle.addObject(new PlayerSupplies(200, 500, Type.ammoPack, handle, this));
+        handle.addObject(new PlayerSupplies(200, 400, Type.healthPack, handle, 
+        		this));
+        handle.addObject(new PlayerSupplies(200, 500, Type.ammoPack, handle, 
+        		this));
         handle.addObject(new Enemy(600, 400, Type.bossEnemy, handle, this));
         handle.addObject(new Enemy(600, 600, Type.zombieEnemy, handle, this));
         handle.addObject(new Enemy(500, 500, Type.largeEnemy, handle, this));
@@ -262,7 +263,7 @@ public class Game extends Canvas implements Runnable {
                 frames = 0;
             }
             getNumberOfEnemies();
-            if (checkForNewRound(numberOfEnemies) == true) {
+            if (checkForNewRound(numberOfEnemies)) {
                 if (roundCount == 1) {
                     roundTwo();
                     roundCount++;
@@ -294,7 +295,7 @@ public class Game extends Canvas implements Runnable {
 
     /******************************************************************
      * Grabs the number of enemy objects in the game and sets it to
-     * the numberOfEnemies variable
+     * the numberOfEnemies variable.
      *****************************************************************/
     public void getNumberOfEnemies() {
         numberOfEnemies = 0;

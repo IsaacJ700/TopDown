@@ -1,9 +1,18 @@
 package topdown;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+/**********************************************************************
+ * Class used to test the software program and its functions.
+ *
+ * @author Isaac Jimenez
+ * @author Nicholas English
+ * @author Suman Gurung
+ * @version 2.0
+ *********************************************************************/
 public class TestTopDown {
 	
 	/**
@@ -63,7 +72,7 @@ public class TestTopDown {
 	/**
 	 * Create a player and run the tick function to test user movement.
 	 * 
-	 * @result 
+	 * @result Player coordinates will be set to (100,300) with no changes.
 	 */
 	@Test
 	public void testUserPlayerMovement1() {
@@ -79,10 +88,10 @@ public class TestTopDown {
 	
 	/**
 	 * Create a player and tests the tick function.
-	 * 
 	 * Handler is up and UserPlayer Y is greater than zero.
 	 * 
-	 * @result 
+	 * @result Player coordinates will be set to (100,10) with changes to 
+	 * handler and velocity.
 	 */
 	@Test
 	public void testUserPlayerTick1() {
@@ -100,10 +109,10 @@ public class TestTopDown {
 	
 	/**
 	 * Create a player and tests the tick function.
-	 * 
 	 * Handler is up and UserPlayer Y is less than zero.
 	 * 
-	 * @result 
+	 * @result Player coordinates will be set to (100,-10) with changes to 
+	 * handler and Y-velocity.
 	 */
 	@Test
 	public void testUserPlayerTick2() {
@@ -124,7 +133,8 @@ public class TestTopDown {
 	 * 
 	 * Handler is right and UserPlayer Y is less than zero.
 	 * 
-	 * @result 
+	 * @result Player coordinates will be set to (100,-10) with changes to 
+	 * handler, but no changes to Y-velocity.
 	 */
 	@Test
 	public void testUserPlayerTick3() {
@@ -142,10 +152,10 @@ public class TestTopDown {
 	
 	/**
 	 * Create a player and tests the tick function.
-	 * 
 	 * Handler is down and UserPlayer Y is less than zero.
 	 * 
-	 * @result 
+	 * @result Player coordinates will be set to (100,-10) with changes to 
+	 * handler and Y-velocity.
 	 */
 	@Test
 	public void testUserPlayerTick4() {

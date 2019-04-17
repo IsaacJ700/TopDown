@@ -167,7 +167,7 @@ public class PlayerSupplies extends GameObject {
 	}
 
 	/******************************************************************
-	 * Continuously updates the supplies within the game
+	 * Continuously updates the supplies within the game.
 	 *****************************************************************/
 	@Override
 	public void tick() {

@@ -195,8 +195,8 @@ public class Enemy extends GameObject {
     	 * enemy within range.
     	 */
 
-        if ((Math.sqrt(Math.pow((UserPlayer.getPlayerX() -
-                this.getX()), 2)
+        if ((Math.sqrt(Math.pow((UserPlayer.getPlayerX() 
+        		- this.getX()), 2)
     			+ Math.pow((UserPlayer.getPlayerY() - this.getY()), 2)) 
     			< 200 || this.getEnemyType() == Type.bossEnemy 
     			|| (this.getEnemyType() == Type.shootingEnemy 
@@ -531,7 +531,7 @@ public class Enemy extends GameObject {
     }
 
     /******************************************************************
-     * Method used to generate bullets from shooting type enemies
+     * Method used to generate bullets from shooting type enemies.
      *****************************************************************/
     private void beginEnemyShooting() {
         try {
@@ -559,10 +559,10 @@ public class Enemy extends GameObject {
         setY((int) (getY() + getVelY()));
         
         // Checks if the player is within range to begin chase.
-        if ((Math.sqrt(Math.pow((UserPlayer.getPlayerX() -
-                this.getX()), 2)
-                + Math.pow((UserPlayer.getPlayerY() -
-                this.getY()), 2))
+        if ((Math.sqrt(Math.pow((UserPlayer.getPlayerX() 
+        		- this.getX()), 2)
+                + Math.pow((UserPlayer.getPlayerY() 
+                - this.getY()), 2))
         		< 200)) {
 
             // Don't chase if a shooting enemy, instead shoot at
@@ -619,8 +619,7 @@ public class Enemy extends GameObject {
         for (int i = 0; i < handle.getList().size(); i++) {
             GameObject tempObject = handle.getList().get(i);
             if (tempObject.getType() == Type.bullet
-                    && ((Bullet) tempObject).getShooter() ==
-                    Type.player) {
+                    && ((Bullet) tempObject).getShooter() == Type.player) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     health -= 20;
                     if (health == 0) {

@@ -3,7 +3,9 @@ package topdown;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
