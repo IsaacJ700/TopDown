@@ -1,18 +1,18 @@
 package topdown;
 
-/**
+/**********************************************************************
  * Creates the different states available to be used to say what state
  * the game currently is in.
  *
  * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
- * @version 1.0
- */
+ * @version 2.0
+ *********************************************************************/
 public enum State {
 
     /**
-     * The gme is in the menu state.
+     * The game is in the menu state.
      */
     Menu(),
 

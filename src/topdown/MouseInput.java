@@ -4,14 +4,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
-/**
+/**********************************************************************
  * Class used to read mouseInput from the user.
  *
  * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
- * @version 1.0
- */
+ * @version 2.0
+ *********************************************************************/
 public class MouseInput implements MouseListener {
 
     /**
@@ -25,13 +25,13 @@ public class MouseInput implements MouseListener {
 
     private Handler handle;
 
-    /**
+    /******************************************************************
      * Constructor initializes handle and game with the provided
      * instances.
      *
      * @param handle represents the instance of Handler being used.
      * @param game   represents the instance of Game being used.
-     */
+     *****************************************************************/
     public MouseInput(final Game game, final Handler handle) {
         this.game = game;
         this.handle = handle;
@@ -42,12 +42,12 @@ public class MouseInput implements MouseListener {
 
     }
 
-    /**
+    /******************************************************************
      * Method determines what shall happen when the user clicks the
      * left mouse button.
      *
      * @param e represents the MouseEvent that just occurred.
-     */
+     *****************************************************************/
     @Override
     public void mousePressed(final MouseEvent e) {
         int x = e.getX();

@@ -4,14 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-/**
+/**********************************************************************
  * Class is used to display the options menu.
  *
  * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
- * @version 1.0
- */
+ * @version 2.0
+ *********************************************************************/
 public class OptionsMenu {
 
     /**
@@ -25,11 +25,6 @@ public class OptionsMenu {
     private String credits;
 
     /**
-     * String holds the soundFX text.
-     */
-    private String soundFX;
-
-    /**
      * String holds the back button text.
      */
     private String back;
@@ -39,27 +34,26 @@ public class OptionsMenu {
      */
     private Game game;
 
-    /**
+    /******************************************************************
      * Constructor initializes Strings and sets this game equal to the
      * instance provided.
      *
      * @param game The instance of Game being passed to this
-     *             constructor.
-     */
+     * constructor.
+     *****************************************************************/
     public OptionsMenu(final Game game) {
         controls = "Controls";
         credits = "Credits";
-        soundFX = "Sound FX";
         back = "Back";
         this.game = game;
     }
 
-    /**
+    /******************************************************************
      * Creates the 2D graphics for the Options Menu.
      *
      * @param g The visual display for the 2D graphics in the options
-     *          menu.
-     */
+     * menu.
+     *****************************************************************/
     public void render(final Graphics2D g) {
 
         Font font = new Font("Arial", Font.BOLD, 70);
@@ -71,7 +65,6 @@ public class OptionsMenu {
         g.setFont(font);
 
         g.drawString(controls, 356, 300);
-        g.drawString(soundFX, 335, 420);
         g.drawString(credits, 380, 540);
 
         g.setFont(font2);

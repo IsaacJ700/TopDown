@@ -3,15 +3,15 @@ package topdown;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-/**
+/**********************************************************************
  * Class is used to read keystrokes and let program know if the player
  * should move in a specific direction.
  *
  * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
- * @version 1.0
- */
+ * @version 2.0
+ *********************************************************************/
 public class KeyControls extends KeyAdapter {
 
     /**
@@ -24,24 +24,24 @@ public class KeyControls extends KeyAdapter {
      */
     private Game game;
 
-    /**
+    /******************************************************************
      * Constructor initializes handle and game with the provided
      * instances.
      *
      * @param handle represents the instance of Handler being used.
      * @param game   represents the instance of Game being used.
-     */
+     *****************************************************************/
     public KeyControls(final Handler handle, final Game game) {
         this.handle = handle;
         this.game = game;
     }
 
-    /**
+    /******************************************************************
      * Method checks keystrokes and then determines whether or not
      * the player should move in a direction.
      *
      * @param e represents the keystroke.
-     */
+     *****************************************************************/
     public void keyPressed(final KeyEvent e) {
         int key = e.getKeyCode();
 
@@ -77,12 +77,12 @@ public class KeyControls extends KeyAdapter {
         }
     }
 
-    /**
+    /******************************************************************
      * Method checks keystroke releases and then determines whether or
      * not the player should be halted.
      *
      * @param e represents the keystroke.
-     */
+     *****************************************************************/
     public void keyReleased(final KeyEvent e) {
         int key = e.getKeyCode();
 

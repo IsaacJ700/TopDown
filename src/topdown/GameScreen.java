@@ -4,14 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-/**
+/**********************************************************************
  * Class used to display the Game screen.
  *
  * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
- * @version 1.0
- */
+ * @version 2.0
+ *********************************************************************/
 public class GameScreen {
 
     /**
@@ -34,7 +34,7 @@ public class GameScreen {
      */
     private int startY;
 
-    /**
+    /******************************************************************
      * Constructor initializes variables and sets this Game equal to
      * the provided instance of Game, and same for Player.
      *
@@ -42,7 +42,7 @@ public class GameScreen {
      *               down to this constructor.
      * @param player represents the instance of Player that is being
      *               passes down to this constructor
-     */
+     *****************************************************************/
     public GameScreen(final Game game, final UserPlayer player) {
         startX = 60;
         startY = 60;
@@ -50,11 +50,11 @@ public class GameScreen {
         this.player = player;
     }
 
-    /**
+    /******************************************************************
      * Renders the screen overlay HUD for the in-game screen.
      *
      * @param g The 2D graphic screen to be rendered.
-     */
+     *****************************************************************/
     public void render(final Graphics2D g) {
         g.setColor(Color.gray);
         g.fillRect(0, 0, game.getWIDTH(), game.getHEIGHT());

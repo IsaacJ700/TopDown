@@ -4,14 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-/**
+/**********************************************************************
  * Class used to display the Game Won screen.
  *
  * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
- * @version 1.0
- */
+ * @version 2.0
+ *********************************************************************/
 public class GameWonScreen {
 
     /**
@@ -29,24 +29,24 @@ public class GameWonScreen {
      */
     private Game game;
 
-    /**
+    /******************************************************************
      * Constructor initializes Strings ad sets this Game equal to the
      * Game provided in the parameters.
      *
      * @param game represents the instance of Game that is being passed
      *             down to this constructor.
-     */
+     *****************************************************************/
     public GameWonScreen(final Game game) {
         gameOver = "You Won!!";
         mainMenu = "Main Menu";
         this.game = game;
     }
 
-    /**
+    /******************************************************************
      * Renders the Game Won screen.
      *
      * @param g The 2D graphic screen to be rendered.
-     */
+     *****************************************************************/
     public void render(final Graphics2D g) {
         Font font = new Font("Arial", Font.PLAIN, 150);
         Font font2 = new Font("Standard", Font.PLAIN, 80);

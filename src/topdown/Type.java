@@ -1,14 +1,14 @@
 package topdown;
 
-/**
+/**********************************************************************
  * Creates the different types of objects available to be made in the
  * game.
  *
  * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
- * @version 1.0
- */
+ * @version 2.0
+ *********************************************************************/
 public enum Type {
 	
 	/**
@@ -32,19 +32,9 @@ public enum Type {
     bullet(),
 
     /**
-     * The shop type for the ability for players to shop.
-     */
-    shop(),
-
-    /**
      * The wall type to create in-game barriers.
      */
     wall(),
-
-    /**
-     * The crate type to create barriers that can be broken.
-     */
-    crate(),
 
     /**
      * The small enemy type with lower health and smaller size.
@@ -82,5 +72,5 @@ public enum Type {
      * The random enemy type that is used to randomly select an enemy
      * type.
      */
-    randomEnemy()
+    randomEnemy(),
 }

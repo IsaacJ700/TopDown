@@ -1,22 +1,21 @@
 package topdown;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
-/**
+import java.awt.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+/**********************************************************************
  * Class used to create bullets within the Game.
  *
  * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
- * @version 1.0
- */
+ * @version 2.0
+ *********************************************************************/
 public class Bullet extends GameObject {
 
     /**
@@ -56,7 +55,7 @@ public class Bullet extends GameObject {
      */
     private Type shooter;
 
-    /**
+    /******************************************************************
      * Constructor accepts in multiple parameters and uses them to call
      * super and the calculateVelocity method.
      * 
@@ -71,8 +70,9 @@ public class Bullet extends GameObject {
      * @param ySpd represents the speed at which the bullet travels
      *               vertically.
      * @throws IOException Thrown if the input operation fails.
-     */
-    public Bullet(final Type shooter, final int x, final int y, final Type type,
+     *****************************************************************/
+    public Bullet(final Type shooter, final int x, final int y,
+                  final Type type,
                   final Handler handle, final int xSpd,
                   final int ySpd) throws IOException {
         super(x, y, type, handle);
@@ -106,26 +106,27 @@ public class Bullet extends GameObject {
         calculateVelocity(getX(), getY(), xSpd, ySpd);
         setShooter(shooter);
     }
-    
-    /**
+
+    /******************************************************************
      * Sets the shooter of the current bullet object.
      * 
      * @param shooter The object type that shot the bullet.
-     */
+     *****************************************************************/
     public void setShooter(final Type shooter) {
     	this.shooter = shooter;
     }
-    
-    /**
-     * Returns the Type value for the shooter of the current bullet object.
+
+    /******************************************************************
+     * Returns the Type value for the shooter of the current bullet
+     * object.
      * 
      * @return The Type value for the shooter of the bullet.
-     */
+     *****************************************************************/
     public Type getShooter() {
     	return shooter;
     }
 
-	/**
+    /******************************************************************
      * Determines the velocity of the bullet depending on where it is
      * shot from and towards what point.
      *
@@ -137,7 +138,7 @@ public class Bullet extends GameObject {
      * the bullet's destination.
      * @param toY Holds an int that represents the Y-coordinate of
      * the bullet's destination.
-     */
+     *****************************************************************/
     public void calculateVelocity(final int fromX, final int fromY,
                                   final int toX, final int toY) {
 
@@ -149,10 +150,11 @@ public class Bullet extends GameObject {
         //find X
         setVelX((float) ((toX - fromX) * speed / distance));
     }
-    
-    /**
-     * Plays a shooting sound for the current bullet shot from the enemy.
-     */
+
+    /******************************************************************
+     * Plays a shooting sound for the current bullet shot from the
+     * enemy.
+     *****************************************************************/
     public void playEnemyShot() {
 
         //Plays a shooting sound effect.
@@ -178,10 +180,10 @@ public class Bullet extends GameObject {
  			e.printStackTrace();
  		}
     }
-    
-    /**
+
+    /******************************************************************
      * Plays a shooting sound for the current bullet.
-     */
+     *****************************************************************/
     public void playShot() {
 
         //Plays a shooting sound effect.
@@ -207,10 +209,10 @@ public class Bullet extends GameObject {
  			e.printStackTrace();
  		}
     }
-    
-    /**
+
+    /******************************************************************
      * Plays a clicking sound for no bullets being shot.
-     */
+     *****************************************************************/
     public void playClick() {
 
         //Plays a clicking sound effect.
@@ -236,30 +238,30 @@ public class Bullet extends GameObject {
  			e.printStackTrace();
  		}
     }
-    
-    /**
+
+    /******************************************************************
      * Updates the current position of the bullet.
-     */
+     *****************************************************************/
     @Override
     public void tick() {
         setX((int) (getX() + getVelX()));
         setY((int) (getY() + getVelY()));
     }
 
-    /**
+    /******************************************************************
      * Updates the image of the bullet as it travels across the screen.
      * @param g represents the instance of the Graphics class used.
-     */
+     *****************************************************************/
     @Override
     public void render(final Graphics g) {
         g.setColor(Color.WHITE);
         g.fillOval(getX(), getY(), width, height);
     }
 
-    /**
+    /******************************************************************
      * Returns the boundaries of the bullet as a rectangle.
      * @return the boundaries of the bullet as a rectangle.
-     */
+     *****************************************************************/
     @Override
     public Rectangle getBounds() {
         return new Rectangle(getX(), getY(), width, height);

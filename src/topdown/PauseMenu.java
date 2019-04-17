@@ -4,14 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-/**
+/**********************************************************************
  * Class used to display the pause menu.
  *
  * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
- * @version 1.0
- */
+ * @version 2.0
+ *********************************************************************/
 public class PauseMenu {
 
     /**
@@ -39,13 +39,13 @@ public class PauseMenu {
      */
     private  Game game;
 
-    /**
+    /******************************************************************
      * Constructor initializes Strings and sets this game equal to the
      * instance provided.
      *
      * @param game The instance of Game being passed to this
-     *             constructor.
-     */
+     * constructor.
+     *****************************************************************/
     public PauseMenu(final Game game) {
         restart = "Restart";
         quit = "Quit";
@@ -54,12 +54,12 @@ public class PauseMenu {
         this.game = game;
     }
 
-    /**
+    /******************************************************************
      * Creates the 2D graphics for the Pause Menu.
      *
      * @param g The visual display for the 2D graphics in the pause
      * menu.
-     */
+     *****************************************************************/
     public void render(final Graphics2D g) {
 
         Font font = new Font("Arial", Font.BOLD, 70);
@@ -73,10 +73,6 @@ public class PauseMenu {
         g.drawString(restart, 375, 300);
         g.drawString(soundFX, 335, 420);
         g.drawString(quit, 425, 540);
-
-//        g.drawRect(370, 240, 255, 70);
-//        g.drawRect(325, 360, 350, 70);
-//        g.drawRect(420, 480, 150, 70);
 
         g.setFont(font2);
         g.setColor(Color.ORANGE);

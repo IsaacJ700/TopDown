@@ -4,14 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-/**
+/**********************************************************************
  * Class is used to render the main menu.
  *
  * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
- * @version 1.0
- */
+ * @version 2.0
+ *********************************************************************/
 public class Menu {
 
     /**
@@ -39,13 +39,13 @@ public class Menu {
      */
     private Game game;
 
-    /**
+    /******************************************************************
      * Constructor initializes Strings and sets this game equal to the
      * instance provided.
      *
      * @param game The instance of Game being passed to this
-     *             constructor.
-     */
+     * constructor.
+     *****************************************************************/
     public Menu(final Game game) {
         title = "2D Shooter";
         start = "Start";
@@ -54,12 +54,12 @@ public class Menu {
         this.game = game;
     }
 
-    /**
+    /******************************************************************
      * Creates the 2D graphics for the Main Menu.
      *
      * @param g The visual display for the 2D graphics in the main
      * menu.
-     */
+     *****************************************************************/
     public void render(final Graphics2D g) {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, game.getWIDTH(), game.getHEIGHT());

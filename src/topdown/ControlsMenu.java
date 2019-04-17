@@ -4,14 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-/**
+/**********************************************************************
  * Class used to display the controls menu.
  *
  * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
- * @version 1.0
- */
+ * @version 2.0
+ *********************************************************************/
 public class ControlsMenu {
 
     /**
@@ -66,14 +66,14 @@ public class ControlsMenu {
      */
     private Game game;
 
-    /**
+    /******************************************************************
      * Constructor initializes strings to be used to display controls
      * for the game. It also takes in a Game as a parameter and sets it
      * equal to the instance of Game created above.
      *
      * @param game represents the instance of Game that is being passed
      *             down to this constructor.
-     */
+     *****************************************************************/
     public ControlsMenu(final Game game) {
         back = new String("Back");
         w = new String("W:  Move Up");
@@ -87,12 +87,12 @@ public class ControlsMenu {
         this.game = game;
     }
 
-    /**
+    /******************************************************************
      * Creates the 2D graphics for the controls menu.
      *
      * @param g The visual display for the 2D graphics in the controls
      * menu.
-     */
+     *****************************************************************/
     public void render(final Graphics2D g) {
         Font font = new Font("Arial", Font.ITALIC, 70);
         Font font2 = new Font("Arial", Font.PLAIN, 38);

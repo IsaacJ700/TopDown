@@ -1,22 +1,20 @@
 package topdown;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
-/**
+import java.awt.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+/**********************************************************************
  * Class used to create the player GameObject and alter its properties.
  *
  * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
- * @version 1.0
- */
+ * @version 2.0
+ *********************************************************************/
 public class UserPlayer extends GameObject {
 
     /**
@@ -69,20 +67,20 @@ public class UserPlayer extends GameObject {
      */
     private static int score;
 
-    /**
+    /******************************************************************
      * Constructor creates a player object by accepting in various
      * parameters needed to determine the properties of the player.
      *
-     * @param x      represents the x coordinate at which the player will
+     * @param x   represents the x coordinate at which the player will
      *               spawn.
-     * @param y      represents the y coordinate at which the player will
+     * @param y   represents the y coordinate at which the player will
      *               spawn.
-     * @param type   represents the type of object.
+     * @param type represents the type of object.
      * @param handle represents the instance of the Handler class being
      *               passed down to this constructor.
      * @param game   represents the instance of the Game class being
      *               passed down to this constructor.
-     */
+     *****************************************************************/
     public UserPlayer(final int x, final int y, final Type type,
                   final Handler handle, final Game game) {
         super(x, y, type, handle);
@@ -96,47 +94,47 @@ public class UserPlayer extends GameObject {
         setBulletCount(80);
         setScore(0);
     }
-    
-    /**
+
+    /******************************************************************
      * Sets the score of points the user has earned.
      * 
      * @param points represents the score the player has.
-     */
+     *****************************************************************/
     public static void setScore(final int points) {
     	score = points;
 	}
-    
-    /**
+
+    /******************************************************************
      * Returns the score of points the user has earned.
      * 
      * @return The score the player has earned.
-     */
+     *****************************************************************/
     public static int getScore() {
 		return score;
 	}
 
-    /**
+    /******************************************************************
      * Sets the number of bullets the user has remaining.
      * 
      * @param count represents the bullets left.
-     */
+     *****************************************************************/
     public static void setBulletCount(final int count) {
     	bulletCount = count;
 	}
-    
-    /**
+
+    /******************************************************************
      * Returns the number of bullets the user has left.
      * 
      * @return The number of bullets left.
-     */
+     *****************************************************************/
     public static int getBulletCount() {
 		return bulletCount;
 	}
 
-	/**
+    /******************************************************************
      * Continuously updates the player's position, and checks to see if
      * the player has collided with an enemy.
-     */
+     *****************************************************************/
     @Override
     public void tick() {
     	setX((int) (getX() + getVelX()));
@@ -207,7 +205,7 @@ public class UserPlayer extends GameObject {
             // Add health when player hits health pack.
             if (tempObject.getType() == Type.healthPack) {
             	if (getBounds().intersects(tempObject.getBounds())) {
-                    health += 20;
+                    health += 50;
                     if (health >= 100) {
                         health = 100;
                     }
@@ -221,7 +219,7 @@ public class UserPlayer extends GameObject {
             // Add bullets when player hits ammo pack.
             if (tempObject.getType() == Type.ammoPack) {
             	if (getBounds().intersects(tempObject.getBounds())) {
-                    setBulletCount(getBulletCount() + 40);
+                    setBulletCount(getBulletCount() + 50);
                     handle.removeObject(tempObject);
                     
                     // Play sound for getting ammo.
@@ -230,10 +228,10 @@ public class UserPlayer extends GameObject {
             }
         }
     }
-    
-    /**
+
+    /******************************************************************
      * Plays a healing sound for obtaining a health pack.
-     */
+     *****************************************************************/
     public void playGetHealth() {
 
         //Plays a healing sound effect.
@@ -259,10 +257,10 @@ public class UserPlayer extends GameObject {
  			e.printStackTrace();
  		}
     }
-    
-    /**
+
+    /******************************************************************
      * Plays a reloading sound for obtaining more ammo.
-     */
+     *****************************************************************/
     public void playGetAmmo() {
 
         //Plays a reloading sound effect.
@@ -290,108 +288,108 @@ public class UserPlayer extends GameObject {
  		}
     }
 
-    /**
+    /******************************************************************
      * Draws the player with the given bounds.
      *
      * @param g visual display for the 2D graphics.
-     */
+     *****************************************************************/
     @Override
     public void render(final Graphics g) {
         g.setColor(Color.ORANGE);
         g.fillRect(getX(), getY(), 40, 40);
     }
 
-    /**
+    /******************************************************************
      * Returns the boundaries of the player.
      *
      * @return The boundaries of the player as a rectangle.
-     */
+     *****************************************************************/
     @Override
     public Rectangle getBounds() {
         return new Rectangle(getX(), getY(), 40, 40);
     }
 
-    /**
+    /******************************************************************
      * Returns an int that represents the current health of the player.
      *
      * @return The health of the current player.
-     */
+     *****************************************************************/
     public int getHealth() {
         return health;
     }
 
-    /**
+    /******************************************************************
      * Sets the health for the player object to the amount passed.
      *
      * @param health The health to be set to the player object.
-     */
+     *****************************************************************/
     public void setHealth(final int health) {
         this.health = health;
     }
 
-    /**
+    /******************************************************************
      * Returns the amount of money the player currently has.
      *
      * @return the amount of money the player has.
-     */
+     *****************************************************************/
     public int getMoney() {
         return money;
     }
 
-    /**
+    /******************************************************************
      * Sets the amount of money the player has.
      *
      * @param money the amount of in-game currency the player has.
-     */
+     *****************************************************************/
     public void setMoney(final int money) {
         this.money = money;
     }
 
-    /**
+    /******************************************************************
      * Returns the amount of shield the player currently has.
      *
      * @return the amount of shield the player has.
-     */
+     *****************************************************************/
     public int getOverShield() {
         return overShield;
     }
 
-    /**
+    /******************************************************************
      * Sets the amount of shield the player has.
      * @param overShield the amount of extra health the player has.
-     */
+     *****************************************************************/
     public void setOverShield(final int overShield) {
         this.overShield = overShield;
     }
-    
-    /**
+
+    /******************************************************************
      * Returns the x coordinate of the current player.
      *
      * @return the x coordinate the player has.
-     */
+     *****************************************************************/
     public static int getPlayerX() {
         return x;
     }
 
-    /**
+    /******************************************************************
      * Sets the x coordinate of the current player.
-     */
+     *****************************************************************/
     public void setPlayerX() {
         this.x = getX();
     }
-    
-    /**
+
+    /******************************************************************
      * Returns the y coordinate of the current player.
      *
      * @return the y coordinate the player has.
-     */
+     *****************************************************************/
     public static int getPlayerY() {
         return y;
     }
 
-    /**
+    /******************************************************************
      * Sets the x coordinate of the current player.
-     */
+     *****************************************************************/
     public void setPlayerY() {
         this.y = getY();
     }

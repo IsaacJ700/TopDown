@@ -4,14 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-/**
+/**********************************************************************
  * Class used to display the Credits submenu.
  *
  * @author Isaac Jimenez
  * @author Nicholas English
  * @author Suman Gurung
- * @version 1.0
- */
+ * @version 2.0
+ *********************************************************************/
 public class Credits {
 
     /**
@@ -49,13 +49,13 @@ public class Credits {
      */
     private String sound2;
 
-    /**
+    /******************************************************************
      * Constructor initializes the Strings and sets the passed down
      * instance of Game to this class's instance of Game.
      *
      * @param game represents the instance of Game that is being passed
      *             down to this constructor.
-     */
+     *****************************************************************/
     public Credits(final Game game) {
         this.game = game;
         back = "Back";
@@ -66,12 +66,12 @@ public class Credits {
         sound2 = "SoundFX: http://www.soundbible.com";
     }
 
-    /**
+    /******************************************************************
      * Creates the 2D graphics for the Credits menu.
      *
      * @param g The visual display for the 2D graphics in the controls
      * menu.
-     */
+     *****************************************************************/
     public void render(final Graphics2D g) {
         Font font = new Font("Arial", Font.BOLD, 70);
         Font font2 = new Font("Arial", Font.PLAIN, 38);
