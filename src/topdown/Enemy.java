@@ -622,7 +622,7 @@ public class Enemy extends GameObject {
                     && ((Bullet) tempObject).getShooter() == Type.player) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     health -= 20;
-                    if (health == 0) {
+                    if (health <= 0) {
                     	UserPlayer.setScore(UserPlayer.getScore() 
                     			+ this.getEnemyScore());
                         handle.removeObject(this);

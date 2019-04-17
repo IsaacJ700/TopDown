@@ -29,16 +29,6 @@ public class UserPlayer extends GameObject {
     private int health;
 
     /**
-     * Used to store how much money the player has.
-     */
-    private int money;
-
-    /**
-     * User to store how much shield the player has.
-     */
-    private int overShield;
-
-    /**
      * Instance of the Game class.
      */
     private Game game;
@@ -86,8 +76,6 @@ public class UserPlayer extends GameObject {
                   final Handler handle, final Game game) {
         super(x, y, type, handle);
         health = 100;
-        money = 100;
-        overShield = 0;
         this.handle = handle;
         this.game = game;
         timer = new SecondTimer();
@@ -326,41 +314,6 @@ public class UserPlayer extends GameObject {
      *****************************************************************/
     public void setHealth(final int health) {
         this.health = health;
-    }
-
-    /******************************************************************
-     * Returns the amount of money the player currently has.
-     *
-     * @return the amount of money the player has.
-     *****************************************************************/
-    public int getMoney() {
-        return money;
-    }
-
-    /******************************************************************
-     * Sets the amount of money the player has.
-     *
-     * @param money the amount of in-game currency the player has.
-     *****************************************************************/
-    public void setMoney(final int money) {
-        this.money = money;
-    }
-
-    /******************************************************************
-     * Returns the amount of shield the player currently has.
-     *
-     * @return the amount of shield the player has.
-     *****************************************************************/
-    public int getOverShield() {
-        return overShield;
-    }
-
-    /******************************************************************
-     * Sets the amount of shield the player has.
-     * @param overShield the amount of extra health the player has.
-     *****************************************************************/
-    public void setOverShield(final int overShield) {
-        this.overShield = overShield;
     }
 
     /******************************************************************

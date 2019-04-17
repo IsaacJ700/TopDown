@@ -1,9 +1,8 @@
 package topdown;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**********************************************************************
  * Class used to test the software program and its functions.

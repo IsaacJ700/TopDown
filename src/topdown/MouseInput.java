@@ -99,11 +99,6 @@ public class MouseInput implements MouseListener {
                     game.setState(State.ControlsMenu);
                 }
             }
-            if (x >= 355 && x <= 665) {
-                if (y >= 360 && y <= 430) {
-                    game.setState(game.getState()); //SoundFX toggle
-                }
-            }
             if (x >= 380 && x <= 620) {
                 if (y >= 480 && y <= 550) {
                     //credits screen
@@ -116,12 +111,6 @@ public class MouseInput implements MouseListener {
                     //Restart button
                     game.reset();
                     game.setState(State.Menu);
-                }
-            }
-            if (x >= 325 && x <= 675) {
-                if (y >= 360 && y <= 430) {
-                    //Toggle soundFX
-                	game.setState(game.getState());
                 }
             }
             if (x >= 420 && x <= 570) {

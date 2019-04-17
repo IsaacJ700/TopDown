@@ -223,7 +223,6 @@ public class Game extends Canvas implements Runnable {
         handle.getList().clear();
         roundCount = 1;
         numberOfEnemies = 5;
-
     }
 
     /******************************************************************
@@ -420,15 +419,6 @@ public class Game extends Canvas implements Runnable {
      *****************************************************************/
     public int getFrameCount() {
         return frameCount;
-    }
-
-    /******************************************************************
-     * Sets the frames per second based on the integer value passed.
-     *
-     * @param frameCount Holds an int value of the frames per second.
-     *****************************************************************/
-    public void setFrameCount(final int frameCount) {
-        this.frameCount = frameCount;
     }
 
     /******************************************************************
